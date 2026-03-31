@@ -110,7 +110,7 @@ const DSLAuth = (() => {
 
   function requireAuth(redirectUrl) {
     if (!isAuthenticated()) {
-      window.location.href = redirectUrl || 'login.html';
+      window.location.href = redirectUrl || 'login';
       return false;
     }
     return true;
@@ -253,13 +253,13 @@ const DSLAuth = (() => {
         </div>
         <div class="auth-dd-divider"></div>
         ${session.role === 'ADMIN' ? `
-        <a class="auth-dd-item" href="admin.html">
+        <a class="auth-dd-item" href="admin">
           <span class="auth-dd-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span> Admin Panel
         </a>
-        <a class="auth-dd-item" href="admin.html#users">
+        <a class="auth-dd-item" href="admin#users">
           <span class="auth-dd-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> User Management
         </a>
-        <a class="auth-dd-item" href="admin.html#activity">
+        <a class="auth-dd-item" href="admin#activity">
           <span class="auth-dd-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span> Activity Log
         </a>
         <div class="auth-dd-divider"></div>
@@ -269,7 +269,7 @@ const DSLAuth = (() => {
           <span class="auth-dd-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span> Change Password
         </a>
         <div class="auth-dd-divider"></div>
-        <a class="auth-dd-item auth-dd-logout" href="#" onclick="DSLAuth.logout();window.location.href='login.html';return false;">
+        <a class="auth-dd-item auth-dd-logout" href="#" onclick="DSLAuth.logout();window.location.href='login';return false;">
           <span class="auth-dd-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span> Sign Out
         </a>
       </div>
@@ -283,14 +283,14 @@ const DSLAuth = (() => {
     if (!el) return;
 
     const portalMap = {
-      ceo: { name: 'CEO', file: 'ceo.html', color: '#3b82f6' },
-      cro: { name: 'CRO', file: 'cro.html', color: '#16a34a' },
-      cfo: { name: 'CFO', file: 'cfo.html', color: '#d97706' },
-      coo: { name: 'COO', file: 'coo.html', color: '#ea580c' },
-      cs:  { name: 'CS',  file: 'cs.html',  color: '#dc2626' },
-      cto: { name: 'CTO', file: 'cto.html', color: '#7c3aed' },
-      cmo: { name: 'CMO', file: 'cmo.html', color: '#0d9488' },
-      cpo: { name: 'CPO', file: 'cpo.html', color: '#e11d48' },
+      ceo: { name: 'CEO', file: 'ceo', color: '#3b82f6' },
+      cro: { name: 'CRO', file: 'cro', color: '#16a34a' },
+      cfo: { name: 'CFO', file: 'cfo', color: '#d97706' },
+      coo: { name: 'COO', file: 'coo', color: '#ea580c' },
+      cs:  { name: 'CS',  file: 'cs',  color: '#dc2626' },
+      cto: { name: 'CTO', file: 'cto', color: '#7c3aed' },
+      cmo: { name: 'CMO', file: 'cmo', color: '#0d9488' },
+      cpo: { name: 'CPO', file: 'cpo', color: '#e11d48' },
     };
 
     const currentPage = window.location.pathname.split('/').pop();
@@ -307,8 +307,8 @@ const DSLAuth = (() => {
     }
 
     if (session.role === 'ADMIN') {
-      const isAdminPage = currentPage === 'admin.html';
-      html += `<a href="admin.html" class="nav-portal${isAdminPage ? ' active' : ''}" style="${isAdminPage ? 'color:#1a1916;border-bottom-color:#1a1916' : ''}">Admin</a>`;
+      const isAdminPage = currentPage === 'admin';
+      html += `<a href="admin" class="nav-portal${isAdminPage ? ' active' : ''}" style="${isAdminPage ? 'color:#1a1916;border-bottom-color:#1a1916' : ''}">Admin</a>`;
     }
 
     el.innerHTML = html;
@@ -322,7 +322,7 @@ const DSLAuth = (() => {
   // ── Inject Auth Guard ──
   function injectGuard(portalId) {
     if (!isAuthenticated()) {
-      window.location.href = 'login.html';
+      window.location.href = 'login';
       return;
     }
     if (portalId && !hasPortalAccess(portalId)) {
@@ -332,7 +332,7 @@ const DSLAuth = (() => {
             <div style="font-size:48px;margin-bottom:16px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
             <h2 style="font-size:20px;font-weight:700;color:#1a1916;margin-bottom:8px">Access Restricted</h2>
             <p style="font-size:13px;color:#7a7770;margin-bottom:20px">Your account (<strong>${getSession().email}</strong>) does not have permission to access the ${portalId.toUpperCase()} Portal.</p>
-            <a href="login.html" style="display:inline-block;padding:10px 24px;background:#3b82f6;color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600">Return to Login</a>
+            <a href="login" style="display:inline-block;padding:10px 24px;background:#3b82f6;color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600">Return to Login</a>
           </div>
         </div>`;
       return;

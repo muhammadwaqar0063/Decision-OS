@@ -277,7 +277,7 @@ if (fs.existsSync(dataDir)) {
   });
 }
 
-// ── Clean URL support (/ceo → ceo.html) ──
+// ── Clean URL support (/ceo → ceo) ──
 // Redirect .html URLs to clean URLs
 app.use((req, res, next) => {
   if (req.method === 'GET' && req.path.endsWith('.html') && !req.path.startsWith('/api/')) {

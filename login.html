@@ -128,7 +128,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-
 
 <!-- SESSION BANNER (shown if already logged in) -->
 <div class="session-banner" id="session-banner">
-  You're already signed in as <strong id="session-user"></strong>. <a href="login.html">Sign in again</a> or <a href="#" onclick="DSLAuth.logout();location.reload();return false">sign out</a>.
+  You're already signed in as <strong id="session-user"></strong>. <a href="login">Sign in again</a> or <a href="#" onclick="DSLAuth.logout();location.reload();return false">sign out</a>.
 </div>
 
 <div class="login-page">
@@ -292,7 +292,7 @@ function handleLogin(e) {
       showToast('success', `Welcome back, ${result.user.name}. Redirecting...`);
       setTimeout(() => {
         var p = result.user.role.toLowerCase();
-        window.location.href = p === 'admin' ? 'admin.html' : p + '.html';
+        window.location.href = p;
       }, 800);
     } else {
       showError(result.error);
