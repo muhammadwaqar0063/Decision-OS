@@ -356,6 +356,58 @@ if (typeof DSLAuth !== 'undefined') {
 </script>
 
 
+
+  <div class="cd"><div class="cd-h"><span class="cd-t">Tech debt prioritization <span>| decision flow</span></span></div><div class="cd-b">
+    <div style="display:flex;flex-direction:column;gap:2px;margin:14px 0">
+      <div class="df-node"><span class="df-tag" style="background:var(--purple);color:#fff">Score</span><strong>Each debt item scored:</strong> (Blast Radius × 0.35) + (Failure Cost × 0.30) + (Fix Effort Inverse × 0.20) + (Revenue Block × 0.15)</div>
+      <div class="flow-arrow" style="padding:4px 0;color:var(--ink4)">↓</div>
+      <div class="df-node no"><span class="df-tag n">> 8.0</span>Fix in current sprint. Blocker-level. Assign senior engineer.</div>
+      <div class="df-node warn"><span class="df-tag m">5.0 – 8.0</span>Schedule in next 2 sprints. Track velocity impact weekly.</div>
+      <div class="df-node yes"><span class="df-tag y">< 5.0</span>Backlog. Revisit quarterly. Don't let it become "someday."</div>
+      <div class="flow-arrow" style="padding:4px 0;color:var(--ink4)">↓</div>
+      <div class="df-node"><span class="df-tag" style="background:var(--purple);color:#fff">Cap</span><strong>Max 30% of sprint capacity for debt</strong> | If debt is >30%, declare engineering emergency and renegotiate roadmap.</div>
+    </div>
+    <div style="padding:14px 18px;border-left:3px solid var(--purple);background:#f5f3ff;border-radius:0 6px 6px 0;font-size:12px"><strong>Current debt load: 31% of sprint capacity.</strong> Above 30% cap. Either declare emergency or cut a feature from Q2.</div>
+  </div></div>
+
+  <div class="cd"><div class="cd-h"><span class="cd-t">Tech debt reduction playbook <span>| active</span></span></div><div class="cd-b">
+    <div class="pbs">
+      <div class="pb-step done"><div class="pb-num" style="background:var(--green)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="pb-info"><div class="pb-title">Database query optimization</div><div class="pb-meta"><span>Score: 8.4 | Done: 3 sprints ago</span></div><div class="pb-desc">Reduced p95 latency from 820ms to 340ms. Direct impact on customer satisfaction.</div></div></div>
+      <div class="pb-step done"><div class="pb-num" style="background:var(--green)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="pb-info"><div class="pb-title">Auth rate limiting added</div><div class="pb-meta"><span>Score: 7.8 | Done: 1 sprint ago</span></div><div class="pb-desc">Prevented 3 potential DDoS incidents. CFR dropped 2%.</div></div></div>
+      <div class="pb-step cur"><div class="pb-num">3</div><div class="pb-info"><div class="pb-title">Auth service decompose</div><div class="pb-meta"><span class="cred">Score: 9.1 — BLOCKER</span></div><div class="pb-desc">Monolithic auth maxes at 2K RPS. Current peak: 1.6K. Must split into JWT + session services before scale. 4 sprints estimated.</div></div></div>
+      <div class="pb-step"><div class="pb-num">4</div><div class="pb-info"><div class="pb-title">Background job sharding</div><div class="pb-meta"><span>Score: 7.2</span></div><div class="pb-desc">Queue depth growing 12%/mo. Consumer OOM incidents increasing. Needs partitioned workers.</div></div></div>
+      <div class="pb-step"><div class="pb-num">5</div><div class="pb-info"><div class="pb-title">Test coverage: integration tests</div><div class="pb-meta"><span>Score: 6.1</span></div><div class="pb-desc">34% coverage, no integration tests. Direct cause of 12.4% CFR. Start with payment and auth flows.</div></div></div>
+    </div>
+  </div></div>
+
+  <div class="cd"><div class="cd-h"><span class="cd-t">Incident response playbook <span>| severity-gated</span></span></div><div class="cd-b">
+    <div style="display:flex;flex-direction:column;gap:2px;margin:14px 0">
+      <div class="df-node no"><span class="df-tag n">SEV-1</span><strong>Customer-facing outage</strong> | All-hands page. CEO notified. Post-mortem within 48hrs. No deploys until resolved.</div>
+      <div class="df-node warn"><span class="df-tag m">SEV-2</span><strong>Degraded performance</strong> | On-call + squad lead. Investigate root cause. Fix within 4hrs or escalate to SEV-1.</div>
+      <div class="df-node yes"><span class="df-tag y">SEV-3</span><strong>Internal tool / non-critical</strong> | On-call handles. Fix in next business day. Document in incident log.</div>
+      <div class="flow-arrow" style="padding:4px 0;color:var(--ink4)">↓</div>
+      <div class="df-node"><span class="df-tag" style="background:var(--purple);color:#fff">Post</span><strong>Every incident gets a blameless post-mortem</strong> | What happened → Why → What we'll change → Who owns the fix → Deadline.</div>
+    </div>
+    <div class="pbs" style="margin-top:12px">
+      <div class="pb-step done"><div class="pb-num" style="background:var(--green)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="pb-info"><div class="pb-title">Payments race condition — SEV-2</div><div class="pb-meta"><span>Resolved Mar 28</span></div><div class="pb-desc">Idempotency key collision under high concurrency. Fix deployed. Monitoring added.</div></div></div>
+      <div class="pb-step cur"><div class="pb-num">2</div><div class="pb-info"><div class="pb-title">API latency spike — SEV-3</div><div class="pb-meta"><span class="cred">Open — investigating</span></div><div class="pb-desc">p99 latency spiked to 2.1s on /api/v2/projects. Suspect N+1 query in new dashboard feature.</div></div></div>
+    </div>
+  </div></div>
+
+  <div class="cd"><div class="cd-h"><span class="cd-t">Scaling decision flow <span>| when to add infra</span></span></div><div class="cd-b">
+    <div style="display:flex;flex-direction:column;gap:2px;margin:14px 0">
+      <div class="df-node"><span class="df-tag" style="background:var(--purple);color:#fff">IF</span><strong>Any service >70% utilization at peak</strong></div>
+      <div class="flow-arrow" style="padding:4px 0;color:var(--ink4)">↓</div>
+      <div class="df-node warn"><span class="df-tag m">Assess</span>Can we optimize code first? Profile and fix hot paths before adding hardware.</div>
+      <div class="flow-arrow" style="padding:4px 0;color:var(--ink4)">↓</div>
+      <div class="df-node yes"><span class="df-tag y">Optimized + still >70%</span>Scale horizontally. Add replicas/workers. Target: <50% at peak after scaling.</div>
+      <div class="df-node no"><span class="df-tag n">Not optimized</span>Fix code first. Adding infra to unoptimized code is buying time, not solving problems.</div>
+      <div class="flow-arrow" style="padding:4px 0;color:var(--ink4)">↓</div>
+      <div class="df-node"><span class="df-tag" style="background:var(--purple);color:#fff">Cost</span><strong>Every scaling decision gets a cost projection</strong> | Monthly infra cost, 6-month trend, comparison to revenue growth rate.</div>
+    </div>
+  </div></div>
+
+
 <script src="dark-mode.js"></script>
 </body>
 </html>
