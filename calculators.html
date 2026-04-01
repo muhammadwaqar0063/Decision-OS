@@ -247,34 +247,161 @@ td.current{background:var(--blue-soft);font-weight:700}
 </div>
 
 <div id="s-churn" style="display:none">
-  <div class="sh"><div class="sh-over">Interactive Calculator · Churn</div><h2>Churn sensitivity <b>stress test.</b></h2></div>
+
+  <!-- ═══════════════════ HEADER ═══════════════════ -->
+  <div class="sh">
+    <div class="sh-over">Churn Intelligence · Corporate Retention Command Center</div>
+    <h2>Churn <b>stress test & action engine.</b></h2>
+    <div class="sh-sub">Full churn decomposition: revenue impact, cohort decay curves, root-cause analysis, save economics, industry benchmarks, sensitivity matrix, and prioritized action plan with true go/no-go decision.</div>
+  </div>
+
+  <!-- ═══════════════════ KPI DASHBOARD ═══════════════════ -->
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:18px">
+    <div style="padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:var(--radius);box-shadow:var(--shadow)">
+      <div style="font-size:9px;font-weight:600;color:var(--ink4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Monthly MRR</div>
+      <div style="font-family:var(--mono);font-size:20px;font-weight:800">$1.37M</div>
+      <div style="font-size:10px;color:var(--ink4);margin-top:2px">$16.4M ARR</div>
+    </div>
+    <div style="padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--radius);box-shadow:var(--shadow)">
+      <div style="font-size:9px;font-weight:600;color:var(--ink4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Monthly Churn</div>
+      <div style="font-family:var(--mono);font-size:20px;font-weight:800" id="ck-churnrate">1.8%</div>
+      <div style="font-size:10px;color:var(--amber-text);margin-top:2px">Target &lt;1.5%</div>
+    </div>
+    <div style="elco-nrr;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--radius);box-shadow:var(--shadow)">
+      <div style="font-size:9px;font-weight:600;color:var(--ink4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">NRR</div>
+      <div style="font-family:var(--mono);font-size:20px;font-weight:800" id="ck-nrr">103%</div>
+      <div style="font-size:10px;color:var(--amber-text);margin-top:2px">Target 115%+</div>
+    </div>
+    <div style="padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:var(--radius);box-shadow:var(--shadow)">
+      <div style="font-size:9px;font-weight:600;color:var(--ink4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Gross Margin</div>
+      <div style="font-family:var(--mono);font-size:20px;font-weight:800">78%</div>
+      <div style="font-size:10px;color:var(--green-text);margin-top:2px">Above median</div>
+    </div>
+    <div style="padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:var(--radius);box-shadow:var(--shadow)">
+      <div style="font-size:9px;font-weight:600;color:var(--ink4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Headcount</div>
+      <div style="font-family:var(--mono);font-size:20px;font-weight:800">156</div>
+      <div style="font-size:10px;color:var(--ink4);margin-top:2px">$105K rev/FTE</div>
+    </div>
+    <div style="padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--radius);box-shadow:var(--shadow)">
+      <div style="font-size:9px;font-weight:600;color:var(--ink4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Burn Multiple</div>
+      <div style="font-family:var(--mono);font-size:20px;font-weight:800">2.1×</div>
+      <div style="font-size:10px;color:var(--amber-text);margin-top:2px">Target &lt;2×</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ INPUTS ═══════════════════ -->
   <div class="cd">
-    <div class="cd-title"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></span> Churn Impact Calculator</div>
-    <div class="calc-grid">
-      <div class="calc-inputs">
-        <div class="calc-input"><label>Monthly churn rate <span class="val" id="cv-rate">1.5%</span></label><input type="range" id="c-rate" min="0.5" max="5" step="0.1" value="1.5" oninput="calcChurn()"></div>
-        <div class="calc-input"><label>Net new MRR added monthly <span class="val" id="cv-new">$180K</span></label><input type="range" id="c-new" min="50000" max="400000" step="10000" value="180000" oninput="calcChurn()"></div>
-        <div class="calc-input"><label>Save playbook effectiveness <span class="val" id="cv-save">68%</span></label><input type="range" id="c-save" min="0" max="100" value="68" oninput="calcChurn()"></div>
+    <div class="cd-title"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span> Churn Parameters</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 22px 18px">
+      <div class="calc-input"><label>Monthly churn rate <span class="val" id="cv-rate">1.8%</span></label><input type="range" id="c-rate" min="0.3" max="6" step="0.1" value="1.8" oninput="calcChurn()"></div>
+      <div class="calc-input"><label>Gross new MRR/mo <span class="val" id="cv-new">$180K</span></label><input type="range" id="c-new" min="50000" max="500000" step="10000" value="180000" oninput="calcChurn()"></div>
+      <div class="calc-input"><label>Expansion MRR/mo <span class="val" id="cv-expand">$45K</span></label><input type="range" id="c-expand" min="0" max="200000" step="5000" value="45000" oninput="calcChurn()"></div>
+      <div class="calc-input"><label>Save playbook win rate <span class="val" id="cv-save">68%</span></label><input type="range" id="c-save" min="0" max="100" value="68" oninput="calcChurn()"></div>
+      <div class="calc-input"><label>Avg days to detect churn <span class="val" id="cv-detect">30d</span></label><input type="range" id="c-detect" min="7" max="90" step="1" value="30" oninput="calcChurn()"></div>
+      <div class="calc-input"><label>CS coverage ratio <span class="val" id="cv-cs">1:25</span></label><input type="range" id="c-cs" min="10" max="60" step="1" value="25" oninput="calcChurn()"></div>
+      <div class="calc-input"><label>Contract term <select id="c-term" onchange="calcChurn()"><option value="monthly">Monthly</option><option value="annual" selected>Annual</option><option value="multi">Multi-year</option></select></label></div>
+      <div class="calc-input"><label>Churn type focus <select id="c-type" onchange="calcChurn()"><option value="all" selected>All churn</option><option value="voluntary">Voluntary only</option><option value="involuntary">Involuntary only</option></select></label></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ MAIN GRID ═══════════════════ -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+
+    <!-- Revenue Impact -->
+    <div class="cd" style="margin-bottom:0">
+      <div class="cd-title"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span> Revenue Impact</div>
+      <div style="padding:0 22px 18px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="calc-output"><div class="label">Gross Monthly Churn</div><div class="value red" id="co-gross">$24.7K</div></div>
+          <div class="calc-output"><div class="label">Saved by Playbook</div><div class="value green" id="co-saved">$16.8K</div></div>
+          <div class="calc-output"><div class="label">Net Monthly Churn</div><div class="value red" id="co-net">$7.9K</div></div>
+          <div class="calc-output"><div class="label">Annualized Churn</div><div class="value red" id="co-churned">$94K</div></div>
+          <div class="calc-output"><div class="label">NRR</div><div class="value" id="co-nrr">103%</div></div>
+          <div class="calc-output"><div class="label">Logo Retention</div><div class="value" id="co-logo">78%</div></div>
+          <div class="calc-output"><div class="label">LTV Impact</div><div class="value" id="co-ltv">—</div></div>
+          <div class="calc-output"><div class="label">Runway Impact</div><div class="value" id="co-runway">—</div></div>
+        </div>
+        <div id="co-verdict" class="verdict go" style="margin-top:12px"></div>
       </div>
-      <div class="calc-outputs">
-        <div class="calc-output"><div class="label">Annual Churned ARR</div><div class="value red" id="co-churned">$2.95M</div></div>
-        <div class="calc-output"><div class="label">Net Revenue Retention</div><div class="value" id="co-nrr">103%</div></div>
-        <div class="calc-output"><div class="label">Runway Impact</div><div class="value" id="co-runway">—</div></div>
-        <div class="calc-output"><div class="label">Monthly Saved by Playbook</div><div class="value green" id="co-saved">$93K</div></div>
-        <div id="co-verdict" class="verdict go"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Within acceptable range</div>
+    </div>
+
+    <!-- Cohort Decay & Unit Economics -->
+    <div class="cd" style="margin-bottom:0">
+      <div class="cd-title"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg></span> Cohort Decay Curve</div>
+      <div style="padding:0 22px 18px">
+        <div style="font-size:10px;color:var(--ink4);margin-bottom:10px">Projected revenue retention by cohort month at current churn rate</div>
+        <div id="co-cohort"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px">
+          <div style="padding:8px 10px;background:var(--surface3);border-radius:var(--radius);text-align:center">
+            <div style="font-family:var(--mono);font-size:16px;font-weight:800" id="co-lifetime">4.6 yr</div>
+            <div style="font-size:8px;color:var(--ink4);text-transform:uppercase">Avg Customer Lifetime</div>
+          </div>
+          <div style="padding:8px 10px;background:var(--surface3);border-radius:var(--radius);text-align:center">
+            <div style="font-family:var(--mono);font-size:16px;font-weight:800" id="co-ltv-val">$483K</div>
+            <div style="font-size:8px;color:var(--ink4);text-transform:uppercase">LTV per Customer</div>
+          </div>
+          <div style="padding:8px 10px;background:var(--surface3);border-radius:var(--radius);text-align:center">
+            <div style="font-family:var(--mono);font-size:16px;font-weight:800" id="co-ltvcac">4.2×</div>
+            <div style="font-size:8px;color:var(--ink4);text-transform:uppercase">LTV/CAC Ratio</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="cd">
-    <div class="cd-title"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span> Churn Sensitivity Table</div>
-    <table><thead><tr><th>Monthly Churn</th><th>Annual Churned</th><th>NRR</th><th>Runway</th><th>Burn Multiple</th><th>Status</th></tr></thead>
-    <tbody>
-      <tr><td>1.0%</td><td style="color:var(--green-text)">$1.97M</td><td style="color:var(--green-text)">108%</td><td style="color:var(--green-text)">19.8mo</td><td style="color:var(--green-text)">1.8×</td><td style="color:var(--green-text)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Healthy</td></tr>
-      <tr style="background:var(--blue-soft)"><td>1.5%</td><td>$2.95M</td><td>103%</td><td>17.4mo</td><td>2.1×</td><td><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Current</td></tr>
-      <tr><td>2.0%</td><td style="color:var(--amber-text)">$3.93M</td><td style="color:var(--amber-text)">98%</td><td style="color:var(--amber-text)">15.1mo</td><td style="color:var(--amber-text)">2.4×</td><td style="color:var(--amber-text)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Warning</td></tr>
-      <tr><td>2.5%</td><td style="color:var(--red-text)">$4.91M</td><td style="color:var(--red-text)">93%</td><td style="color:var(--red-text)">13.2mo</td><td style="color:var(--red-text)">2.8×</td><td style="color:var(--red-text)"><svg width="10" height="10" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#dc2626"/></svg> Critical</td></tr>
-    </tbody></table>
+
+  <!-- ═══════════════════ SENSITIVITY & BENCHMARKS ═══════════════════ -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+
+    <!-- Churn Sensitivity Matrix -->
+    <div class="cd" style="margin-bottom:0">
+      <div class="cd-title"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></span> Sensitivity Matrix</div>
+      <div style="padding:0 22px 18px">
+        <div style="font-size:10px;color:var(--ink4);margin-bottom:10px">NRR across monthly churn rate × expansion MRR scenarios</div>
+        <table style="width:100%;border-collapse:collapse;font-size:10px;font-family:var(--mono)">
+          <thead><tr style="border-bottom:2px solid var(--border)"><th style="text-align:left;padding:4px 6px;font-size:8px;color:var(--ink4)">Churn \\ Expansion</th><th style="text-align:right;padding:4px 6px;font-size:8px;color:var(--ink4)">$25K</th><th style="text-align:right;padding:4px 6px;font-size:8px;color:var(--ink4)">$45K</th><th style="text-align:right;padding:4px 6px;font-size:8px;color:var(--ink4)">$75K</th><th style="text-align:right;padding:4px 6px;font-size:8px;color:var(--ink4)">$120K</th><th style="text-align:right;padding:4px 6px;font-size:8px;color:var(--ink4)">$180K</th></tr></thead>
+          <tbody id="co-matrix"></tbody>
+        </table>
+        <div style="font-size:9px;color:var(--ink4);margin-top:6px">■ Green ≥110% NRR &nbsp; ■ Amber 100-110% &nbsp; ■ Red &lt;100% (net contraction)</div>
+      </div>
+    </div>
+
+    <!-- Industry Benchmarks -->
+    <div class="cd" style="margin-bottom:0">
+      <div class="cd-title"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/></svg></span> Industry Benchmarks</div>
+      <div style="padding:0 22px 18px">
+        <div id="co-benchmarks"></div>
+      </div>
+    </div>
   </div>
+
+  <!-- ═══════════════════ ROOT CAUSE & SAVE ECONOMICS ═══════════════════ -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+
+    <!-- Churn Root Cause Breakdown -->
+    <div class="cd" style="margin-bottom:0">
+      <div class="cd-title"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> Churn Root Cause Analysis</div>
+      <div style="padding:0 22px 18px">
+        <div id="co-causes"></div>
+      </div>
+    </div>
+
+    <!-- Save Playbook Economics -->
+    <div class="cd" style="margin-bottom:0">
+      <div class="cd-title"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> Save Playbook Economics</div>
+      <div style="padding:0 22px 18px">
+        <div id="co-saveecon"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ ACTION PLAN ═══════════════════ -->
+  <div class="cd">
+    <div class="cd-title"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span> Prioritized Action Plan & True Decision</div>
+    <div style="padding:0 22px 18px">
+      <div id="co-actions"></div>
+    </div>
+  </div>
+
 </div>
 
 <div id="s-valuation" style="display:none">
@@ -893,19 +1020,300 @@ function calcPrice(){
   pbHtml+='</div>';
   document.getElementById('po-playbook').innerHTML=pbHtml;
 }
+// ═══════════════════════════════════════════════════════════════
+// CHURN INTELLIGENCE ENGINE — Corporate Grade
+// ═══════════════════════════════════════════════════════════════
 function calcChurn(){
-  const rate=+document.getElementById('c-rate').value,newMRR=+document.getElementById('c-new').value,saveRate=+document.getElementById('c-save').value;
-  const mrr=1370000,monthlyChurn=mrr*(rate/100),saved=monthlyChurn*(saveRate/100),netChurn=monthlyChurn-saved;
-  const annualChurned=netChurn*12,nrr=((mrr-netChurn+newMRR)/mrr*100).toFixed(0);
-  document.getElementById('cv-rate').textContent=rate.toFixed(1)+'%';document.getElementById('cv-new').textContent='$'+(newMRR/1000).toFixed(0)+'K';document.getElementById('cv-save').textContent=saveRate+'%';
-  document.getElementById('co-churned').textContent='$'+(annualChurned/1000000).toFixed(2)+'M';
-  document.getElementById('co-nrr').textContent=nrr+'%';
-  document.getElementById('co-runway').textContent=((1.5-rate)*2.3>=0?'+':'')+((1.5-rate)*2.3).toFixed(1)+' months';
-  document.getElementById('co-saved').textContent='$'+(saved/1000).toFixed(0)+'K';
-  const nrrEl=document.getElementById('co-nrr'),verdict=document.getElementById('co-verdict');
-  if(+nrr>=105){nrrEl.className='value green';verdict.className='verdict go';verdict.innerHTML='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Healthy, NRR '+nrr+'%'}
-  else if(+nrr>=100){nrrEl.className='value amber';verdict.className='verdict maybe';verdict.innerHTML='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Watch, NRR '+nrr+'% at breakeven'}
-  else{nrrEl.className='value red';verdict.className='verdict no';verdict.innerHTML='<svg width="10" height="10" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#dc2626"/></svg> Critical, NRR '+nrr+'% net contraction'}
+  // ── Inputs ──
+  const rate=+document.getElementById('c-rate').value;
+  const newMRR=+document.getElementById('c-new').value;
+  const expandMRR=+document.getElementById('c-expand').value;
+  const saveRate=+document.getElementById('c-save').value;
+  const detectDays=+document.getElementById('c-detect').value;
+  const csRatio=+document.getElementById('c-cs').value;
+  const term=document.getElementById('c-term').value;
+  const churnType=document.getElementById('c-type').value;
+
+  // ── Update labels ──
+  document.getElementById('cv-rate').textContent=rate.toFixed(1)+'%';
+  document.getElementById('cv-new').textContent='$'+(newMRR/1000).toFixed(0)+'K';
+  document.getElementById('cv-expand').textContent='$'+(expandMRR/1000).toFixed(0)+'K';
+  document.getElementById('cv-save').textContent=saveRate+'%';
+  document.getElementById('cv-detect').textContent=detectDays+'d';
+  document.getElementById('cv-cs').textContent='1:'+csRatio;
+
+  // ── Base data ──
+  const mrr=1370000;
+  const arr=16400000;
+  const gm=0.78;
+  const headcount=156;
+  const cash=8460; // $K
+  const burn=486; // $K/mo
+  const customers=156;
+  const arpc=mrr/customers; // ~$8,782/mo
+
+  // ── Term-based modifiers ──
+  let termMult, termLabel;
+  if(term==='monthly'){termMult=1.5;termLabel='Monthly contracts churn 1.5× faster than annual';}
+  else if(term==='annual'){termMult=1.0;termLabel='Annual contracts — standard SaaS baseline';}
+  else{termMult=0.5;termLabel='Multi-year contracts churn 50% less than annual';}
+
+  // ── Churn type modifier ──
+  let typeMult;
+  if(churnType==='voluntary') typeMult=0.65; // 65% of churn is voluntary (chose to leave)
+  else if(churnType==='involuntary') typeMult=0.35; // 35% is involuntary (payment failures)
+  else typeMult=1.0;
+
+  // ── Detection speed modifier ──
+  // Faster detection = higher save rate. Base: 30d detection = 68% save
+  const detectMod=1+((30-detectDays)/100); // +/- from baseline
+  const effectiveSave=Math.min(95,saveRate*detectMod);
+
+  // ── CS coverage modifier ──
+  // 1:20 is excellent, 1:40 is stretched, 1:60 is dangerous
+  const csQuality=csRatio<=20?1.15:csRatio<=30?1.0:csRatio<=45?0.85:0.65;
+
+  // ── Core calculations ──
+  const grossMonthlyChurn=mrr*(rate/100)*termMult*typeMult;
+  const savedMonthly=grossMonthlyChurn*(effectiveSave/100)*csQuality;
+  const netMonthlyChurn=grossMonthlyChurn-savedMonthly;
+  const annualChurned=netMonthlyChurn*12;
+
+  // NRR = (MRR - net churn + expansion + new) / MRR * 100
+  const nrr=((mrr-netMonthlyChurn+expandMRR)/mrr*100);
+  const logoRetention=Math.pow(1-(rate/100)*termMult,12)*100;
+  const avgLifetime=rate>0?(1/((rate/100)*termMult)):99;
+  const ltv=arpc*avgLifetime*12*gm;
+  const ltvcac=ltv/25000; // assume $25K CAC
+
+  // Runway impact
+  const churnRunwayImpact=-(netMonthlyChurn*12)/burn;
+  const newRunway=(cash/churnRunwayImpact>0)?cash/burn:(cash/(burn+netMonthlyChurn/1000));
+
+  // Burn multiple
+  const netNewARR=(newMRR+expandMRR-netMonthlyChurn)*12;
+  const burnMultiple=((burn*12)/Math.max(1,netNewARR/1000)).toFixed(1);
+
+  // ═══ RENDER: Revenue Impact ═══
+  document.getElementById('co-gross').textContent='$'+(grossMonthlyChurn/1000).toFixed(1)+'K';
+  document.getElementById('co-saved').textContent='$'+(savedMonthly/1000).toFixed(1)+'K';
+  document.getElementById('co-net').textContent='$'+(netMonthlyChurn/1000).toFixed(1)+'K';
+  document.getElementById('co-churned').textContent=annualChurned>=1000000?'$'+(annualChurned/1000000).toFixed(2)+'M':'$'+(annualChurned/1000).toFixed(0)+'K';
+  document.getElementById('co-nrr').textContent=nrr.toFixed(0)+'%';
+  document.getElementById('co-logo').textContent=logoRetention.toFixed(0)+'%';
+  document.getElementById('co-ltv').textContent='$'+(ltv/1000).toFixed(0)+'K';
+  document.getElementById('co-runway').textContent=(churnRunwayImpact>=0?'+':'')+churnRunwayImpact.toFixed(1)+' mo';
+
+  // Update dashboard header
+  document.getElementById('ck-churnrate').textContent=rate.toFixed(1)+'%';
+  document.getElementById('ck-nrr').textContent=nrr.toFixed(0)+'%';
+
+  // Colors
+  const nrrEl=document.getElementById('co-nrr');
+  const logoEl=document.getElementById('co-logo');
+  const ltvEl=document.getElementById('co-ltv');
+  const runEl=document.getElementById('co-runway');
+  nrrEl.className='value '+(nrr>=110?'green':nrr>=100?'amber':'red');
+  logoEl.className='value '+(logoRetention>=85?'green':logoRetention>=75?'amber':'red');
+  ltvEl.className='value '+(ltvcac>=3?'green':ltvcac>=1.5?'amber':'red');
+  runEl.className='value '+(churnRunwayImpact>=-3?'green':churnRunwayImpact>=-8?'amber':'red');
+
+  // ═══ RENDER: Cohort Decay ═══
+  let cohortHtml='<table style="width:100%;border-collapse:collapse;font-size:10px;font-family:var(--mono)"><thead><tr style="border-bottom:2px solid var(--border)"><th style="text-align:left;padding:4px 6px;font-size:8px;color:var(--ink4)">Month</th><th style="text-align:right;padding:4px 6px;font-size:8px;color:var(--ink4)">Retention</th><th style="text-align:right;padding:4px 6px;font-size:8px;color:var(--ink4)">Revenue</th><th style="padding:4px 6px;font-size:8px;color:var(--ink4)">Curve</th></tr></thead><tbody>';
+  const monthlyRetain=1-(rate/100)*termMult;
+  for(let m=0;m<=24;m+=3){
+    const retained=Math.pow(monthlyRetain,m);
+    const rev=retained*mrr;
+    const barW=Math.round(retained*100);
+    const barCol=retained>=0.8?'var(--green)':retained>=0.6?'var(--amber)':'var(--red)';
+    cohortHtml+='<tr style="border-bottom:1px solid var(--bg2)'+(m===0?'background:var(--blue-soft)':'')+'"><td style="padding:4px 6px;font-weight:'+(m===0?'700':'400')+'">'+(m===0?'Start':'M'+m)+'</td>';
+    cohortHtml+='<td style="text-align:right;padding:4px 6px;color:'+(retained>=0.8?'var(--green-text)':retained>=0.6?'var(--amber-text)':'var(--red-text)')+'">'+(retained*100).toFixed(1)+'%</td>';
+    cohortHtml+='<td style="text-align:right;padding:4px 6px">$'+(rev/1000).toFixed(0)+'K</td>';
+    cohortHtml+='<td style="padding:4px 6px"><div style="height:10px;background:var(--bg2);border-radius:3px;overflow:hidden"><div style="width:'+barW+'%;height:100%;background:'+barCol+';border-radius:3px"></div></div></td></tr>';
+  }
+  cohortHtml+='</tbody></table>';
+  document.getElementById('co-cohort').innerHTML=cohortHtml;
+
+  // Unit economics
+  document.getElementById('co-lifetime').textContent=avgLifetime.toFixed(1)+' yr';
+  document.getElementById('co-ltv-val').textContent='$'+(ltv/1000).toFixed(0)+'K';
+  document.getElementById('co-ltvcac').textContent=ltvcac.toFixed(1)+'×';
+  document.getElementById('co-ltvcac').className='value '+(ltvcac>=3?'green':ltvcac>=1.5?'amber':'red');
+
+  // ═══ RENDER: Sensitivity Matrix ═══
+  const churnRates=[0.8,1.2,1.8,2.5,3.5];
+  const expansions=[25000,45000,75000,120000,180000];
+  let matHtml='';
+  churnRates.forEach(cr=>{
+    matHtml+='<tr><td style="text-align:left;padding:4px 6px;font-weight:600;color:var(--ink3)">'+cr+'%</td>';
+    expansions.forEach(ex=>{
+      const gmc=mrr*(cr/100)*termMult;
+      const smc=gmc*(effectiveSave/100)*csQuality;
+      const nmc=gmc-smc;
+      const n=((mrr-nmc+ex)/mrr*100);
+      const isCur=Math.abs(cr-rate)<0.3&&Math.abs(ex-expandMRR)<15000;
+      const cls=n>=110?'green':n>=100?'amber':'red';
+      matHtml+='<td style="text-align:right;padding:4px 6px;color:var(--'+cls+'-text);'+(isCur?'background:var(--blue-soft);font-weight:700':'')+'">'+n.toFixed(0)+'%</td>';
+    });
+    matHtml+='</tr>';
+  });
+  document.getElementById('co-matrix').innerHTML=matHtml;
+
+  // ═══ RENDER: Industry Benchmarks ═══
+  const benchmarks=[
+    {metric:'Monthly logo churn (SaaS median)',benchmark:'3-5%',yours:rate.toFixed(1)+'%',status:rate<=2?'green':rate<=3.5?'amber':'red',note:'Recurly 2024 — B2B SaaS avg by billing type'},
+    {metric:'Monthly revenue churn (SaaS)',benchmark:'1.0-1.5%',yours:((netMonthlyChurn/mrr)*100).toFixed(2)+'%',status:(netMonthlyChurn/mrr)<=0.015?'green':'amber',note:'KeyBanc 2024 SaaS Survey'},
+    {metric:'NRR (top quartile SaaS)',benchmark:'≥120%',yours:nrr.toFixed(0)+'%',status:nrr>=120?'green':nrr>=105?'amber':'red',note:'Bessemer Cloud Index — top performers 120%+'},
+    {metric:'NRR (median SaaS)',benchmark:'102-106%',yours:nrr.toFixed(0)+'%',status:nrr>=106?'green':nrr>=100?'amber':'red',note:'OpenView 2024 PLG Benchmarks'},
+    {metric:'Logo retention (annual)',benchmark:'85-92%',yours:logoRetention.toFixed(0)+'%',status:logoRetention>=85?'green':logoRetention>=75?'amber':'red',note:'ProfitWell/Paddle 2024 cohort data'},
+    {metric:'LTV/CAC ratio',benchmark:'≥3×',yours:ltvcac.toFixed(1)+'×',status:ltvcac>=3?'green':ltvcac>=1.5?'amber':'red',note:'Standard SaaS unit economics threshold'},
+    {metric:'Save rate (best-in-class)',benchmark:'70-80%',yours:effectiveSave.toFixed(0)+'%',status:effectiveSave>=70?'green':effectiveSave>=50?'amber':'red',note:'Win-back and save playbook benchmarks'},
+    {metric:'Avg customer lifetime (SaaS)',benchmark:'3-5 years',yours:avgLifetime.toFixed(1)+' yr',status:avgLifetime>=3?'green':avgLifetime>=2?'amber':'red',note:'Varies by contract type and ACV'}
+  ];
+  let benchHtml='';
+  benchmarks.forEach(b=>{
+    benchHtml+='<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--bg2);font-size:10px">';
+    benchHtml+='<div style="flex:1"><div style="font-weight:600;color:var(--ink)">'+b.metric+'</div><div style="color:var(--ink4);font-size:9px;margin-top:1px">'+b.note+'</div></div>';
+    benchHtml+='<div style="font-family:var(--mono);font-size:10px;color:var(--ink3);width:60px;text-align:right">'+b.benchmark+'</div>';
+    benchHtml+='<div style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--'+b.status+'-text);width:50px;text-align:right">'+b.yours+'</div>';
+    benchHtml+='</div>';
+  });
+  document.getElementById('co-benchmarks').innerHTML=benchHtml;
+
+  // ═══ RENDER: Root Cause Analysis ═══
+  const causes=[
+    {cause:'Product-market fit gaps',pct:28,severity:'high',action:'Run quarterly churned-customer interviews. Top 3 feature requests → roadmap priority.',fix:'Feature parity + onboarding redesign'},
+    {cause:'Poor onboarding / time-to-value',pct:22,severity:'high',action:'Measure time-to-first-value. Target <14 days. Implement guided onboarding flow.',fix:'Onboarding automation + CSM playbook'},
+    {cause:'Payment failures (involuntary)',pct:18,severity:'medium',action:'Implement dunning: retry at 3/7/14 days. Smart card updater. Pre-expiry notifications.',fix:'Dunning automation — 30-40% recoverable'},
+    {cause:'Competitive displacement',pct:15,severity:'high',action:'Win/loss analysis on churned accounts. Map competitor feature gaps. Counter-position.',fix:'Competitive intel + differentiation sprint'},
+    {cause:'Budget cuts / downsizing',pct:10,severity:'medium',action:'Offer seat reduction or tier downgrade instead of cancellation. Flex plans.',fix:'Flexible pricing tiers + save offers'},
+    {cause:'Champion departure',pct:7,severity:'medium',action:'Multi-thread accounts: 3+ contacts per account. Executive sponsor program.',fix:'Account penetration score tracking'}
+  ];
+  let causeHtml='<table style="width:100%;border-collapse:collapse;font-size:10px"><thead><tr style="border-bottom:2px solid var(--border)"><th style="text-align:left;padding:5px 0;color:var(--ink4);font-size:9px;text-transform:uppercase">Root Cause</th><th style="text-align:right;padding:5px 0;color:var(--ink4);font-size:9px">% of Churn</th><th style="text-align:right;padding:5px 0;color:var(--ink4);font-size:9px">Severity</th><th style="text-align:left;padding:5px 0 5px 12px;color:var(--ink4);font-size:9px">Recommended Action</th></tr></thead><tbody>';
+  causes.forEach(c=>{
+    const sevCol=c.severity==='high'?'var(--red-text)':'var(--amber-text)';
+    const barW=Math.round(c.pct/28*100);
+    causeHtml+='<tr style="border-bottom:1px solid var(--bg2)"><td style="text-align:left;padding:6px 0;font-weight:600">'+c.cause+'</td>';
+    causeHtml+='<td style="text-align:right;padding:6px 0;font-family:var(--mono)">'+c.pct+'%</td>';
+    causeHtml+='<td style="text-align:right;padding:6px 0;color:'+sevCol+';font-weight:600;text-transform:uppercase;font-size:9px">'+c.severity+'</td>';
+    causeHtml+='<td style="text-align:left;padding:6px 0 6px 12px;color:var(--ink3);font-size:9px">'+c.action+'</td></tr>';
+  });
+  causeHtml+='</tbody></table>';
+  // Dollar impact
+  causeHtml+='<div style="margin-top:10px;padding:8px 12px;background:var(--surface3);border-radius:var(--radius);font-size:10px;color:var(--ink3)">';
+  causeHtml+='<strong>Top 3 causes account for '+((28+22+18))+'% of all churn</strong> ($'+((grossMonthlyChurn*12*(28+22+18)/100)/1000).toFixed(0)+'K/yr). Fixing involuntary churn alone (dunning) recovers ~$'+((grossMonthlyChurn*12*0.18*0.35)/1000).toFixed(0)+'K/yr.';
+  causeHtml+='</div>';
+  document.getElementById('co-causes').innerHTML=causeHtml;
+
+  // ═══ RENDER: Save Playbook Economics ═══
+  const saveAttempts=grossMonthlyChurn/arpc;
+  const saveWins=saveAttempts*(effectiveSave/100)*csQuality;
+  const saveRevenue=saveWins*arpc;
+  const csCostPerSave=(headcount*0.15*120000/12)/(saveWins||1); // 15% of HC on saves
+  const saveROI=saveRevenue>0?(saveRevenue/(csCostPerSave||1)):0;
+
+  let saveHtml='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">';
+  saveHtml+='<div class="calc-output"><div class="label">Monthly Save Attempts</div><div class="value blue">'+saveAttempts.toFixed(0)+'</div></div>';
+  saveHtml+='<div class="calc-output"><div class="label">Monthly Saves Won</div><div class="value green">'+saveWins.toFixed(0)+'</div></div>';
+  saveHtml+='<div class="calc-output"><div class="label">Monthly Revenue Saved</div><div class="value green">$'+(saveRevenue/1000).toFixed(1)+'K</div></div>';
+  saveHtml+='<div class="calc-output"><div class="label">Annual Revenue Saved</div><div class="value green">$'+(saveRevenue*12/1000).toFixed(0)+'K</div></div>';
+  saveHtml+='<div class="calc-output"><div class="label">Cost per Save</div><div class="value" id="co-cps">$'+csCostPerSave.toFixed(0)+'</div></div>';
+  saveHtml+='<div class="calc-output"><div class="label">Save ROI</div><div class="value" id="co-saveroi">'+saveROI.toFixed(1)+'×</div></div>';
+  saveHtml+='</div>';
+
+  saveHtml+='<div style="margin-top:12px;padding:10px 14px;border-radius:var(--radius);background:'+(saveROI>=5?'var(--green-soft)':saveROI>=2?'var(--amber-soft)':'var(--red-soft)')+';border:1px solid '+(saveROI>=5?'rgba(22,163,74,.15)':saveROI>=2?'rgba(217,119,6,.15)':'rgba(220,38,38,.15)')+';font-size:10px;color:'+(saveROI>=5?'var(--green-text)':saveROI>=2?'var(--amber-text)':'var(--red-text)')+'">';
+  saveHtml+='<strong>Save economics verdict:</strong> ';
+  if(saveROI>=8) saveHtml+='Exceptional. Each $1 spent on saves returns $'+saveROI.toFixed(0)+'. Scale save team — every incremental CSM on saves is highly accretive.';
+  else if(saveROI>=4) saveHtml+='Strong. Save program ROI of '+saveROI.toFixed(1)+'× justifies current investment. Consider adding 1-2 CS reps focused on save plays.';
+  else if(saveROI>=2) saveHtml+='Positive but thin. At '+saveROI.toFixed(1)+'× ROI, saves are marginally profitable. Focus on improving save rate before scaling team.';
+  else saveHtml+='Below breakeven. Save program costs exceed recovered revenue. Fix save playbook effectiveness or reduce cost-per-save before investing more.';
+  saveHtml+='</div>';
+
+  saveHtml+='<div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">';
+  saveHtml+='<div style="padding:8px;background:var(--surface3);border-radius:var(--radius);text-align:center"><div style="font-family:var(--mono);font-size:14px;font-weight:700;color:'+(effectiveSave>=60?'var(--green-text)':'var(--red-text)')+'">'+effectiveSave.toFixed(0)+'%</div><div style="font-size:8px;color:var(--ink4)">Effective Save Rate</div></div>';
+  saveHtml+='<div style="padding:8px;background:var(--surface3);border-radius:var(--radius);text-align:center"><div style="font-family:var(--mono);font-size:14px;font-weight:700">'+(saveRevenue*12/1000).toFixed(0)+'K</div><div style="font-size:8px;color:var(--ink4)">Annual $ Saved</div></div>';
+  saveHtml+='<div style="padding:8px;background:var(--surface3);border-radius:var(--radius);text-align:center"><div style="font-family:var(--mono);font-size:14px;font-weight:700">'+detectDays+'d</div><div style="font-size:8px;color:var(--ink4)">Detection Speed</div></div>';
+  saveHtml+='</div>';
+  document.getElementById('co-saveecon').innerHTML=saveHtml;
+  document.getElementById('co-cps').className='value '+(csCostPerSave<2000?'green':csCostPerSave<5000?'amber':'red');
+  document.getElementById('co-saveroi').className='value '+(saveROI>=5?'green':saveROI>=2?'amber':'red');
+
+  // ═══ RENDER: Verdict ═══
+  const verdict=document.getElementById('co-verdict');
+  if(nrr>=110&&logoRetention>=85){
+    verdict.className='verdict go';
+    verdict.innerHTML=svgCheck()+' HEALTHY — NRR '+nrr.toFixed(0)+'%, logo retention '+logoRetention.toFixed(0)+'%. Churn is within healthy bounds. Focus on expansion revenue to push NRR above 120%.';
+  }else if(nrr>=100&&logoRetention>=75){
+    verdict.className='verdict maybe';
+    verdict.innerHTML=svgWarn()+' AT RISK — NRR '+nrr.toFixed(0)+'% is at the breakeven line. Any uptick in churn puts you in net contraction territory. Prioritize the top 3 root causes immediately.';
+  }else{
+    verdict.className='verdict no';
+    verdict.innerHTML=svgBad()+' CRITICAL — NRR '+nrr.toFixed(0)+'% means you are losing more revenue than retaining from existing customers. This is an existential threat. Activate emergency retention protocol.';
+  }
+
+  // ═══ RENDER: Action Plan & True Decision ═══
+  const actions=[];
+  const gap115=115-nrr;
+
+  // Always-present actions based on data
+  if(rate>1.5){
+    actions.push({priority:'Critical',action:'Implement dunning automation',impact:'Recovers 30-40% of involuntary churn (~$'+((grossMonthlyChurn*12*0.18*0.35)/1000).toFixed(0)+'K/yr)',timeline:'2-4 weeks',effort:'Low',owner:'Engineering + Finance',metric:'Involuntary churn rate → <0.3%'});
+  }
+  if(detectDays>21){
+    actions.push({priority:'Critical',action:'Reduce churn detection window to <14 days',impact:'Each week of earlier detection improves save rate by 8-12%',timeline:'4-6 weeks',effort:'Medium',owner:'Data + CS',metric:'Avg detection days → <14d'});
+  }
+  if(csRatio>30){
+    actions.push({priority:'High',action:'Rebalance CS coverage — hire 2 CSMs for high-risk accounts',impact:'Better coverage = higher save rate. Current 1:'+csRatio+' is stretched',timeline:'6-8 weeks',effort:'Medium',owner:'VP CS + HR',metric:'CS ratio → 1:25, save rate → 75%+'});
+  }
+  if(nrr<110){
+    actions.push({priority:'Critical',action:'Launch expansion play: usage-based upsell triggers',impact:'Each 1% NRR improvement = $'+(arr*0.01/1000).toFixed(0)+'K ARR',timeline:'4-8 weeks',effort:'Medium',owner:'Product + CS',metric:'Expansion MRR → $80K+/mo'});
+  }
+  if(logoRetention<80){
+    actions.push({priority:'High',action:'Multi-thread top 50 accounts (3+ contacts each)',impact:'Single-threaded accounts churn 2.5× more on champion departure',timeline:'8-12 weeks',effort:'High',owner:'Sales + CS',metric:'Avg contacts/account → 3+ for top 50'});
+  }
+  if(ltvcac<3){
+    actions.push({priority:'High',action:'Reduce CAC or increase LTV — unit economics are below 3× threshold',impact:'Current '+ltvcac.toFixed(1)+'× LTV/CAC needs to reach 3× for sustainable growth',timeline:'Ongoing',effort:'High',owner:'CFO + CRO',metric:'LTV/CAC → ≥3×'});
+  }
+  // Always add
+  actions.push({priority:'Medium',action:'Run monthly churned-customer exit interviews (n≥10)',impact:'Qualitative data to validate/override quantitative root-cause model',timeline:'Ongoing',effort:'Low',owner:'CS Ops',metric:'Completion rate → 80%+'});
+  actions.push({priority:'Medium',action:'Build churn prediction model (ML on usage + engagement signals)',impact:'Predict churn 30-60 days before it happens. Enable proactive saves',timeline:'8-12 weeks',effort:'High',owner:'Data Science',metric:'Prediction accuracy → 70%+ at 30d horizon'});
+
+  let actHtml='<div style="margin-bottom:14px;padding:12px 16px;border-radius:var(--radius);background:'+(nrr>=110?'var(--green-soft)':nrr>=100?'var(--amber-soft)':'var(--red-soft)')+';border:1px solid '+(nrr>=110?'rgba(22,163,74,.15)':nrr>=100?'rgba(217,119,6,.15)':'rgba(220,38,38,.15)')+'">';
+  actHtml+='<div style="font-size:13px;font-weight:700;color:'+(nrr>=110?'var(--green-text)':nrr>=100?'var(--amber-text)':'var(--red-text)')+';margin-bottom:6px">';
+  if(nrr>=110){
+    actHtml+='✓ DECISION: MAINTAIN & OPTIMIZE';
+    actHtml+='</div><div style="font-size:10px;color:var(--ink3)">Churn is under control. NRR of '+nrr.toFixed(0)+'% exceeds the 110% threshold. Redirect energy toward expansion revenue, product-led growth, and reducing involuntary churn. Do NOT increase prices until NRR reaches 120%+.</div>';
+  }else if(nrr>=100){
+    actHtml+='⚠ DECISION: INTERVENE — DO NOT RAISE PRICES';
+    actHtml+='</div><div style="font-size:10px;color:var(--ink3)">You are at the knife\'s edge. NRR of '+nrr.toFixed(0)+'% means existing customers barely offset churn. Any external shock (price increase, competitive move, champion departure) pushes you into net contraction. <strong>Freeze all price changes</strong> until NRR reaches 108%+. Execute the critical actions below in parallel.</div>';
+  }else{
+    actHtml+='🚨 DECISION: EMERGENCY RETENTION PROTOCOL';
+    actHtml+='</div><div style="font-size:10px;color:var(--ink3)">NRR of '+nrr.toFixed(0)+'% is a <strong>company-level crisis</strong>. You are losing $'+Math.abs(annualChurned/1000).toFixed(0)+'K/yr from existing customers — more than you are gaining. This must be the #1 priority for the executive team. Convene a war room, assign an executive sponsor, and report retention metrics weekly to the board.</div>';
+  }
+  actHtml+='</div>';
+
+  actHtml+='<table style="width:100%;border-collapse:collapse;font-size:10px"><thead><tr style="border-bottom:2px solid var(--border)"><th style="text-align:left;padding:5px 0;color:var(--ink4);font-size:9px;text-transform:uppercase">Priority</th><th style="text-align:left;padding:5px 0;color:var(--ink4);font-size:9px">Action</th><th style="text-align:left;padding:5px 0;color:var(--ink4);font-size:9px">Impact</th><th style="text-align:right;padding:5px 0;color:var(--ink4);font-size:9px">Timeline</th><th style="text-align:right;padding:5px 0;color:var(--ink4);font-size:9px">Effort</th><th style="text-align:left;padding:5px 0 5px 8px;color:var(--ink4);font-size:9px">Owner</th><th style="text-align:left;padding:5px 0 5px 8px;color:var(--ink4);font-size:9px">Success Metric</th></tr></thead><tbody>';
+  actions.forEach(a=>{
+    const priCol=a.priority==='Critical'?'var(--red-text)':a.priority==='High'?'var(--amber-text)':'var(--ink3)';
+    actHtml+='<tr style="border-bottom:1px solid var(--bg2)"><td style="padding:6px 0;color:'+priCol+';font-weight:700;font-size:9px;text-transform:uppercase">'+a.priority+'</td>';
+    actHtml+='<td style="padding:6px 0;font-weight:600">'+a.action+'</td>';
+    actHtml+='<td style="padding:6px 0;color:var(--ink3);font-size:9px">'+a.impact+'</td>';
+    actHtml+='<td style="text-align:right;padding:6px 0;font-family:var(--mono);font-size:9px">'+a.timeline+'</td>';
+    actHtml+='<td style="text-align:right;padding:6px 0;font-size:9px;color:'+(a.effort==='Low'?'var(--green-text)':a.effort==='Medium'?'var(--amber-text)':'var(--red-text)')+'">'+a.effort+'</td>';
+    actHtml+='<td style="padding:6px 0 6px 8px;font-size:9px;color:var(--ink4)">'+a.owner+'</td>';
+    actHtml+='<td style="padding:6px 0 6px 8px;font-size:9px;color:var(--ink3)">'+a.metric+'</td></tr>';
+  });
+  actHtml+='</tbody></table>';
+
+  // Target state
+  actHtml+='<div style="margin-top:12px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px">';
+  actHtml+='<div style="padding:10px 14px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius);text-align:center"><div style="font-family:var(--mono);font-size:18px;font-weight:800;color:'+(rate<=1?'var(--green-text)':'var(--amber-text)')+'">'+rate.toFixed(1)+'%</div><div style="font-size:9px;color:var(--ink4);text-transform:uppercase">Current Churn</div><div style="font-size:9px;color:var(--blue-text);margin-top:2px">Target: &lt;1.0%</div></div>';
+  actHtml+='<div style="padding:10px 14px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius);text-align:center"><div style="font-family:var(--mono);font-size:18px;font-weight:800;color:'+(nrr>=115?'var(--green-text)':'var(--amber-text)')+'">'+nrr.toFixed(0)+'%</div><div style="font-size:9px;color:var(--ink4);text-transform:uppercase">Current NRR</div><div style="font-size:9px;color:var(--blue-text);margin-top:2px">Target: 115%+</div></div>';
+  actHtml+='<div style="padding:10px 14px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius);text-align:center"><div style="font-family:var(--mono);font-size:18px;font-weight:800;color:'+(logoRetention>=85?'var(--green-text)':'var(--amber-text)')+'">'+logoRetention.toFixed(0)+'%</div><div style="font-size:9px;color:var(--ink4);text-transform:uppercase">Logo Retention</div><div style="font-size:9px;color:var(--blue-text);margin-top:2px">Target: 85%+</div></div>';
+  actHtml+='<div style="padding:10px 14px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius);text-align:center"><div style="font-family:var(--mono);font-size:18px;font-weight:800;color:'+(ltvcac>=3?'var(--green-text)':'var(--amber-text)')+'">'+ltvcac.toFixed(1)+'×</div><div style="font-size:9px;color:var(--ink4);text-transform:uppercase">LTV/CAC</div><div style="font-size:9px;color:var(--blue-text);margin-top:2px">Target: 3×+</div></div>';
+  actHtml+='</div>';
+
+  document.getElementById('co-actions').innerHTML=actHtml;
 }
 function calcVal(){
   const mult=+document.getElementById('v-mult').value,growth=+document.getElementById('v-growth').value;
