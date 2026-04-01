@@ -417,6 +417,87 @@ td.current{background:var(--blue-soft);font-weight:700}
     </table>
   </div>
 
+  <!-- ═══════════════════ DECISION IMPACT ANALYSIS ═══════════════════ -->
+  <div class="cd" style="border-left:3px solid var(--red)">
+    <div class="cd-title"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> Decision Impact Analysis</div>
+    <div style="font-size:10px;color:var(--ink3);margin-bottom:14px">Cascading consequences of your current deal configuration across five critical dimensions. All values update as you adjust deal parameters above.</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+      <!-- Exit Scenario Economics -->
+      <div style="padding:14px 16px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius)">
+        <div style="font-size:10px;font-weight:600;color:var(--ink4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;display:flex;align-items:center;gap:6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Founder Economics at Exit</div>
+        <table style="font-size:11px">
+          <thead><tr><th>Exit Valuation</th><th>Founder Take</th><th>vs Pre-C</th><th>Value/Founder</th></tr></thead>
+          <tbody id="impact-exit"></tbody>
+        </table>
+      </div>
+
+      <!-- Series D Implications -->
+      <div style="padding:14px 16px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius)">
+        <div style="font-size:10px;font-weight:600;color:var(--ink4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;display:flex;align-items:center;gap:6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg> Series D Implications</div>
+        <div id="impact-d" style="font-size:10px;color:var(--ink3);line-height:1.9"></div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+      <!-- Board Control -->
+      <div style="padding:14px 16px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius)">
+        <div style="font-size:10px;font-weight:600;color:var(--ink4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;display:flex;align-items:center;gap:6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> Board & Control</div>
+        <div id="impact-board" style="font-size:10px;color:var(--ink3);line-height:1.9"></div>
+      </div>
+
+      <!-- Employee Equity -->
+      <div style="padding:14px 16px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius)">
+        <div style="font-size:10px;font-weight:600;color:var(--ink4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;display:flex;align-items:center;gap:6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Employee Equity Impact</div>
+        <div id="impact-emp" style="font-size:10px;color:var(--ink3);line-height:1.9"></div>
+      </div>
+
+      <!-- Competitive & Market -->
+      <div style="padding:14px 16px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius)">
+        <div style="font-size:10px;font-weight:600;color:var(--ink4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;display:flex;align-items:center;gap:6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Market & Competitive</div>
+        <div id="impact-market" style="font-size:10px;color:var(--ink3);line-height:1.9"></div>
+      </div>
+    </div>
+
+    <!-- Overall Risk Assessment -->
+    <div id="impact-risk" style="margin-top:14px;padding:14px 18px;border-radius:var(--radius);text-align:center;font-size:12px;font-weight:600"></div>
+  </div>
+
+  <!-- ═══════════════════ PRE-DECISION ACTIONS ═══════════════════ -->
+  <div class="cd" style="border-left:3px solid var(--green)">
+    <div class="cd-title"><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span> Pre-Decision Actions & Recommendations</div>
+    <div style="font-size:10px;color:var(--ink3);margin-bottom:14px">Recommended actions across three levels before initiating fundraise conversations. Status adapts to your current readiness metrics.</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+      <!-- Strategic Level -->
+      <div>
+        <div style="padding:8px 12px;background:var(--blue-soft);border:1px solid rgba(59,130,246,.12);border-radius:var(--radius) var(--radius) 0 0;font-size:10px;font-weight:700;color:var(--blue-text);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:6px">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> Strategic Level
+        </div>
+        <div id="actions-strategic" style="border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius)"></div>
+      </div>
+
+      <!-- Tactical Level -->
+      <div>
+        <div style="padding:8px 12px;background:var(--amber-soft);border:1px solid rgba(217,119,6,.12);border-radius:var(--radius) var(--radius) 0 0;font-size:10px;font-weight:700;color:var(--amber-text);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:6px">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg> Tactical Level
+        </div>
+        <div id="actions-tactical" style="border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius)"></div>
+      </div>
+
+      <!-- Operational Level -->
+      <div>
+        <div style="padding:8px 12px;background:var(--green-soft);border:1px solid rgba(22,163,74,.12);border-radius:var(--radius) var(--radius) 0 0;font-size:10px;font-weight:700;color:var(--green-text);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:6px">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Operational Level
+        </div>
+        <div id="actions-operational" style="border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius)"></div>
+      </div>
+    </div>
+
+    <!-- Action Summary Bar -->
+    <div id="actions-summary" style="margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px"></div>
+  </div>
+
 </div>
 
 </div>
@@ -875,7 +956,179 @@ function calcFund(){
   renderBurn(raise,postBurn);
   renderSensitivity(raise,pre);
   const readinessScore=renderReadiness(growth,newRunway,+bmult,dilute,SYS.nrr,SYS.gm);
+  renderImpact(raise,pre,dilute,newRunway,poolPct);
+  renderActions(growth,newRunway,+bmult,dilute,raise,pre);
   calcUOF();
+}
+
+// ─── Decision Impact Analysis ─────────────────────────────
+function renderImpact(raise,pre,dilute,newRunway,poolPct){
+  const post=pre+raise;
+  const founderPrePct=32.4;
+  const totalPost=SYS.totalShares+(raise/(pre/SYS.totalShares));
+  const founderPostPct=(founderPrePct/100*SYS.totalShares)/totalPost*100;
+
+  // Exit scenarios
+  const exits=[
+    {mult:1.5,label:'1.5× (Down)',color:'var(--red-text)'},
+    {mult:3,label:'3× (Moderate)',color:'var(--amber-text)'},
+    {mult:5,label:'5× (Good)',color:'var(--blue-text)'},
+    {mult:10,label:'10× (Home run)',color:'var(--green-text)'}
+  ];
+  // Pre-C founder value at each exit
+  const preCFounderPct=32.4;
+  let exitHtml='';
+  exits.forEach(e=>{
+    const exitVal=post*e.mult;
+    const founderVal=exitVal*founderPostPct/100;
+    const preCVal=post*e.mult*preCFounderPct/100;
+    const diff=founderVal-preCVal;
+    const perFounder=founderVal/3;
+    exitHtml+='<tr><td style="font-family:var(--sans);font-weight:600">'+e.label+'</td><td style="color:'+e.color+';font-weight:700">'+fmt(founderVal)+'</td><td style="color:'+(diff>=0?'var(--green-text)':'var(--red-text)')+'">'+(diff>=0?'+':'')+fmt(diff)+'</td><td style="font-family:var(--mono)">'+fmt(perFounder)+'</td></tr>';
+  });
+  document.getElementById('impact-exit').innerHTML=exitHtml;
+
+  // Series D implications
+  const fwdARR=SYS.arr*(1+38/100);
+  const seriesDArr=fwdARR*1.6; // rough 18mo forward
+  const seriesDVal=seriesDArr*8; // 8× ARR multiple
+  const seriesDDilution=((20)/(20+seriesDVal)*100).toFixed(1); // assume $20M D round
+  const founderPostD=founderPostPct*(1-seriesDDilution/100);
+  let dHtml='';
+  dHtml+='<div style="display:flex;justify-content:space-between"><span>Current ownership (post-C)</span><strong style="font-family:var(--mono)">'+pct(founderPostPct)+'</strong></div>';
+  dHtml+='<div style="display:flex;justify-content:space-between"><span>After typical Series D ($20M)</span><strong style="font-family:var(--mono)">'+pct(founderPostD)+'</strong></div>';
+  dHtml+='<div style="display:flex;justify-content:space-between"><span>Implied Series D ARR needed</span><strong style="font-family:var(--mono)">'+fmt(seriesDArr)+'</strong></div>';
+  dHtml+='<div style="display:flex;justify-content:space-between"><span>Implied Series D valuation</span><strong style="font-family:var(--mono)">'+fmt(seriesDVal)+'</strong></div>';
+  dHtml+='<div style="display:flex;justify-content:space-between;margin-top:6px;padding-top:6px;border-top:1px solid var(--border)"><span>Projected dilution (Series D)</span><strong style="font-family:var(--mono);color:var(--amber-text)">~'+seriesDDilution+'%</strong></div>';
+  dHtml+='<div style="display:flex;justify-content:space-between"><span>Founder ownership after D</span><strong style="font-family:var(--mono);color:'+(founderPostD>15?'var(--green-text)':'var(--red-text)')+'">'+pct(founderPostD)+'</strong></div>';
+  if(founderPostD<15) dHtml+='<div style="margin-top:6px;padding:6px 10px;background:var(--amber-soft);border-radius:4px;font-size:9px;color:var(--amber-text)"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Warning: founder ownership will drop below 15% after Series D. Consider protective provisions.</div>';
+  document.getElementById('impact-d').innerHTML=dHtml;
+
+  // Board & Control
+  let bHtml='';
+  const investorSeats=dilute>20?2:1;
+  const founderSeats=2;
+  const totalSeats=founderSeats+investorSeats+1; // +1 independent
+  bHtml+='<div style="display:flex;justify-content:space-between"><span>Founder board seats</span><strong>'+founderSeats+'</strong></div>';
+  bHtml+='<div style="display:flex;justify-content:space-between"><span>Investor board seats (post-C)</span><strong>'+investorSeats+'</strong></div>';
+  bHtml+='<div style="display:flex;justify-content:space-between"><span>Independent directors</span><strong>1</strong></div>';
+  bHtml+='<div style="display:flex;justify-content:space-between;margin-top:4px;padding-top:4px;border-top:1px solid var(--border)"><span>Founder voting control</span><strong style="color:'+(founderPostPct>50?'var(--green-text)':'var(--amber-text)')+'">'+(founderPostPct>50?'Majority':'Minority — '+pct(founderPostPct))+'</strong></div>';
+  bHtml+='<div style="display:flex;justify-content:space-between"><span>Protective provisions</span><strong style="color:var(--amber-text)">'+(dilute>25?'Extensive':'Standard')+'</strong></div>';
+  bHtml+='<div style="display:flex;justify-content:space-between"><span>Board control</span><strong style="color:'+(founderSeats>investorSeats?'var(--green-text)':'var(--amber-text)')+'">'+(founderSeats>investorSeats?'Founder majority':'Balanced')+'</strong></div>';
+  document.getElementById('impact-board').innerHTML=bHtml;
+
+  // Employee Equity
+  let eHtml='';
+  const optionPool=(8.4+poolPct)/100;
+  const totalOptions=totalPost*optionPool;
+  const optionsPerEmployee=totalOptions/SYS.headcount;
+  const optionValue=post*optionPool/SYS.headcount;
+  const strikePrice=pre*0.7/100; // 70% of pre-money, in millions
+  eHtml+='<div style="display:flex;justify-content:space-between"><span>Total option pool (post-C)</span><strong style="font-family:var(--mono)">'+pct((8.4+poolPct))+'</strong></div>';
+  eHtml+='<div style="display:flex;justify-content:space-between"><span>Options per employee (avg)</span><strong style="font-family:var(--mono)">'+(optionsPerEmployee/1000).toFixed(0)+'K shares</strong></div>';
+  eHtml+='<div style="display:flex;justify-content:space-between"><span>Implied value per employee</span><strong style="font-family:var(--mono);color:var(--green-text)">'+fmtK(optionValue*1000)+'</strong></div>';
+  eHtml+='<div style="display:flex;justify-content:space-between;margin-top:4px;padding-top:4px;border-top:1px solid var(--border)"><span>New hire grant attractiveness</span><strong style="color:'+(optionValue>100?'var(--green-text)':'var(--amber-text)')+'">'+(optionValue>100?'Strong':'Adequate')+'</strong></div>';
+  eHtml+='<div style="display:flex;justify-content:space-between"><span>409A implied FMV</span><strong style="font-family:var(--mono)">~$'+(pre/1000*0.7).toFixed(2)+'/share</strong></div>';
+  document.getElementById('impact-emp').innerHTML=eHtml;
+
+  // Market & Competitive
+  let mHtml='';
+  const raiseLabel=raise>=35?'Aggressive':'Moderate';
+  const timingScore=growth>=40?'Favorable':'Challenging';
+  mHtml+='<div style="display:flex;justify-content:space-between"><span>Raise positioning</span><strong style="color:var(--blue-text)">'+raiseLabel+'</strong></div>';
+  mHtml+='<div style="display:flex;justify-content:space-between"><span>Market timing</span><strong style="color:'+(growth>=40?'var(--green-text)':'var(--amber-text)')+'">'+timingScore+'</strong></div>';
+  mHtml+='<div style="display:flex;justify-content:space-between"><span>Multiple vs median ($'+SYS.bench.val+'M)</span><strong style="font-family:var(--mono);color:'+(pre>=SYS.bench.val?'var(--green-text)':'var(--amber-text)')+'">'+(pre>=SYS.bench.val?'Above':'Below by '+fmt(SYS.bench.val-pre))+'</strong></div>';
+  mHtml+='<div style="display:flex;justify-content:space-between"><span>Competitive moat signal</span><strong style="color:'+(SYS.gm>=0.75?'var(--green-text)':'var(--amber-text)')+'">'+(SYS.gm>=0.75?'Strong GM supports':'Needs narrative work')+'</strong></div>';
+  mHtml+='<div style="display:flex;justify-content:space-between;margin-top:4px;padding-top:4px;border-top:1px solid var(--border)"><span>Key risk</span><strong style="font-size:9px;color:var(--red-text)">'+(newRunway<18?'Runway too short post-raise':growth<30?'Growth rate below market':'Manageable')+'</strong></div>';
+  document.getElementById('impact-market').innerHTML=mHtml;
+
+  // Overall risk assessment
+  const riskEl=document.getElementById('impact-risk');
+  const risks=[];
+  if(founderPostPct<20) risks.push('Founder ownership below 20%');
+  if(dilute>28) risks.push('Dilution exceeds 28%');
+  if(newRunway<24) risks.push('Runway under 24 months post-raise');
+  if(poolPct>15) risks.push('Option pool expansion is aggressive');
+  if(pre<SYS.bench.val*0.8) risks.push('Valuation below market median');
+
+  if(risks.length===0){
+    riskEl.style.background='var(--green-soft)';riskEl.style.color='var(--green-text)';riskEl.style.border='1px solid rgba(22,163,74,.15)';
+    riskEl.innerHTML=svgCheck()+' LOW RISK — No critical red flags detected. Deal structure is balanced across all dimensions.';
+  }else if(risks.length<=2){
+    riskEl.style.background='var(--amber-soft)';riskEl.style.color='var(--amber-text)';riskEl.style.border='1px solid rgba(217,119,6,.15)';
+    riskEl.innerHTML=svgWarn()+' MODERATE RISK — '+risks.join('; ')+'. Review parameters before proceeding.';
+  }else{
+    riskEl.style.background='var(--red-soft)';riskEl.style.color='var(--red-text)';riskEl.style.border='1px solid rgba(220,38,38,.15)';
+    riskEl.innerHTML=svgBad()+' HIGH RISK — '+risks.join('; ')+'. Significant restructuring recommended.';
+  }
+}
+
+// ─── Pre-Decision Actions & Recommendations ───────────────
+function renderActions(growth,newRunway,bmult,dilute,raise,pre){
+  const items={
+    strategic:[
+      {action:'Define fundraise narrative & positioning',desc:'Craft the "why now" story: market timing, competitive advantage, growth trajectory',priority:'Critical',timing:'8-10 weeks before',met:growth>=35&&SYS.gm>=0.75},
+      {action:'Identify target investor universe',desc:'Map 15-20 target firms: thesis fit, check size, portfolio conflicts, partner chemistry',priority:'Critical',timing:'6-8 weeks before',met:false},
+      {action:'Competitive landscape analysis',desc:'Position against 3-5 direct competitors; articulate durable moat & differentiation',priority:'High',timing:'6-8 weeks before',met:SYS.gm>=0.70},
+      {action:'Board alignment on terms & timeline',desc:'Ensure board consensus on target valuation range, dilution tolerance, use of funds',priority:'Critical',timing:'8 weeks before',met:false},
+      {action:'Market timing assessment',desc:'Evaluate macro conditions, comparable deals, investor sentiment, sector momentum',priority:'High',timing:'4-6 weeks before',met:growth>=30}
+    ],
+    tactical:[
+      {action:'Financial model (3-year bottoms-up)',desc:'Monthly P&L, cash flow, cohort analysis with bear/base/bull scenarios',priority:'Critical',timing:'6-8 weeks before',met:false},
+      {action:'Investor deck (20-25 slides)',desc:'Problem, solution, metrics, market, team, financials, use of funds, ask',priority:'Critical',timing:'6 weeks before',met:false},
+      {action:'Data room preparation',desc:'Cap table, financials, contracts, IP, org chart, customer list, legal docs',priority:'Critical',timing:'4-6 weeks before',met:false},
+      {action:'Customer reference list (10-15 logos)',desc:'Identify customers willing to speak to investors about value & retention',priority:'High',timing:'4 weeks before',met:false},
+      {action:'KPI dashboard & metrics memo',desc:'Monthly KPI report: ARR, NRR, burn, pipeline, cohort retention, unit economics',priority:'High',timing:'4 weeks before',met:true}
+    ],
+    operational:[
+      {action:'Clean cap table & reconcile shares',desc:'Verify all option grants, vesting schedules, 83(b) elections, convertible notes',priority:'Critical',timing:'6-8 weeks before',met:false},
+      {action:'Legal entity & compliance audit',desc:'Corporate structure, IP assignments, employment agreements, NDAs all current',priority:'Critical',timing:'6-8 weeks before',met:false},
+      {action:'Annual financial audit completion',desc:'GAAP-audited financials from Big 4 or reputable mid-tier firm',priority:'Critical',timing:'8 weeks before',met:false},
+      {action:'409A valuation refresh',desc:'Current FMV for option pricing; coordinate with auditor pre-raise',priority:'High',timing:'6 weeks before',met:false},
+      {action:'Close burn multiple gap (<2×)',desc:'Current '+bmult+'× — reduce burn or accelerate revenue to hit target before fundraise',priority:(bmult>2?'Critical':'Low'),timing:'Ongoing',met:bmult<=2},
+      {action:'Extend runway to 18+ months',desc:'Current '+newRunway.toFixed(1)+'mo — bridge or cut costs to ensure runway floor before raise',priority:(newRunway<18?'Critical':'Low'),timing:'Immediate',met:newRunway>=18}
+    ]
+  };
+
+  function renderList(items,containerId){
+    let html='';
+    items.forEach(item=>{
+      const statusColor=item.met?'var(--green-text)':'var(--amber-text)';
+      const statusBg=item.met?'var(--green-soft)':'var(--amber-soft)';
+      const statusLabel=item.met?'Ready':'Action needed';
+      const priColor=item.priority==='Critical'?'var(--red-text)':item.priority==='High'?'var(--amber-text)':'var(--ink3)';
+      html+='<div style="padding:10px 12px;border-bottom:1px solid var(--bg2);font-size:10px;line-height:1.5">';
+      html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">';
+      html+=item.met?svgCheck():'<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>';
+      html+='<strong style="flex:1;color:var(--ink)">'+item.action+'</strong>';
+      html+='<span style="font-family:var(--mono);font-size:8px;font-weight:700;color:'+priColor+';text-transform:uppercase">'+item.priority+'</span>';
+      html+='</div>';
+      html+='<div style="color:var(--ink3);margin-left:16px">'+item.desc+'</div>';
+      html+='<div style="display:flex;justify-content:space-between;margin-left:16px;margin-top:3px">';
+      html+='<span style="color:var(--ink4)">'+item.timing+'</span>';
+      html+='<span style="padding:1px 6px;border-radius:3px;font-size:8px;font-weight:600;background:'+statusBg+';color:'+statusColor+'">'+statusLabel+'</span>';
+      html+='</div></div>';
+    });
+    document.getElementById(containerId).innerHTML=html;
+  }
+
+  renderList(items.strategic,'actions-strategic');
+  renderList(items.tactical,'actions-tactical');
+  renderList(items.operational,'actions-operational');
+
+  // Summary bar
+  const all=[...items.strategic,...items.tactical,...items.operational];
+  const total=all.length;
+  const ready=all.filter(a=>a.met).length;
+  const critical=all.filter(a=>a.priority==='Critical'&&!a.met).length;
+  const high=all.filter(a=>a.priority==='High'&&!a.met).length;
+  const pctReady=Math.round(ready/total*100);
+
+  document.getElementById('actions-summary').innerHTML=
+    '<div style="padding:10px 14px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius);text-align:center"><div style="font-family:var(--mono);font-size:18px;font-weight:800;color:var(--blue-text)">'+ready+'/'+total+'</div><div style="font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:.04em">Actions Ready</div></div>'+
+    '<div style="padding:10px 14px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius);text-align:center"><div style="font-family:var(--mono);font-size:18px;font-weight:800;color:'+(critical>0?'var(--red-text)':'var(--green-text)')+'">'+critical+'</div><div style="font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:.04em">Critical Gaps</div></div>'+
+    '<div style="padding:10px 14px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius);text-align:center"><div style="font-family:var(--mono);font-size:18px;font-weight:800;color:'+(high>0?'var(--amber-text)':'var(--green-text)')+'">'+high+'</div><div style="font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:.04em">High Priority</div></div>'+
+    '<div style="padding:10px 14px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius);text-align:center"><div style="font-family:var(--mono);font-size:18px;font-weight:800;color:'+(pctReady>=70?'var(--green-text)':pctReady>=40?'var(--amber-text)':'var(--red-text)')+'">'+pctReady+'%</div><div style="font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:.04em">Readiness</div></div>';
 }
 
 // ─── Initialize static sections ────────────────────────────
