@@ -228,24 +228,8 @@ Decision-OS/
 ├── download_all.sh        # Asset download script
 ├── favicon.ico / .png     # App icons
 └── LICENSE                # Apache 2.0
+
 ```
-
----
-
-## Walkthrough
-
-Decision OS includes a built-in **interactive walkthrough** that covers:
-
-1. **The Hub** — How to navigate between executive portals
-2. **Storytelling Cards** — How to read the narrative-first design
-3. **Scenario Engines** — How to toggle Bear/Base/Bull and what changes
-4. **Cost of Inaction** — How to read the dollar cost of delay
-5. **Cross-Portal Intelligence** — How portals reference each other
-6. **Decision Playbooks** — How to follow structured decision flows
-
-Click **"Take the Tour"** on any portal to start.
-
----
 
 ## Data Model
 
