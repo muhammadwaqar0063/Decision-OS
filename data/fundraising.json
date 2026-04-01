@@ -1,0 +1,55 @@
+{
+  "history": [
+    {"round":"Seed","date":"2021-03","amount":2500000,"preMoney":8000000,"postMoney":10500000,"investor":"Vertex Ventures","leadPartner":"R. Chen","dilution":23.8,"arrAtRound":120000,"employees":8},
+    {"round":"Series A","date":"2022-06","amount":12000000,"preMoney":38000000,"postMoney":50000000,"investor":"Sequoia Capital","leadPartner":"M. Patel","dilution":24.0,"arrAtRound":2800000,"employees":34},
+    {"round":"Series B","date":"2024-01","amount":28000000,"preMoney":72000000,"postMoney":100000000,"investor":"a16z","leadPartner":"J. Williams","dilution":28.0,"arrAtRound":9600000,"employees":98}
+  ],
+  "capTable": [
+    {"holder":"Founders (3)","preRaise":32.4,"postRaise":0,"class":"Common","shares":32400000},
+    {"holder":"Seed Investors","preRaise":14.2,"postRaise":0,"class":"Preferred A","shares":14200000},
+    {"holder":"Series A Investors","preRaise":18.6,"postRaise":0,"class":"Preferred B","shares":18600000},
+    {"holder":"Series B Investors","preRaise":22.0,"postRaise":0,"class":"Preferred C","shares":22000000},
+    {"holder":"Option Pool (Existing)","preRaise":8.4,"postRaise":0,"class":"Options","shares":8400000},
+    {"holder":"Option Pool (Expanded)","preRaise":0,"postRaise":0,"class":"Options","shares":0},
+    {"holder":"Series C Investors","preRaise":0,"postRaise":0,"class":"Preferred D","shares":0}
+  ],
+  "totalShares": 100000000,
+  "useOfFunds": [
+    {"category":"Engineering & Product","pct":40,"description":"Scale platform, AI/ML capabilities, enterprise features","icon":"⚡"},
+    {"category":"Sales & Marketing","pct":30,"description":"Expand enterprise sales team, brand, demand gen","icon":"📈"},
+    {"category":"Customer Success","pct":12,"description":"Reduce churn, expand NRR, build CS ops","icon":"🤝"},
+    {"category":"G&A / Infrastructure","pct":8,"description":"Finance, legal, compliance, office, IT","icon":"🏗️"},
+    {"category":"Strategic Reserve","pct":10,"description":"M&A opportunity buffer, market downturn cushion","icon":"🛡️"}
+  ],
+  "benchmarks": {
+    "seriesC": {
+      "medianARR": {"value":20000000,"label":"$20M","note":"Median ARR at Series C"},
+      "medianGrowth": {"value":60,"label":"60%","note":"YoY revenue growth"},
+      "medianNRR": {"value":115,"label":"115%","note":"Net revenue retention"},
+      "medianBurnMultiple": {"value":1.8,"label":"1.8×","note":"Net burn / net new ARR"},
+      "medianGrossMargin": {"value":72,"label":"72%","note":"Gross margin %"},
+      "medianRunway": {"value":24,"label":"24mo","note":"Months of runway post-raise"},
+      "medianDilution": {"value":20,"label":"20%","note":"Typical dilution range 18-25%"},
+      "medianRaise": {"value":35000000,"label":"$35M","note":"Median Series C round size"},
+      "medianValuation": {"value":150000000,"label":"$150M","note":"Median pre-money valuation"}
+    }
+  },
+  "comps": [
+    {"company":"Notion","round":"Series C","date":"2020-04","amount":50000000,"valuation":200000000,"arr":20000000,"growth":80,"segment":"Productivity","outcome":"$10B+ (2024)"},
+    {"company":"Figma","round":"Series C","date":"2020-06","amount":200000000,"valuation":2000000000,"arr":50000000,"growth":100,"segment":"Design","outcome":"$20B (Adobe acq, blocked)"},
+    {"company":"Canva","round":"Series C","date":"2020-10","amount":60000000,"valuation":600000000,"arr":50000000,"growth":130,"segment":"Design","outcome":"$26B (2024)"},
+    {"company":"Vercel","round":"Series C","date":"2021-06","amount":102000000,"valuation":1100000000,"arr":25000000,"growth":70,"segment":"DevTools","outcome":"$3.5B (2024)"},
+    {"company":"Retool","round":"Series C","date":"2022-06","amount":22200000,"valuation":3200000000,"arr":50000000,"growth":75,"segment":"DevTools","outcome":"$3.2B (2024)"},
+    {"company":"Linear","round":"Series C","date":"2023-05","amount":50000000,"valuation":400000000,"arr":15000000,"growth":85,"segment":"Productivity","outcome":"Private"}
+  ],
+  "termSheetDefaults": {
+    "liquidationPreference": "1x non-participating",
+    "antiDilution": "Broad-based weighted average",
+    "boardSeats": "1 investor + 1 independent",
+    "proRata": "Yes — major investors",
+    "protectiveProvisions": "Standard",
+    "payToPlay": "No",
+    "dragAlong": "Yes",
+    "registrationRights": "S-3 demand + piggyback"
+  }
+}
