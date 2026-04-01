@@ -956,13 +956,13 @@ function calcFund(){
   renderBurn(raise,postBurn);
   renderSensitivity(raise,pre);
   const readinessScore=renderReadiness(growth,newRunway,+bmult,dilute,SYS.nrr,SYS.gm);
-  renderImpact(raise,pre,dilute,newRunway,poolPct);
+  renderImpact(raise,pre,dilute,newRunway,poolPct,growth);
   renderActions(growth,newRunway,+bmult,dilute,raise,pre);
   calcUOF();
 }
 
 // ─── Decision Impact Analysis ─────────────────────────────
-function renderImpact(raise,pre,dilute,newRunway,poolPct){
+function renderImpact(raise,pre,dilute,newRunway,poolPct,growth){
   const post=pre+raise;
   const founderPrePct=32.4;
   const totalPost=SYS.totalShares+(raise/(pre/SYS.totalShares));
