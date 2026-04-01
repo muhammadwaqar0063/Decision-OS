@@ -41,7 +41,7 @@ a {color:inherit}
 .prog-rose {background:linear-gradient(90deg,#fda4af,#e11d48)}
 .crs {color:var(--rose-text)}
 @media(max-width:900px) {.layout{flex-direction:column}.rp{width:100%;border-left:none;border-top:1px solid var(--border);max-height:300px}.krow.kr4{grid-template-columns:repeat(2,1fr)}.g2,.g32{grid-template-columns:1fr}}</style>
-<style>html,body{overflow-x:hidden}</style>
+<style>html,body{height:100%;overflow:hidden}</style>
 </head>
 <body>
 <div class="hdr">
@@ -268,6 +268,8 @@ a {color:inherit}
     </div></div>
   </div>
 
+</div><!-- /s-competitive -->
+
 <!-- PLAYBOOKS -->
 <div id="s-playbooks" class="scr">
   <div class="sh"><div class="sh-over">CPO · Product Layer · Playbooks</div><h2>Pre-built <em>product decisions.</em></h2><div class="sh-sub">Feature kill flows, PMF response playbooks, and roadmap prioritization.</div></div>
@@ -344,102 +346,6 @@ a {color:inherit}
 
 </div>
 </div><!-- /layout -->
-
-<script>
-function show(id,el){document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));document.getElementById('s-'+id).classList.add('on');if(el)el.classList.add('on');initCharts()}
-function initCharts(){
-  const r=document.getElementById('ch-ret');if(r){if(r._chart)r._chart.destroy();r._chart=new Chart(r,{type:'line',data:{labels:['W1','W2','W3','W4','W5','W6','W7','W8'],datasets:[{label:'Project Dashboard',data:[100,96,94,92,91,90,89,89],borderColor:'#e11d48',backgroundColor:'rgba(225,29,72,.06)',fill:true,tension:.35,borderWidth:2.5,pointRadius:3,pointBackgroundColor:'#e11d48',pointBorderColor:'#fff',pointBorderWidth:2},{label:'Task Management',data:[100,94,90,87,86,85,85,84],borderColor:'#16a34a',backgroundColor:'rgba(22,163,74,.06)',fill:true,tension:.35,borderWidth:2.5,pointRadius:3,pointBackgroundColor:'#16a34a',pointBorderColor:'#fff',pointBorderWidth:2},{label:'Gantt Charts',data:[100,82,72,66,63,61,60,60],borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,.06)',fill:true,tension:.35,borderWidth:2.5,pointRadius:3,pointBackgroundColor:'#3b82f6',pointBorderColor:'#fff',pointBorderWidth:2},{label:'AI Schedule',data:[100,42,18,9,6,4,3,3],borderColor:'#ccc9c2',borderDash:[6,4],borderWidth:1.5,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{family:'Inter',size:11},boxWidth:12,padding:16,color:'#7a7770'}}},scales:{y:{beginAtZero:true,max:105,ticks:{callback:v=>v+'%',font:{family:'JetBrains Mono',size:10},color:'#a8a59e'},grid:{color:'rgba(0,0,0,.04)'}},x:{grid:{display:false},ticks:{font:{family:'Inter',size:10},color:'#a8a59e'}}}}})}
-  const v=document.getElementById('ch-vel');if(v){if(v._chart)v._chart.destroy();v._chart=new Chart(v,{type:'bar',data:{labels:['S21','S22','S23','S24','S25','S26','S27','S28','S29','S30'],datasets:[{label:'Story Points',data:[68,72,74,71,76,80,82,85,84,87],backgroundColor:'rgba(225,29,72,.7)',borderRadius:3},{label:'Target (80pts)',data:[80,80,80,80,80,80,80,80,80,80],type:'line',borderColor:'#ccc9c2',borderDash:[6,4],borderWidth:1.5,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{family:'Inter',size:11},boxWidth:12,padding:16,color:'#7a7770'}}},scales:{y:{beginAtZero:false,min:50,max:100,ticks:{font:{family:'JetBrains Mono',size:10},color:'#a8a59e'},grid:{color:'rgba(0,0,0,.04)'}},x:{grid:{display:false},ticks:{font:{family:'Inter',size:10},color:'#a8a59e'}}}}})}
-}
-initCharts();
-</script>
-
-<script src="auth.js"></script>
-<script src="js/dss-core.js"></script>
-<script src="js/dss-data.js"></script>
-<script>
-
-// ── Breadcrumbs ──
-// ── Data Freshness ──
-(async function() {
-  const company = await DSSData.load('company.json');
-  if (company) renderFreshness('.freshness-wrap', company.company.lastUpdated);
-})();
-
-// ── Auth Guard ──
-if (typeof DSLAuth !== 'undefined') {
-  DSLAuth.injectGuard('cpo');
-  DSLAuth.renderUserBadge('.auth-area');
-}
-</script>
-
-
-
-  <div id="s-decisions" class="scr">
-  <div class="sh"><div class="sh-over">CPO · Product Layer · Decisions</div><h2>What to kill, <em>what to scale.</em></h2><div class="sh-sub">Feature kill criteria, roadmap prioritization, and the playbook that would have caught the AI scheduling mistake.</div></div>
-
-  <div class="cd"><div class="cd-h"><span class="cd-t">Feature kill decision flow <span>| when to pull the plug</span></span></div><div class="cd-b">
-    <div style="display:flex;flex-direction:column;gap:2px;margin:14px 0">
-      <div class="df-node"><span class="df-tag" style="background:var(--rose);color:#fff">IF</span><strong>Feature adoption <10% after 90 days</strong> AND >200 engineering hours invested</div>
-      <div class="flow-arrow" style="padding:4px 0;color:var(--ink4)">↓</div>
-      <div class="df-node warn"><span class="df-tag m">Investigate</span>Run 5 user interviews. Is it discoverability, value, or execution? Document findings.</div>
-      <div class="flow-arrow" style="padding:4px 0;color:var(--ink4)">↓</div>
-      <div class="df-node yes"><span class="df-tag y">Discoverability</span>Fix onboarding, add in-app prompts. Set 60-day adoption target: >20%.</div>
-      <div class="df-node no"><span class="df-tag n">Value / Execution</span>Kill the feature. Reallocate engineering to #1 churn reason (mobile offline). Document opportunity cost.</div>
-      <div class="flow-arrow" style="padding:4px 0;color:var(--ink4)">↓</div>
-      <div class="df-node"><span class="df-tag" style="background:var(--rose);color:#fff">Review</span><strong>Post-mortem within 2 weeks</strong> | What signal did we miss? Update kill criteria for next feature.</div>
-    </div>
-  </div></div>
-
-  <div class="cd"><div class="cd-h"><span class="cd-t">Feature kill playbook <span>| AI scheduling case study</span></span></div><div class="cd-b">
-    <div class="pbs">
-      <div class="pb-step done"><div class="pb-num" style="background:var(--green)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="pb-info"><div class="pb-title">AI Schedule Optimizer shipped</div><div class="pb-meta"><span>4,200 eng hours | 2 sprints</span></div></div></div>
-      <div class="pb-step done"><div class="pb-num" style="background:var(--red)"><svg width="12" height="12" viewBox="0 0 24 24"fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><div class="pb-info"><div class="pb-title">90-day adoption check: 3.1%</div><div class="pb-meta"><span class="cred">Below 10% threshold</span></div></div></div>
-      <div class="pb-step done"><div class="pb-num" style="background:var(--green)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="pb-info"><div class="pb-title">5 user interviews completed</div><div class="pb-meta"><span>Verdict: execution gap, not value gap</span></div></div></div>
-      <div class="pb-step done"><div class="pb-num" style="background:var(--red)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><div class="pb-info"><div class="pb-title">Feature killed</div><div class="pb-meta"><span>$630K opportunity cost documented</span></div></div></div>
-      <div class="pb-step cur"><div class="pb-num">5</div><div class="pb-info"><div class="pb-title">Capacity reallocated to mobile offline</div><div class="pb-meta"><span class="cred">Priority #1 — blocks 3 enterprise deals</span></div><div class="pb-desc">Platform squad now 100% on mobile offline. Target: ship by end of Q2.</div></div></div>
-    </div>
-  </div></div>
-
-  <div class="cd"><div class="cd-h"><span class="cd-t">Roadmap prioritization framework <span>| revenue-weighted scoring</span></span></div><div class="cd-b">
-    <div style="display:flex;flex-direction:column;gap:2px;margin:14px 0">
-      <div class="df-node"><span class="df-tag" style="background:var(--rose);color:#fff">Score</span><strong>Each feature gets a priority score</strong> = (Revenue Impact × 0.4) + (Churn Prevention × 0.3) + (Effort Inverse × 0.2) + (Strategic Fit × 0.1)</div>
-      <div class="flow-arrow" style="padding:4px 0;color:var(--ink4)">↓</div>
-      <div class="df-node yes"><span class="df-tag y">> 7.0</span>Build next sprint. Green-lit, no debate.</div>
-      <div class="df-node warn"><span class="df-tag m">4.0 – 7.0</span>Backlog. Review bi-weekly. Advance if dependencies clear.</div>
-      <div class="df-node no"><span class="df-tag n">< 4.0</span>Kill or park. Don't let it consume planning cycles.</div>
-      <div class="flow-arrow" style="padding:4px 0;color:var(--ink4)">↓</div>
-      <div class="df-node"><span class="df-tag" style="background:var(--rose);color:#fff">Exception</span><strong>Any single score >9 overrides average</strong> | If churn prevention alone is 9+, build it regardless of effort.</div>
-    </div>
-    <div style="padding:14px 18px;border-left:3px solid var(--rose);background:var(--rose-soft);border-radius:0 6px 6px 0;font-size:12px"><strong>Current top 3 by score:</strong> Mobile offline (9.2), Report builder v2 (7.8), API v3 webhooks (6.4). AI scheduling scored 2.1.</div>
-  </div></div>
-
-  <div class="cd"><div class="cd-h"><span class="cd-t">PMF decision playbook <span>| segment-specific response</span></span></div><div class="cd-b">
-    <div style="display:flex;flex-direction:column;gap:2px;margin:14px 0">
-      <div class="df-node"><span class="df-tag" style="background:var(--rose);color:#fff">IF</span><strong>Sean Ellis score <40% in any segment</strong></div>
-      <div class="flow-arrow" style="padding:4px 0;color:var(--ink4)">↓</div>
-      <div class="df-node warn"><span class="df-tag m">Diagnose</span>Pull verbatim feedback. Categorize: onboarding, value, complexity, pricing, competition.</div>
-      <div class="flow-arrow" style="padding:4px 0;color:var(--ink4)">↓</div>
-      <div class="df-node yes"><span class="df-tag y">Fixable</span>Assign product squad. 60-day fix window. Track Ellis score weekly.</div>
-      <div class="df-node no"><span class="df-tag n">Structural</span>Consider segment exit or separate product. Don't average your way to mediocrity.</div>
-    </div>
-    <div class="pbs" style="margin-top:12px">
-      <div class="pb-step cur"><div class="pb-num">1</div><div class="pb-info"><div class="pb-title">SMB PMF gap identified</div><div class="pb-meta"><span class="cred">Ellis: 38% | NRR: 96%</span></div><div class="pb-desc">SMB says "too complex, not enough value." Root cause: enterprise-first onboarding. Need SMB-specific flow.</div></div></div>
-      <div class="pb-step"><div class="pb-num">2</div><div class="pb-info"><div class="pb-title">SMB onboarding redesign</div><div class="pb-meta"><span>Queued for Q3</span></div><div class="pb-desc">Simplify to 3 core features. Hide advanced config. Guided setup under 10 minutes.</div></div></div>
-      <div class="pb-step"><div class="pb-num">3</div><div class="pb-info"><div class="pb-title">SMB pricing tier review</div><div class="pb-meta"><span>Research phase</span></div><div class="pb-desc">Current $38/user may be too high for SMB. Evaluate $19/user lite tier.</div></div></div>
-      <div class="pb-step"><div class="pb-num">4</div><div class="pb-info"><div class="pb-title">60-day Ellis re-test</div><div class="pb-meta"><span>Target: >50%</span></div></div></div>
-    </div>
-  </div></div>
-  </div>
-
-
-
-  <div class="cd"><div class="cd-h"><span class="cd-t">Cross-portal intelligence</span></div><div class="cd-b">
-    <div style="padding:14px 18px;border-left:3px solid var(--green);background:var(--green-soft);border-radius:0 6px 6px 0;margin-bottom:8px;font-size:12px"><strong>CS: Mobile offline is the #1 churn reason at 32%.</strong> Your priority matrix already ranks it #1 (score 9.2). This confirms the signal. Ship it or lose $480K in ARR.</div>
-    <div style="padding:14px 18px;border-left:3px solid var(--red);background:var(--red-soft);border-radius:0 6px 6px 0;margin-bottom:8px;font-size:12px"><strong>CRO: 3 enterprise deals blocked by missing features.</strong> Mobile offline blocks $480K. Report builder blocks $200K. Every sprint you delay is revenue you can't close.</div>
-    <div style="padding:14px 18px;border-left:3px solid var(--amber);background:var(--amber-soft);border-radius:0 6px 6px 0;font-size:12px"><strong>CTO: Engineering velocity down 23%.</strong> You're asking for more features with fewer points per sprint. Either cut scope or wait for velocity to recover. Can't have both.</div>
-  </div></div>
-
 <script src="dark-mode.js"></script>
 </body>
 </html>
