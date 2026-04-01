@@ -446,6 +446,23 @@ tr.good td{background:var(--green-soft)!important}
 .breadcrumb a:hover{color:var(--ink2)}
 .breadcrumb .sep{color:var(--ink5)}
 
+/* ── INSIGHT TABLE (replaces story cards with scannable event tables) ── */
+.insight-table{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:14px;box-shadow:var(--shadow)}
+.insight-head{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);background:var(--surface3)}
+.insight-head .ih-title{font-size:13px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px}
+.insight-head .ih-badge{font-family:var(--mono);font-size:9px;font-weight:600;padding:3px 8px;border-radius:4px;background:var(--blue-soft);color:var(--blue-text);letter-spacing:.04em}
+.insight-head .ih-time{font-family:var(--mono);font-size:9px;color:var(--ink4)}
+.insight-row{display:grid;grid-template-columns:90px 1fr 120px 100px;gap:0;padding:10px 20px;border-bottom:1px solid var(--bg2);font-size:12px;align-items:center;transition:background .15s}
+.insight-row:last-child{border-bottom:none}
+.insight-row:hover{background:var(--surface3)}
+.insight-row .ir-time{font-family:var(--mono);font-size:10px;color:var(--ink4)}
+.insight-row .ir-event{color:var(--ink2);line-height:1.45}
+.insight-row .ir-event strong{font-weight:600}
+.insight-row .ir-impact{font-family:var(--mono);font-size:11px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.insight-row .ir-action{font-size:10px;font-weight:600;text-align:right}
+.ir-impact.up{color:var(--green-text)}.ir-impact.dn{color:var(--red-text)}.ir-impact.warn{color:var(--amber-text)}
+.ir-action.act{color:var(--blue-text)}.ir-action.block{color:var(--red-text)}.ir-action.ok{color:var(--green-text)}
+
 /* ── MIX FILTER BUTTONS ── */
 .mix-seg-btn{padding:3px 10px;border-radius:5px;font-family:var(--sans);font-size:9px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--ink3);transition:all .15s}
 .mix-seg-btn:hover{color:var(--ink2)}

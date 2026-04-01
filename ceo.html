@@ -123,12 +123,53 @@ table {width:100%;border-collapse:collapse;font-size:12px}
     <div class="sh-sub">Everything you need before the next board meeting, investor call, or strategic decision.</div>
   </div>
 
-  <div class="story">
-    <div class="s-num">01</div>
-    <div class="s-label">Narrative</div>
-    <div class="s-title">You're 0.6 months behind your own runway target.</div>
-    <div class="s-body">ARR is growing at <strong>38% YoY</strong>, that's strong for construction SaaS. But burn is <strong>$486K/mo</strong> and you have <strong>17.4 months</strong> of runway. Your target was 18 months. The gap isn't fatal, but it means the Q2 hiring plan needs the CFO's scenario grid before it gets approved. Meanwhile, <strong>16 enterprise accounts</strong> are carrying $1.3M in at-risk ARR. The CRO's save playbook is live, check the cross-portal intelligence below.</div>
-    <button class="s-cta" onclick="show('forecast',document.querySelector('.tab:nth-child(3)'))">Review scenario analysis</button>
+  <div class="insight-table">
+    <div class="insight-head">
+      <div class="ih-title">📋 Cross-Portal Events <span class="ih-badge">LIVE</span></div>
+      <div class="ih-time">Updated 2 min ago</div>
+    </div>
+    <div class="insight-row">
+      <div class="ir-time">Mar 31</div>
+      <div class="ir-event"><strong>CFO:</strong> Runway at 17.4mo — <strong>0.6mo below 18mo target</strong>. Q2 hiring needs scenario check first.</div>
+      <div class="ir-impact dn">$486K/mo burn</div>
+      <div class="ir-action act">Review</div>
+    </div>
+    <div class="insight-row">
+      <div class="ir-time">Mar 30</div>
+      <div class="ir-event"><strong>CRO:</strong> Pipeline quality-adjusted from $4.8M → <strong>$3.2M</strong>. $1.6M hope gap confirmed by stage close rates.</div>
+      <div class="ir-impact dn">−$1.6M</div>
+      <div class="ir-action act">Analyze</div>
+    </div>
+    <div class="insight-row">
+      <div class="ir-time">Mar 29</div>
+      <div class="ir-event"><strong>CS:</strong> Kellerman Group health score dropped to <strong>31</strong>. $84K ARR at risk. Save playbook activated.</div>
+      <div class="ir-impact dn">$84K at risk</div>
+      <div class="ir-action block">Active</div>
+    </div>
+    <div class="insight-row">
+      <div class="ir-time">Mar 28</div>
+      <div class="ir-event"><strong>CTO:</strong> Sprint velocity down <strong>23%</strong> (142→109 pts). Root cause: context switching, 3.2 projects/eng avg.</div>
+      <div class="ir-impact warn">−23% velocity</div>
+      <div class="ir-action act">Fix</div>
+    </div>
+    <div class="insight-row">
+      <div class="ir-time">Mar 27</div>
+      <div class="ir-event"><strong>CPO:</strong> AI Schedule Optimizer killed. <strong>3.1% adoption</strong> after 4,200 eng hours. Capacity → mobile offline.</div>
+      <div class="ir-impact dn">−$630K opp cost</div>
+      <div class="ir-action ok">Realloc'd</div>
+    </div>
+    <div class="insight-row">
+      <div class="ir-time">Mar 26</div>
+      <div class="ir-event"><strong>CMO:</strong> Google Ads ROI at <strong>3.8×</strong> (below 6× threshold). $38K spent, $120K pipeline. Structural decline.</div>
+      <div class="ir-impact dn">3.8× ROI</div>
+      <div class="ir-action act">Realloc</div>
+    </div>
+    <div class="insight-row">
+      <div class="ir-time">Mar 25</div>
+      <div class="ir-event"><strong>COO:</strong> Implementation backlog at <strong>12 days</strong> (target: 5). 6 new customers waiting. G&A at 68% util.</div>
+      <div class="ir-impact warn">12d backlog</div>
+      <div class="ir-action act">Staff</div>
+    </div>
   </div>
 
   <div class="krow kr4">
@@ -303,12 +344,41 @@ table {width:100%;border-collapse:collapse;font-size:12px}
     <div class="sh-sub">Bear / Base / Bull scenarios. Every number updates when you toggle. Click a scenario to see its full cascade.</div>
   </div>
 
-  <div class="story">
-    <div class="s-num">02</div>
-    <div class="s-label">The hiring dilemma</div>
-    <div class="s-title">The CRO wants 3 AEs. The CFO says no.</div>
-    <div class="s-body">In the <strong>Base scenario</strong>, adding 1 AE + 1 CSM drops runway from 17.4 to <strong>16.8 months</strong>, manageable. But in the <strong>Bear scenario</strong> (Q2 churn spike + delayed enterprise deals), the same hires push runway to <strong>11.8 months</strong>, below the 12-month survivability floor. The Aggressive plan (3 hires) is off the table in Bear: <strong>8.9 months</strong>. Not survivable.</div>
-    <button class="s-cta" onclick="document.getElementById('bear-btn').click()">Run bear case</button>
+  <div class="insight-table">
+    <div class="insight-head">
+      <div class="ih-title">⚡ Hiring Decision Impact <span class="ih-badge" style="background:var(--amber-soft);color:var(--amber-text)">DECISION</span></div>
+      <div class="ih-time">CFO scenario model · Mar 31</div>
+    </div>
+    <div class="insight-row">
+      <div class="ir-time">Base</div>
+      <div class="ir-event"><strong>1 AE + 1 CSM</strong> ($160K/yr combined). Runway drops 17.4 → <strong>16.8mo</strong>. Manageable if Q2 pipeline holds.</div>
+      <div class="ir-impact">16.8mo</div>
+      <div class="ir-action ok">Viable</div>
+    </div>
+    <div class="insight-row">
+      <div class="ir-time">Bear</div>
+      <div class="ir-event"><strong>Same 2 hires in Bear case</strong> (churn spike + delayed deals). Runway drops to <strong>11.8mo</strong> — below 12mo survivability floor.</div>
+      <div class="ir-impact dn">11.8mo</div>
+      <div class="ir-action block">Block</div>
+    </div>
+    <div class="insight-row">
+      <div class="ir-time">Bear</div>
+      <div class="ir-event"><strong>Aggressive (+3 hires)</strong> in Bear. Runway drops to <strong>8.9mo</strong>. Company at existential risk. Off the table.</div>
+      <div class="ir-impact dn">8.9mo ✘</div>
+      <div class="ir-action block">Killed</div>
+    </div>
+    <div class="insight-row">
+      <div class="ir-time">Bull</div>
+      <div class="ir-event"><strong>1 AE + 1 CSM in Bull</strong> (2 enterprise deals close Q2). Runway holds at <strong>19.6mo</strong>. Best case with hires.</div>
+      <div class="ir-impact up">19.6mo</div>
+      <div class="ir-action ok">Proceed</div>
+    </div>
+    <div class="insight-row">
+      <div class="ir-time">Rule</div>
+      <div class="ir-event"><strong>Decision rule:</strong> IF Bear runway <12mo → Block hiring. Defer 8 weeks. Re-evaluate at Q2 mid-point with updated ARR.</div>
+      <div class="ir-impact warn">Deferred</div>
+      <div class="ir-action act">8 weeks</div>
+    </div>
   </div>
 
   <div class="sh-actions">
