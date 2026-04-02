@@ -28,10 +28,57 @@ body{font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-
 
 .login-page{display:flex;min-height:100vh}
 
+/* ── 3D Background ── */
+.login-left{perspective:800px;perspective-origin:50% 40%}
+.scene-3d{position:absolute;inset:0;overflow:hidden;transform-style:preserve-3d}
+.grid-floor{position:absolute;bottom:-20%;left:-30%;right:-30%;height:55%;
+  background:
+    linear-gradient(90deg,rgba(59,130,246,.06) 1px,transparent 1px),
+    linear-gradient(0deg,rgba(59,130,246,.06) 1px,transparent 1px);
+  background-size:60px 60px;
+  transform:rotateX(65deg);transform-origin:bottom center;
+  mask-image:linear-gradient(to top,rgba(0,0,0,.5),transparent 90%);
+  -webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.5),transparent 90%)}
+.shape{position:absolute;border-radius:16px;transform-style:preserve-3d}
+.shape-1{width:180px;height:180px;top:8%;right:12%;
+  background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(124,58,237,.08));
+  border:1px solid rgba(59,130,246,.1);
+  transform:rotateX(20deg) rotateY(-25deg) rotateZ(5deg);
+  animation:float1 8s ease-in-out infinite;
+  box-shadow:0 20px 60px rgba(59,130,246,.08)}
+.shape-2{width:120px;height:120px;top:55%;left:8%;border-radius:50%;
+  background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(236,72,153,.06));
+  border:1px solid rgba(124,58,237,.08);
+  transform:rotateX(15deg) rotateY(20deg);
+  animation:float2 10s ease-in-out infinite;
+  box-shadow:0 20px 50px rgba(124,58,237,.06)}
+.shape-3{width:90px;height:90px;top:20%;left:15%;
+  background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(59,130,246,.06));
+  border:1px solid rgba(16,185,129,.08);
+  border-radius:20px;
+  transform:rotateX(-10deg) rotateY(30deg) rotateZ(-8deg);
+  animation:float3 9s ease-in-out infinite;
+  box-shadow:0 16px 40px rgba(16,185,129,.06)}
+.shape-4{width:60px;height:60px;bottom:25%;right:20%;border-radius:12px;
+  background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(251,191,36,.06));
+  border:1px solid rgba(59,130,246,.06);
+  transform:rotateX(25deg) rotateY(-15deg) rotateZ(12deg);
+  animation:float4 7s ease-in-out infinite}
+.shape-5{width:140px;height:140px;bottom:10%;left:25%;border-radius:24px;
+  background:linear-gradient(135deg,rgba(99,102,241,.07),rgba(59,130,246,.04));
+  border:1px solid rgba(99,102,241,.06);
+  transform:rotateX(18deg) rotateY(22deg) rotateZ(-5deg);
+  animation:float5 11s ease-in-out infinite;
+  box-shadow:0 24px 60px rgba(99,102,241,.05)}
+@keyframes float1{0%,100%{transform:rotateX(20deg) rotateY(-25deg) rotateZ(5deg) translateY(0)}50%{transform:rotateX(22deg) rotateY(-23deg) rotateZ(7deg) translateY(-18px)}}
+@keyframes float2{0%,100%{transform:rotateX(15deg) rotateY(20deg) translateY(0)}50%{transform:rotateX(18deg) rotateY(23deg) translateY(-14px)}}
+@keyframes float3{0%,100%{transform:rotateX(-10deg) rotateY(30deg) rotateZ(-8deg) translateY(0)}50%{transform:rotateX(-8deg) rotateY(32deg) rotateZ(-6deg) translateY(-16px)}}
+@keyframes float4{0%,100%{transform:rotateX(25deg) rotateY(-15deg) rotateZ(12deg) translateY(0)}50%{transform:rotateX(27deg) rotateY(-13deg) rotateZ(14deg) translateY(-12px)}}
+@keyframes float5{0%,100%{transform:rotateX(18deg) rotateY(22deg) rotateZ(-5deg) translateY(0)}50%{transform:rotateX(20deg) rotateY(24deg) rotateZ(-3deg) translateY(-10px)}}
+
 /* ── LEFT: Brand ── */
 .login-left{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:48px;background:#ffffff;position:relative;overflow:hidden}
-.login-left::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(59,130,246,.04),transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(124,58,237,.03),transparent 60%)}
-.login-brand{position:relative;text-align:center;max-width:400px}
+.login-brand{position:relative;text-align:center;max-width:400px;z-index:2}
 .login-brand-icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#3b82f6,#7c3aed);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:0 4px 20px rgba(59,130,246,.15)}
 .login-brand-icon svg{width:26px;height:26px;fill:white}
 .login-brand h1{font-size:36px;font-weight:800;color:var(--ink);letter-spacing:-0.04em;margin-bottom:6px;line-height:1.1}
@@ -120,6 +167,15 @@ body{font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-
 
   <!-- LEFT: Branding -->
   <div class="login-left">
+    <!-- 3D Background Scene -->
+    <div class="scene-3d">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+      <div class="shape shape-5"></div>
+      <div class="grid-floor"></div>
+    </div>
     <div class="login-brand">
       <div class="login-brand-icon">
         <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
