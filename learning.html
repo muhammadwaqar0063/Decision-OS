@@ -84,7 +84,7 @@ tbody tr{transition:background .15s}tbody tr:hover td{background:var(--surface3)
 <div class="hdr">
   <div class="brand"><b>ArcusSoft</b> · Decision OS</div><div class="sep"></div>
   <div class="co">Learning System <span>Model accuracy · Recalibration · Feedback loop</span></div>
-  <div class="hdr-r"><a href="ceo">CEO</a><a href="cro">CRO</a><a href="cfo">CFO</a><a href="coo">COO</a><a href="cs">CS</a><a href="cto">CTO</a><a href="cmo">CMO</a><a href="cpo">CPO</a><div class="sep"></div><a href="calculators">Calculators</a><a href="outcomes">Outcomes</a><a href="alerts">Alerts</a><a href="learning" class="on">Learning</a></div>
+  <div class="hdr-r"><div class="live"><i></i>Live</div><div class="sep"></div><a href="ceo">CEO</a><a href="cro">CRO</a><a href="cfo">CFO</a><a href="coo">COO</a><a href="cs">CS</a><a href="cto">CTO</a><a href="cmo">CMO</a><a href="cpo">CPO</a><div class="sep"></div><a href="calculators">Calculators</a><a href="outcomes">Outcomes</a><a href="alerts">Alerts</a><a href="learning" class="on">Learning</a><div class="auth-area" style="position:relative"></div></div>
 </div>
 <div class="tabs">
   <button class="tab on" onclick="show('accuracy',this)">Model Accuracy</button>
@@ -389,5 +389,9 @@ if(accCtx){new Chart(accCtx,{type:'line',data:{labels:['Aug','Sep','Oct','Nov','
 
 
 <script src="dark-mode.js"></script>
+<script src="auth.js"></script>
+<script>
+if(typeof DSLAuth!=="undefined")DSLAuth.renderUserBadge('.auth-area');
+</script>
 </body>
 </html>
