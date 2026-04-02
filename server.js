@@ -30,6 +30,21 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', uptime: process.uptime(), timestamp: new Date().toISOString() });
 });
 
+// Manual git pull (also works as a webhook target)
+app.get('/api/pull', (req, res) => {
+  try {
+    const result = execSync('git pull --ff-only', { cwd: __dirname, encoding: 'utf8', timeout: 15000 });
+    const changed = !result.includes('Already up to date');
+    if (changed) {
+      cache.flushAll();
+      io.emit('git-update', { message: 'Changes pulled', timestamp: new Date().toISOString() });
+    }
+    res.json({ changed, message: changed ? 'Changes pulled, refreshing...' : 'Already up to date' });
+  } catch (e) {
+    res.status(500).json({ changed: false, message: e.message });
+  }
+});
+
 // Generic JSON data endpoint
 app.get('/api/data/:file', (req, res) => {
   const file = req.params.file.replace(/[^a-zA-Z0-9_-]/g, '');
@@ -290,7 +305,7 @@ function autoPull() {
       io.emit('git-update', { message: 'New changes pulled. Refresh to see updates.', timestamp: new Date().toISOString() });
     }
   } catch (e) {
-    // silent — git not available or no remote
+    console.error('[GIT] Auto-pull failed:', e.message);
   }
 }
 
