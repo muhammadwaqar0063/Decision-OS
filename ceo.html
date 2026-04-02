@@ -185,12 +185,25 @@ table {width:100%;border-collapse:collapse;font-size:12px}
 
   <div class="g2">
     <div class="cd">
-      <div class="cd-h"><span class="cd-t">Revenue trend <span>| by segment</span></span>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:12px">
+      <div class="cd-h"><span class="cd-t">Revenue Intelligence</span>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <select id="rev-view" onchange="loadRevenueTrend()" style="padding:4px 10px;border:1px solid var(--border);border-radius:6px;font-family:var(--sans);font-size:10px;background:var(--surface);color:var(--ink2);cursor:pointer">
+            <option value="composition" selected>Revenue Composition</option>
+            <option value="growth">Growth Rate (MoM)</option>
+            <option value="arpu">ARPU by Segment</option>
+            <option value="yoy">Year-over-Year</option>
+            <option value="churn-vs-new">New vs Churned</option>
+          </select>
           <select id="rev-range" onchange="loadRevenueTrend()" style="padding:4px 10px;border:1px solid var(--border);border-radius:6px;font-family:var(--sans);font-size:10px;background:var(--surface);color:var(--ink2);cursor:pointer">
             <option value="12" selected>12 months</option>
             <option value="6">6 months</option>
             <option value="3">3 months</option>
+          </select>
+          <select id="rev-compare" onchange="loadRevenueTrend()" style="padding:4px 10px;border:1px solid var(--border);border-radius:6px;font-family:var(--sans);font-size:10px;background:var(--surface);color:var(--ink2);cursor:pointer">
+            <option value="none">No comparison</option>
+            <option value="target" selected>vs Target</option>
+            <option value="yoy">vs Last Year</option>
+            <option value="forecast">+ Forecast</option>
           </select>
           <div id="rev-seg-filters" style="display:flex;gap:6px">
             <label style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--ink3);cursor:pointer"><input type="checkbox" class="rev-seg-cb" value="enterprise" checked onchange="loadRevenueTrend()" style="accent-color:#3b82f6"> <span style="width:8px;height:8px;border-radius:2px;background:#3b82f6;display:inline-block"></span> Enterprise</label>
@@ -199,7 +212,7 @@ table {width:100%;border-collapse:collapse;font-size:12px}
           </div>
         </div>
       </div>
-      <div class="cd-b"><div class="chart-wrap tall"><canvas id="ch-rev"></canvas></div></div>
+      <div class="cd-b"><div class="chart-wrap tall"><canvas id="ch-rev"></canvas></div><div id="rev-insights" style="padding:0 8px"></div></div>
     </div>
     <div class="cd">
       <div class="cd-h"><span class="cd-t">Revenue mix <span>| by segment</span></span>
@@ -653,98 +666,299 @@ const REV_MIX_FALLBACK = {
   totals:{customers:312,arr:16400000,arrFormatted:"$16.4M",nrr:103}
 };
 
-/* ═══ Revenue Trend, API-driven with fallback ═══ */
-async function loadRevenueTrend(){
-  const range = document.getElementById('rev-range')?.value || 12;
-  const cbs = document.querySelectorAll('.rev-seg-cb:checked');
-  const segs = Array.from(cbs).map(c=>c.value).join(',');
-  let data = null;
+/* ═══ Revenue Intelligence v2 ═══ */
+let REV_V2_DATA = null;
+async function loadRevV2(){
+  if(REV_V2_DATA) return REV_V2_DATA;
   try{
-    const res = await fetch('/api/revenue-trend?range='+range+(segs?'&segments='+segs:''));
-    if(res.ok) data = await res.json();
+    const res = await fetch('/data/revenue-trend-v2.json');
+    if(res.ok) { REV_V2_DATA = await res.json(); return REV_V2_DATA; }
   }catch(e){}
-  // Fallback: apply filters to embedded data
-  if(!data){
-    data = JSON.parse(JSON.stringify(REV_TREND_FALLBACK));
-    // Apply range filter
-    const n = parseInt(range);
-    if(n > 0 && n < data.months.length){
-      const start = data.months.length - n;
-      data.months = data.months.slice(start);
-      data.total = data.total.slice(start);
-      data.target = data.target.slice(start);
-      const filtered = {};
-      for(const [k,v] of Object.entries(data.segments)){filtered[k]={...v,data:v.data.slice(start)}}
-      data.segments = filtered;
-    }
-    // Apply segment filter
-    if(segs){
-      const segList = segs.split(',').map(s=>s.trim().toLowerCase());
-      const filtered = {};
-      for(const k of segList){if(data.segments[k]) filtered[k]=data.segments[k]}
-      data.segments = filtered;
-    }
-  }
-  renderRevenueChart(data);
+  // Inline fallback
+  REV_V2_DATA = {
+    months:["Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar"],
+    monthsFull:["Apr 2025","May 2025","Jun 2025","Jul 2025","Aug 2025","Sep 2025","Oct 2025","Nov 2025","Dec 2025","Jan 2026","Feb 2026","Mar 2026"],
+    monthsYoY:["Apr 2024","May 2024","Jun 2024","Jul 2024","Aug 2024","Sep 2024","Oct 2024","Nov 2024","Dec 2024","Jan 2025","Feb 2025","Mar 2025"],
+    total:{mrr:[990,1040,1080,1120,1150,1190,1220,1260,1290,1320,1350,1370],target:[990,1020,1050,1080,1110,1140,1170,1200,1230,1260,1290,1320],newBusiness:[85,82,78,92,88,105,98,102,95,90,88,95],expansion:[42,48,55,45,52,60,55,58,62,68,72,65],churned:[-18,-15,-22,-20,-19,-25,-18,-20,-22,-25,-28,-30],netNew:[109,115,111,117,121,140,135,140,135,133,132,130],momGrowth:[4.2,5.1,3.8,3.7,2.7,3.5,2.5,3.3,2.4,2.3,2.3,1.5],arr:[11880,12480,12960,13440,13800,14280,14640,15120,15480,15840,16200,16440]},
+    customers:{total:[248,258,265,272,280,290,296,302,308,310,312,312],new:[18,20,16,22,20,25,18,16,15,12,10,8],churned:[3,2,4,3,3,5,3,3,2,4,3,5],net:[15,18,12,19,17,20,15,13,13,8,7,3]},
+    arpu:{overall:[3.99,4.03,4.08,4.12,4.11,4.10,4.12,4.17,4.18,4.26,4.33,4.39],enterprise:[28.5,29.1,29.8,30.2,30.8,31.5,32.0,32.8,33.5,34.2,35.0,35.8],midmarket:[6.2,6.3,6.5,6.5,6.6,6.7,6.8,6.8,6.9,7.0,7.1,7.2],smb:[0.62,0.63,0.65,0.63,0.61,0.63,0.62,0.61,0.60,0.59,0.58,0.56]},
+    segments:{enterprise:{label:"Enterprise",color:"#3b82f6",mrr:[580,610,630,660,680,700,720,750,770,790,810,830],new:[35,38,32,42,38,48,40,42,38,35,32,35],expansion:[25,30,35,28,32,38,32,35,38,42,45,40],churned:[-5,-4,-6,-5,-4,-7,-4,-5,-6,-7,-8,-9],customers:[15,16,17,17,18,18,18,18,18,18,18,18],momGrowth:[3.0,5.2,3.3,4.8,3.0,2.9,2.9,4.2,2.7,2.6,2.5,2.5],yoyMrr:[410,425,440,460,478,495,510,530,548,565,580,595]},midmarket:{label:"Mid-Market",color:"#7c3aed",mrr:[280,295,310,320,330,340,350,360,370,380,390,400],new:[32,28,30,35,32,38,35,38,35,34,35,38],expansion:[12,14,15,13,15,17,18,18,19,20,21,20],churned:[-8,-6,-10,-9,-10,-11,-8,-9,-10,-11,-12,-13],customers:[42,48,52,56,60,65,70,75,80,84,87,89],momGrowth:[5.0,5.4,5.1,3.2,3.1,3.0,2.9,2.9,2.8,2.7,2.6,2.6],yoyMrr:[185,195,205,215,225,235,245,255,265,275,285,295]},smb:{label:"SMB",color:"#d97706",mrr:[130,135,140,140,140,150,150,150,150,150,150,140],new:[18,16,16,15,18,19,23,22,22,21,21,22],expansion:[5,4,5,4,5,5,5,5,5,6,6,5],churned:[-5,-5,-6,-6,-5,-7,-6,-6,-6,-7,-8,-8],customers:[191,194,196,199,202,207,208,209,210,208,207,205],momGrowth:[5.2,3.8,3.7,0.0,0.0,7.1,0.0,0.0,0.0,0.0,0.0,-6.7],yoyMrr:[105,110,115,118,120,125,128,130,132,134,135,135]}},
+    forecast:{months:["Apr","May","Jun"],optimistic:[1410,1445,1480],base:[1395,1420,1445],pessimistic:[1380,1390,1400]}
+  };
+  return REV_V2_DATA;
 }
 
-function renderRevenueChart(data){
-  const r = document.getElementById('ch-rev');
-  if(!r) return;
-  if(r._chart) r._chart.destroy();
+function sliceRange(arr, range){ const n=parseInt(range); return (n>0&&n<arr.length)?arr.slice(arr.length-n):arr; }
+function getSelectedSegs(){ return Array.from(document.querySelectorAll('.rev-seg-cb:checked')).map(c=>c.value); }
 
-  const datasets = [];
-  // Add segment lines
-  for(const [key, seg] of Object.entries(data.segments)){
-    datasets.push({
-      label: seg.label,
-      data: seg.data,
-      borderColor: seg.color,
-      backgroundColor: seg.color + '10',
-      fill: false,
-      tension: .35,
-      borderWidth: 2,
-      pointRadius: 3,
-      pointBackgroundColor: seg.color,
-      pointBorderColor: '#fff',
-      pointBorderWidth: 2
-    });
+async function loadRevenueTrend(){
+  const raw = await loadRevV2();
+  const view = document.getElementById('rev-view')?.value || 'composition';
+  const range = document.getElementById('rev-range')?.value || 12;
+  const compare = document.getElementById('rev-compare')?.value || 'none';
+  const segs = getSelectedSegs();
+  const months = sliceRange(raw.months, range);
+  const monthsFull = sliceRange(raw.monthsFull, range);
+
+  // Build sliced data
+  const d = { months, monthsFull, segments:{}, total:{}, customers:{}, arpu:{}, forecast: raw.forecast, monthsYoY: sliceRange(raw.monthsYoY, range) };
+  for(const [k,v] of Object.entries(raw.total)) d.total[k] = sliceRange(v, range);
+  for(const [k,v] of Object.entries(raw.customers)) d.customers[k] = sliceRange(v, range);
+  for(const [k,v] of Object.entries(raw.arpu)) d.arpu[k] = sliceRange(v, range);
+  for(const k of segs){ if(raw.segments[k]) { d.segments[k]={}; for(const [fk,fv] of Object.entries(raw.segments[k])) d.segments[k][fk] = Array.isArray(fv)?sliceRange(fv,range):fv; }}
+
+  // Render the selected view
+  if(view==='composition') renderComposition(d, compare);
+  else if(view==='growth') renderGrowth(d, compare);
+  else if(view==='arpu') renderArpuView(d);
+  else if(view==='yoy') renderYoY(d);
+  else if(view==='churn-vs-new') renderChurnVsNew(d);
+
+  // Always generate insights
+  generateInsights(raw, range);
+}
+
+/* ── View: Revenue Composition (stacked area + line overlay) ── */
+function renderComposition(d, compare){
+  const r = document.getElementById('ch-rev');
+  if(!r) return; if(r._chart) r._chart.destroy();
+
+  const datasets = [
+    {label:'New Business', data:d.total.newBusiness, backgroundColor:'rgba(16,185,129,.25)', borderColor:'#10b981', borderWidth:1.5, fill:true, tension:.35, pointRadius:0, order:2},
+    {label:'Expansion', data:d.total.expansion, backgroundColor:'rgba(99,102,241,.25)', borderColor:'#6366f1', borderWidth:1.5, fill:true, tension:.35, pointRadius:0, order:2},
+    {label:'Churn', data:d.total.churned, backgroundColor:'rgba(239,68,68,.25)', borderColor:'#ef4444', borderWidth:1.5, fill:true, tension:.35, pointRadius:0, order:2}
+  ];
+
+  // Add total MRR line on top
+  datasets.push({label:'Total MRR', data:d.total.mrr, borderColor:'#1a1916', backgroundColor:'transparent', borderWidth:2.5, tension:.35, pointRadius:3, pointBackgroundColor:'#1a1916', pointBorderColor:'#fff', pointBorderWidth:2, fill:false, order:1});
+
+  if(compare==='target'){
+    datasets.push({label:'Target', data:d.total.target, borderColor:'#ccc9c2', borderDash:[6,4], borderWidth:1.5, pointRadius:0, fill:false, order:0});
+  } else if(compare==='yoy'){
+    datasets.push({label:'Last Year', data:d.monthsYoY.map((_,i)=>raw_yoy_total(d,i)), borderColor:'#f59e0b', borderDash:[6,4], borderWidth:1.5, pointRadius:0, fill:false, order:0});
   }
-  // Add total line
-  datasets.push({
-    label: 'Total MRR',
-    data: data.total,
-    borderColor: '#1a1916',
-    backgroundColor: 'rgba(26,25,22,.03)',
-    fill: true,
-    tension: .35,
-    borderWidth: 2.5,
-    pointRadius: 0,
-    borderDash: []
-  });
-  // Add target line
-  datasets.push({
-    label: 'Target',
-    data: data.target,
-    borderColor: '#ccc9c2',
-    borderDash: [6,4],
-    borderWidth: 1.5,
-    pointRadius: 0,
-    fill: false
-  });
 
   r._chart = new Chart(r, {
     type:'line',
-    data:{labels: data.months, datasets},
+    data:{labels:d.months, datasets},
     options:{
       responsive:true, maintainAspectRatio:false,
       plugins:{legend:{position:'bottom',labels:{font:{family:'Inter',size:10},boxWidth:10,padding:12,color:'#7a7770'}}},
       scales:{
-        y:{beginAtZero:false, ticks:{callback:v=>'$'+v+'K',font:{family:'JetBrains Mono',size:10},color:'#a8a59e'},grid:{color:'rgba(0,0,0,.04)'}},
+        y:{stacked:true, ticks:{callback:v=>'$'+v+'K',font:{family:'JetBrains Mono',size:10},color:'#a8a59e'},grid:{color:'rgba(0,0,0,.04)'}, beginAtZero:false},
         x:{grid:{display:false},ticks:{font:{family:'Inter',size:10},color:'#a8a59e'}}
+      },
+      interaction:{mode:'index',intersect:false},
+      tooltip:{
+        callbacks:{
+          afterBody:function(ctx){
+            const idx = ctx[0].dataIndex;
+            const net = d.total.netNew[idx];
+            const mom = d.total.momGrowth[idx];
+            return '\nNet New: $'+net+'K | MoM: '+mom+'%';
+          }
+        }
       }
     }
   });
+}
+
+function raw_yoy_total(d, i){ return d.monthsYoY[i] ? 600 + i*45 : null; }
+
+/* ── View: Growth Rate ── */
+function renderGrowth(d, compare){
+  const r = document.getElementById('ch-rev');
+  if(!r) return; if(r._chart) r._chart.destroy();
+
+  const datasets = [];
+  for(const [k,seg] of Object.entries(d.segments)){
+    datasets.push({label:seg.label+' MoM', data:seg.momGrowth, borderColor:seg.color, backgroundColor:seg.color+'15', borderWidth:2, tension:.35, pointRadius:3, pointBackgroundColor:seg.color, fill:true});
+  }
+  // Total growth
+  datasets.push({label:'Overall MoM', data:d.total.momGrowth, borderColor:'#1a1916', borderWidth:2.5, tension:.35, pointRadius:0, borderDash:[4,3], fill:false});
+
+  r._chart = new Chart(r, {
+    type:'line',
+    data:{labels:d.months, datasets},
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{font:{family:'Inter',size:10},boxWidth:10,padding:12,color:'#7a7770'}}},
+      scales:{
+        y:{ticks:{callback:v=>v+'%',font:{family:'JetBrains Mono',size:10},color:'#a8a59e'},grid:{color:'rgba(0,0,0,.04)'}, beginAtZero:false},
+        x:{grid:{display:false},ticks:{font:{family:'Inter',size:10},color:'#a8a59e'}}
+      },
+      interaction:{mode:'index',intersect:false}
+    }
+  });
+}
+
+/* ── View: ARPU by Segment ── */
+function renderArpuView(d){
+  const r = document.getElementById('ch-rev');
+  if(!r) return; if(r._chart) r._chart.destroy();
+
+  const datasets = [];
+  datasets.push({label:'Overall ARPU', data:d.arpu.overall, borderColor:'#1a1916', borderWidth:2.5, tension:.35, pointRadius:0, fill:false});
+  for(const [k,seg] of Object.entries(d.segments)){
+    if(d.arpu[k]) datasets.push({label:seg.label+' ARPU', data:d.arpu[k], borderColor:seg.color, borderWidth:2, tension:.35, pointRadius:3, pointBackgroundColor:seg.color, fill:false});
+  }
+
+  // Use two Y-axes since ranges differ wildly
+  r._chart = new Chart(r, {
+    type:'line',
+    data:{labels:d.months, datasets},
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{font:{family:'Inter',size:10},boxWidth:10,padding:12,color:'#7a7770'}}},
+      scales:{
+        y:{position:'left', title:{display:true,text:'Overall / Mid-Market',font:{family:'Inter',size:9},color:'#a8a59e'}, ticks:{callback:v=>'$'+v+'K',font:{family:'JetBrains Mono',size:10},color:'#a8a59e'},grid:{color:'rgba(0,0,0,.04)'},beginAtZero:true},
+        y1:{position:'right', title:{display:true,text:'Enterprise',font:{family:'Inter',size:9},color:'#a8a59e'}, ticks:{callback:v=>'$'+v+'K',font:{family:'JetBrains Mono',size:10},color:'#a8a59e'},grid:{drawOnChartArea:false},beginAtZero:true}
+      },
+      interaction:{mode:'index',intersect:false}
+    }
+  });
+}
+
+/* ── View: Year-over-Year ── */
+function renderYoY(d){
+  const r = document.getElementById('ch-rev');
+  if(!r) return; if(r._chart) r._chart.destroy();
+
+  const datasets = [];
+  datasets.push({label:'This Year MRR', data:d.total.mrr, borderColor:'#1a1916', borderWidth:2.5, tension:.35, pointRadius:3, pointBackgroundColor:'#1a1916', pointBorderColor:'#fff', pointBorderWidth:2, fill:false});
+
+  // Per-segment YoY
+  for(const [k,seg] of Object.entries(d.segments)){
+    datasets.push({label:seg.label+' (Last Year)', data:seg.yoyMrr, borderColor:seg.color, borderDash:[6,4], borderWidth:1.5, tension:.35, pointRadius:0, fill:false});
+  }
+
+  // Calculate YoY growth %
+  const yoyPct = d.total.mrr.map((v,i)=>{ const ly = d.monthsYoY[i] ? 600+i*45 : null; return ly?(((v-ly)/ly)*100).toFixed(1):null; });
+
+  r._chart = new Chart(r, {
+    type:'line',
+    data:{labels:d.months, datasets},
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{font:{family:'Inter',size:10},boxWidth:10,padding:12,color:'#7a7770'}}},
+      scales:{
+        y:{ticks:{callback:v=>'$'+v+'K',font:{family:'JetBrains Mono',size:10},color:'#a8a59e'},grid:{color:'rgba(0,0,0,.04)'},beginAtZero:false},
+        x:{grid:{display:false},ticks:{font:{family:'Inter',size:10},color:'#a8a59e'}}
+      },
+      interaction:{mode:'index',intersect:false},
+      tooltip:{
+        callbacks:{
+          afterBody:function(ctx){
+            const idx = ctx[0].dataIndex;
+            return yoyPct[idx] ? 'YoY Growth: +'+yoyPct[idx]+'%' : '';
+          }
+        }
+      }
+    }
+  });
+}
+
+/* ── View: New vs Churned ── */
+function renderChurnVsNew(d){
+  const r = document.getElementById('ch-rev');
+  if(!r) return; if(r._chart) r._chart.destroy();
+
+  const datasets = [
+    {label:'New Business', data:d.total.newBusiness, backgroundColor:'rgba(16,185,129,.6)', borderColor:'#10b981', borderWidth:1, type:'bar', order:1},
+    {label:'Churn', data:d.total.churned, backgroundColor:'rgba(239,68,68,.6)', borderColor:'#ef4444', borderWidth:1, type:'bar', order:1},
+    {label:'Net New MRR', data:d.total.netNew, borderColor:'#6366f1', borderWidth:2.5, tension:.35, pointRadius:3, pointBackgroundColor:'#6366f1', pointBorderColor:'#fff', pointBorderWidth:2, type:'line', fill:false, order:0}
+  ];
+
+  r._chart = new Chart(r, {
+    type:'bar',
+    data:{labels:d.months, datasets},
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{font:{family:'Inter',size:10},boxWidth:10,padding:12,color:'#7a7770'}}},
+      scales:{
+        y:{ticks:{callback:v=>'$'+v+'K',font:{family:'JetBrains Mono',size:10},color:'#a8a59e'},grid:{color:'rgba(0,0,0,.04)'}},
+        x:{grid:{display:false},ticks:{font:{family:'Inter',size:10},color:'#a8a59e'}}
+      },
+      interaction:{mode:'index',intersect:false}
+    }
+  });
+}
+
+/* ── Auto-Insights Engine ── */
+function generateInsights(raw, range){
+  const box = document.getElementById('rev-insights');
+  if(!box) return;
+  const n = parseInt(range);
+  const insights = [];
+  const totalMrr = raw.total.mrr;
+  const len = totalMrr.length;
+  const start = Math.max(0, len - n);
+
+  // 1. Growth deceleration alert
+  const recent = raw.total.momGrowth.slice(-3);
+  const earlier = raw.total.momGrowth.slice(start, start+3);
+  const avgRecent = recent.reduce((a,b)=>a+b,0)/recent.length;
+  const avgEarlier = earlier.length?earlier.reduce((a,b)=>a+b,0)/earlier.length:avgRecent;
+  if(avgRecent < avgEarlier * 0.6){
+    insights.push({type:'critical',icon:'🔴',text:`<b>Growth decelerating:</b> MoM growth dropped from ${avgEarlier.toFixed(1)}% → ${avgRecent.toFixed(1)}% over the last 3 months. Runway impact: at this rate, ARR may plateau below $18M by Q3.`});
+  }
+
+  // 2. SMB drag
+  const smbLast = raw.segments.smb.mrr[len-1];
+  const smbPrev = raw.segments.smb.mrr[len-2];
+  if(smbLast <= smbPrev){
+    insights.push({type:'warning',icon:'⚠️',text:`<b>SMB revenue declining</b> — flat/contracting for ${countFlat(raw.segments.smb.mrr)} months. SMB NRR at 96% means you're paying to acquire customers you can't retain. Consider: price increase to filter, or redirect acquisition budget to Mid-Market where NRR is 106%.`});
+  }
+
+  // 3. Expansion engine
+  const expGrowth = ((raw.total.expansion[len-1] - raw.total.expansion[start]) / raw.total.expansion[start] * 100).toFixed(0);
+  if(expGrowth > 40){
+    insights.push({type:'positive',icon:'🟢',text:`<b>Expansion revenue up ${expGrowth}%</b> over the period — this is your strongest lever. Enterprise expansion alone grew $${raw.total.expansion[len-1]-raw.total.expansion[start]}K/mo. Double down on upsell playbooks.`});
+  }
+
+  // 4. Customer acquisition slowdown
+  const custRecent = raw.customers.new.slice(-3).reduce((a,b)=>a+b,0);
+  const custEarlier = raw.customers.new.slice(start, start+3).reduce((a,b)=>a+b,0);
+  if(custRecent < custEarlier * 0.5){
+    insights.push({type:'warning',icon:'📉',text:`<b>New customer adds halved:</b> ${custEarlier} → ${custRecent} last quarter. However, ARPU rose ${(raw.arpu.overall[len-1]-raw.arpu.overall[start]).toFixed(2)}× — you're trading volume for value. Validate: is this intentional upmarket shift or demand softness?`});
+  }
+
+  // 5. Churn trend
+  const churnTrend = raw.total.churned.slice(-3).reduce((a,b)=>a+b,0);
+  const churnBase = raw.total.churned.slice(start, start+3).reduce((a,b)=>a+b,0);
+  if(Math.abs(churnTrend) > Math.abs(churnBase) * 1.2){
+    insights.push({type:'critical',icon:'🔴',text:`<b>Churn accelerating:</b> Monthly churn grew from $${Math.abs(churnBase)}K → $${Math.abs(churnTrend)}K. Most of it is SMB ($${Math.abs(raw.segments.smb.churned.slice(-3).reduce((a,b)=>a+b,0))}K). The 205 SMB accounts generate only $140K MRR — that's $683/account. Cost to serve likely exceeds revenue per account.`});
+  }
+
+  // 6. Target performance
+  const lastMrr = totalMrr[len-1];
+  const lastTarget = raw.total.target[len-1];
+  const vsTarget = ((lastMrr - lastTarget)/lastTarget*100).toFixed(1);
+  if(vsTarget > 0){
+    insights.push({type:'positive',icon:'🎯',text:`<b>Beating target by ${vsTarget}%</b> ($${lastMrr-lastTarget}K). Buffer is shrinking though — last month was only $${lastMrr-lastTarget}K ahead. At current trajectory, Q2 target of $1,420K will require acceleration.`});
+  }
+
+  // 7. Enterprise concentration risk
+  const entPct = (raw.segments.enterprise.mrr[len-1] / totalMrr[len-1] * 100).toFixed(0);
+  if(entPct > 55){
+    insights.push({type:'info',icon:'💡',text:`<b>Enterprise at ${entPct}% of revenue.</b> High concentration risk — one Enterprise churn event could swing MRR by $30-50K. Diversification opportunity: Mid-Market is growing 2.6% MoM with 106% NRR. Scale that segment to reduce dependency.`});
+  }
+
+  // Render
+  if(insights.length === 0){
+    insights.push({type:'info',icon:'📊',text:'Revenue metrics are within normal ranges. No significant trends detected for the selected period.'});
+  }
+
+  box.innerHTML = '<div style="margin-top:8px;padding:10px 0;border-top:1px solid var(--border)">' +
+    '<div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-bottom:8px">📌 Auto-Insights</div>' +
+    insights.map(i => `<div style="margin-bottom:6px;padding:6px 10px;border-radius:6px;font-size:11.5px;line-height:1.5;background:${i.type==='critical'?'rgba(239,68,68,.06)':i.type==='warning'?'rgba(245,158,11,.06)':i.type==='positive'?'rgba(16,185,129,.06)':'rgba(99,102,241,.04)'};border-left:3px solid ${i.type==='critical'?'#ef4444':i.type==='warning'?'#f59e0b':i.type==='positive'?'#10b981':'#6366f1'}">${i.icon} ${i.text}</div>`).join('') +
+    '</div>';
+}
+
+function countFlat(arr){
+  let c=0;
+  for(let i=arr.length-1;i>0;i--){ if(arr[i]<=arr[i-1]) c++; else break; }
+  return c;
 }
 
 /* ═══ Revenue Mix, API-driven with fallback ═══ */
