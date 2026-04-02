@@ -163,8 +163,8 @@ table {width:100%;border-collapse:collapse;font-size:12px}
   <div class="krow kr4">
     <div class="kc accent-blue">
       <div class="kl">Annual Recurring Revenue</div>
-      <div class="kv">$16.4M</div>
-      <div class="ks"><span class="up">↑ 38%</span> YoY · $1.37M MRR</div>
+      <div class="kv">$15.5M</div>
+      <div class="ks"><span class="up">↑ 22%</span> YoY · $1.29M MRR</div>
     </div>
     <div class="kc accent-amber">
       <div class="kl">Runway</div>
@@ -287,7 +287,7 @@ table {width:100%;border-collapse:collapse;font-size:12px}
   </div>
 
   <div class="krow kr4">
-    <div class="kc accent-blue"><div class="kl">ARR</div><div class="kv">$16.4M</div><div class="ks"><span class="up">↑ 38% YoY</span></div></div>
+    <div class="kc accent-blue"><div class="kl">ARR</div><div class="kv">$15.5M</div><div class="ks"><span class="up">↑ 22% YoY</span></div></div>
     <div class="kc accent-green"><div class="kl">Gross Margin</div><div class="kv">78%</div><div class="ks">Target: >75% <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
     <div class="kc accent-amber"><div class="kl">Burn Multiple</div><div class="kv">2.1×</div><div class="ks">Net burn / net new ARR</div></div>
     <div class="kc accent-purple"><div class="kl">LTV:CAC</div><div class="kv">4.8×</div><div class="ks"><span class="up">↑ from 4.2×</span></div></div>
@@ -489,7 +489,7 @@ table {width:100%;border-collapse:collapse;font-size:12px}
             <tr><td class="fw6">PlanGrid (Autodesk)</td><td>$120M</td><td class="cred">Flat</td><td>Field collaboration</td><td><span class="bdg bdg-amber">Medium</span></td></tr>
             <tr><td class="fw6">Buildertrend</td><td>$80M</td><td>22%</td><td>Residential</td><td><span class="bdg bdg-amber">Medium</span></td></tr>
             <tr><td class="fw6">BuildOS</td><td>$4M</td><td class="cgrn fw6">180%</td><td>SMB PLG</td><td><span class="bdg bdg-amber">Watch</span></td></tr>
-            <tr><td class="fw6" style="color:var(--blue-text)">ArcusSoft</td><td class="fw6">$16.4M</td><td class="cgrn fw6">38%</td><td>Mid-market + enterprise</td><td><span class="bdg bdg-blue">Us</span></td></tr>
+            <tr><td class="fw6" style="color:var(--blue-text)">ArcusSoft</td><td class="fw6">$15.5M</td><td class="cgrn fw6">22%</td><td>Mid-market + enterprise</td><td><span class="bdg bdg-blue">Us</span></td></tr>
           </tbody>
         </table>
         <div class="cl cl-blue mt8">Procore is 45× our size but we win 64% of head-to-head deals. Our advantage: <strong>4× faster implementation</strong>, <strong>4× lower price</strong>, and better scheduling AI.</div>
@@ -650,20 +650,20 @@ function setScenario(type,btn){
 const REV_TREND_FALLBACK = {
   months:["Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar"],
   segments:{
-    enterprise:{label:"Enterprise",color:"#3b82f6",data:[580,610,630,660,680,700,720,750,770,790,810,830]},
-    midmarket:{label:"Mid-Market",color:"#7c3aed",data:[280,295,310,320,330,340,350,360,370,380,390,400]},
-    smb:{label:"SMB",color:"#d97706",data:[130,135,140,140,140,150,150,150,150,150,150,140]}
+    enterprise:{label:"Enterprise",color:"#3b82f6",data:[576,605,598,612,634,653,670,695,688,712,731,749]},
+    midmarket:{label:"Mid-Market",color:"#7c3aed",data:[296,312,321,308,325,342,356,368,372,385,398,409]},
+    smb:{label:"SMB",color:"#d97706",data:[146,140,133,121,136,143,143,138,127,128,132,135]}
   },
-  target:[990,1020,1050,1080,1110,1140,1170,1200,1230,1260,1290,1320],
-  total:[990,1040,1080,1120,1150,1190,1220,1260,1290,1320,1350,1370]
+  target:[1020,1045,1070,1095,1120,1145,1170,1195,1220,1250,1280,1310],
+  total:[1018,1057,1082,1071,1095,1138,1169,1201,1187,1225,1261,1293]
 };
 const REV_MIX_FALLBACK = {
   segments:[
-    {id:"enterprise",name:"Enterprise (>$100K)",customers:18,arr:7200000,arrFormatted:"$7.2M",pct:44,nrr:112,nrrClass:"cgrn",trend:"up",trendPct:8},
-    {id:"midmarket",name:"Mid-Market ($25–100K)",customers:89,arr:5800000,arrFormatted:"$5.8M",pct:35,nrr:106,nrrClass:"cgrn",trend:"up",trendPct:4},
-    {id:"smb",name:"SMB (<$25K)",customers:205,arr:3400000,arrFormatted:"$3.4M",pct:21,nrr:96,nrrClass:"cred",trend:"down",trendPct:-2}
+    {id:"enterprise",name:"Enterprise (>$100K)",customers:19,arr:6700000,arrFormatted:"$6.7M",pct:43,nrr:111,nrrClass:"cgrn",trend:"up",trendPct:5},
+    {id:"midmarket",name:"Mid-Market ($25–100K)",customers:72,arr:5400000,arrFormatted:"$5.4M",pct:35,nrr:106,nrrClass:"cgrn",trend:"up",trendPct:4},
+    {id:"smb",name:"SMB (<$25K)",customers:207,arr:3400000,arrFormatted:"$3.4M",pct:22,nrr:97,nrrClass:"cred",trend:"down",trendPct:-3}
   ],
-  totals:{customers:312,arr:16400000,arrFormatted:"$16.4M",nrr:103}
+  totals:{customers:298,arr:15500000,arrFormatted:"$15.5M",nrr:103}
 };
 
 /* ═══ Revenue Intelligence v2 ═══ */
@@ -674,16 +674,16 @@ async function loadRevV2(){
     const res = await fetch('/data/revenue-trend-v2.json');
     if(res.ok) { REV_V2_DATA = await res.json(); return REV_V2_DATA; }
   }catch(e){}
-  // Inline fallback
+  // Inline fallback (mirrors revenue-trend-v2.json)
   REV_V2_DATA = {
     months:["Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar"],
     monthsFull:["Apr 2025","May 2025","Jun 2025","Jul 2025","Aug 2025","Sep 2025","Oct 2025","Nov 2025","Dec 2025","Jan 2026","Feb 2026","Mar 2026"],
     monthsYoY:["Apr 2024","May 2024","Jun 2024","Jul 2024","Aug 2024","Sep 2024","Oct 2024","Nov 2024","Dec 2024","Jan 2025","Feb 2025","Mar 2025"],
-    total:{mrr:[990,1040,1080,1120,1150,1190,1220,1260,1290,1320,1350,1370],target:[990,1020,1050,1080,1110,1140,1170,1200,1230,1260,1290,1320],newBusiness:[85,82,78,92,88,105,98,102,95,90,88,95],expansion:[42,48,55,45,52,60,55,58,62,68,72,65],churned:[-18,-15,-22,-20,-19,-25,-18,-20,-22,-25,-28,-30],netNew:[109,115,111,117,121,140,135,140,135,133,132,130],momGrowth:[4.2,5.1,3.8,3.7,2.7,3.5,2.5,3.3,2.4,2.3,2.3,1.5],arr:[11880,12480,12960,13440,13800,14280,14640,15120,15480,15840,16200,16440]},
-    customers:{total:[248,258,265,272,280,290,296,302,308,310,312,312],new:[18,20,16,22,20,25,18,16,15,12,10,8],churned:[3,2,4,3,3,5,3,3,2,4,3,5],net:[15,18,12,19,17,20,15,13,13,8,7,3]},
-    arpu:{overall:[3.99,4.03,4.08,4.12,4.11,4.10,4.12,4.17,4.18,4.26,4.33,4.39],enterprise:[28.5,29.1,29.8,30.2,30.8,31.5,32.0,32.8,33.5,34.2,35.0,35.8],midmarket:[6.2,6.3,6.5,6.5,6.6,6.7,6.8,6.8,6.9,7.0,7.1,7.2],smb:[0.62,0.63,0.65,0.63,0.61,0.63,0.62,0.61,0.60,0.59,0.58,0.56]},
-    segments:{enterprise:{label:"Enterprise",color:"#3b82f6",mrr:[580,610,630,660,680,700,720,750,770,790,810,830],new:[35,38,32,42,38,48,40,42,38,35,32,35],expansion:[25,30,35,28,32,38,32,35,38,42,45,40],churned:[-5,-4,-6,-5,-4,-7,-4,-5,-6,-7,-8,-9],customers:[15,16,17,17,18,18,18,18,18,18,18,18],momGrowth:[3.0,5.2,3.3,4.8,3.0,2.9,2.9,4.2,2.7,2.6,2.5,2.5],yoyMrr:[410,425,440,460,478,495,510,530,548,565,580,595]},midmarket:{label:"Mid-Market",color:"#7c3aed",mrr:[280,295,310,320,330,340,350,360,370,380,390,400],new:[32,28,30,35,32,38,35,38,35,34,35,38],expansion:[12,14,15,13,15,17,18,18,19,20,21,20],churned:[-8,-6,-10,-9,-10,-11,-8,-9,-10,-11,-12,-13],customers:[42,48,52,56,60,65,70,75,80,84,87,89],momGrowth:[5.0,5.4,5.1,3.2,3.1,3.0,2.9,2.9,2.8,2.7,2.6,2.6],yoyMrr:[185,195,205,215,225,235,245,255,265,275,285,295]},smb:{label:"SMB",color:"#d97706",mrr:[130,135,140,140,140,150,150,150,150,150,150,140],new:[18,16,16,15,18,19,23,22,22,21,21,22],expansion:[5,4,5,4,5,5,5,5,5,6,6,5],churned:[-5,-5,-6,-6,-5,-7,-6,-6,-6,-7,-8,-8],customers:[191,194,196,199,202,207,208,209,210,208,207,205],momGrowth:[5.2,3.8,3.7,0.0,0.0,7.1,0.0,0.0,0.0,0.0,0.0,-6.7],yoyMrr:[105,110,115,118,120,125,128,130,132,134,135,135]}},
-    forecast:{months:["Apr","May","Jun"],optimistic:[1410,1445,1480],base:[1395,1420,1445],pessimistic:[1380,1390,1400]}
+    total:{mrr:[1018,1057,1082,1071,1095,1138,1169,1201,1187,1225,1261,1293],target:[1020,1045,1070,1095,1120,1145,1170,1195,1220,1250,1280,1310],newBusiness:[92,88,74,68,81,97,91,104,78,95,92,101],expansion:[48,52,41,36,44,58,53,61,49,63,67,59],churned:[-28,-31,-24,-32,-27,-35,-29,-26,-34,-30,-33,-38],netNew:[112,109,91,72,98,120,115,139,93,128,126,122],momGrowth:[3.2,3.8,2.4,-1.0,2.2,3.9,2.7,2.7,-1.2,3.2,2.9,2.5],arr:[12216,12684,12984,12852,13140,13656,14028,14412,14244,14700,15132,15516]},
+    customers:{total:[252,261,266,264,270,279,284,291,288,293,296,298],new:[20,18,14,11,16,22,17,21,13,16,14,15],churned:[5,4,3,6,4,7,5,4,6,5,5,7],net:[15,14,11,5,12,15,12,17,7,11,9,8]},
+    arpu:{overall:[4.04,4.05,4.07,4.05,4.06,4.08,4.12,4.13,4.12,4.18,4.25,4.34],enterprise:[28.8,29.4,29.1,29.5,30.2,31.1,31.8,32.6,33.0,33.9,34.7,35.6],midmarket:[6.3,6.4,6.3,6.4,6.5,6.6,6.7,6.8,6.9,7.0,7.1,7.3],smb:[0.68,0.67,0.65,0.63,0.62,0.61,0.60,0.59,0.57,0.56,0.54,0.52]},
+    segments:{enterprise:{label:"Enterprise",color:"#3b82f6",mrr:[576,605,598,612,634,653,670,695,688,712,731,749],new:[32,36,28,25,34,41,36,40,30,37,34,38],expansion:[28,33,24,22,30,38,34,39,27,40,43,37],churned:[-7,-6,-5,-8,-6,-9,-7,-6,-8,-7,-9,-10],customers:[16,17,17,17,18,18,18,19,19,19,19,19],momGrowth:[2.8,5.0,-1.2,2.3,3.6,3.0,2.6,3.7,-1.0,3.5,2.7,2.5],yoyMrr:[392,410,428,447,465,482,501,520,538,555,572,588]},midmarket:{label:"Mid-Market",color:"#7c3aed",mrr:[296,312,321,308,325,342,356,368,372,385,398,409],new:[35,32,28,24,31,38,34,40,32,36,35,39],expansion:[15,14,12,10,13,17,16,18,14,19,20,18],churned:[-10,-9,-7,-11,-8,-12,-9,-8,-11,-10,-11,-12],customers:[48,52,54,52,55,59,62,66,65,68,70,72],momGrowth:[4.1,5.4,2.9,-4.0,5.5,5.2,4.1,3.4,1.1,3.5,3.4,2.8],yoyMrr:[198,210,222,234,246,258,270,282,294,305,316,327]},smb:{label:"SMB",color:"#d97706",mrr:[146,140,133,121,136,143,143,138,127,128,132,135],new:[25,20,18,19,16,18,21,24,16,22,23,24],expansion:[5,5,5,4,1,3,3,4,8,4,4,4],churned:[-11,-16,-12,-13,-13,-14,-13,-12,-15,-13,-13,-16],customers:[188,192,195,195,197,202,204,206,204,206,207,207],momGrowth:[2.8,-4.1,-5.0,-9.0,12.4,5.1,0.0,-3.5,-8.0,0.8,3.1,2.3],yoyMrr:[118,122,126,130,133,135,137,138,140,141,142,143]}},
+    forecast:{months:["Apr","May","Jun"],optimistic:[1340,1382,1425],base:[1320,1352,1385],pessimistic:[1298,1315,1330]}
   };
   return REV_V2_DATA;
 }
@@ -745,23 +745,22 @@ const COL = {
 function chartTooltipTitle(ctx){ return ctx[0]?.label || ''; }
 function fmt$(v){ return '$'+v+'K'; }
 
-/* ── View: Revenue Composition (stacked area + line overlay) ── */
+/* ── View: Revenue Composition (clean lines, minimal fill) ── */
 function renderComposition(d, compare){
   const r = document.getElementById('ch-rev');
   if(!r) return; if(r._chart) r._chart.destroy();
 
   const datasets = [
-    {label:'New Business', data:d.total.newBusiness, backgroundColor:COL.fill.positive, borderColor:COL.positive, borderWidth:2, fill:true, tension:.4, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:COL.positive, order:2},
-    {label:'Expansion', data:d.total.expansion, backgroundColor:COL.fill.primary, borderColor:COL.primary, borderWidth:2, fill:true, tension:.4, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:COL.primary, order:2},
-    {label:'Churn', data:d.total.churned, backgroundColor:COL.fill.negative, borderColor:COL.negative, borderWidth:2, fill:true, tension:.4, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:COL.negative, order:2}
+    {label:'New Business', data:d.total.newBusiness, borderColor:'#16a34a', borderWidth:1.8, borderDash:[6,3], fill:false, tension:.35, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:'#16a34a', order:3},
+    {label:'Expansion', data:d.total.expansion, borderColor:'#3b82f6', borderWidth:1.8, borderDash:[6,3], fill:false, tension:.35, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:'#3b82f6', order:3},
+    {label:'Churn', data:d.total.churned, borderColor:'#ef4444', borderWidth:1.8, borderDash:[6,3], fill:false, tension:.35, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:'#ef4444', order:3},
+    {label:'Total MRR', data:d.total.mrr, borderColor:'#1a1916', backgroundColor:'rgba(0,0,0,.04)', borderWidth:2.5, tension:.35, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:'#1a1916', pointHoverBorderColor:'#fff', pointHoverBorderWidth:2, fill:true, order:1}
   ];
 
-  datasets.push({label:'Total MRR', data:d.total.mrr, borderColor:COL.neutral, backgroundColor:'transparent', borderWidth:2.5, tension:.4, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:COL.neutral, pointHoverBorderColor:'#fff', pointHoverBorderWidth:2, fill:false, order:1});
-
   if(compare==='target'){
-    datasets.push({label:'Target', data:d.total.target, borderColor:COL.muted, borderDash:[8,5], borderWidth:1.5, pointRadius:0, fill:false, order:0, tension:.4});
+    datasets.push({label:'Target', data:d.total.target, borderColor:'#b0aca4', borderDash:[4,4], borderWidth:1.5, pointRadius:0, fill:false, order:0, tension:.35});
   } else if(compare==='yoy'){
-    datasets.push({label:'Last Year', data:d.monthsYoY.map((_,i)=>raw_yoy_total(d,i)), borderColor:COL.tertiary, borderDash:[8,5], borderWidth:1.5, pointRadius:0, fill:false, order:0, tension:.4});
+    datasets.push({label:'Last Year', data:d.monthsYoY.map((_,i)=>raw_yoy_total(d,i)), borderColor:'#c4c1ba', borderDash:[4,4], borderWidth:1.5, pointRadius:0, fill:false, order:0, tension:.35});
   }
 
   r._chart = new Chart(r, {
@@ -770,9 +769,9 @@ function renderComposition(d, compare){
     options:{
       responsive:true, maintainAspectRatio:false,
       plugins:{
-        legend:{position:'bottom',labels:{font:CHART_FONT_SM,boxWidth:12,padding:16,color:AXIS_COLOR,usePointStyle:true,pointStyle:'circle'}},
+        legend:{position:'bottom',labels:{font:{family:'Inter',size:11},boxWidth:10,padding:14,color:'#8c8980',usePointStyle:true,pointStyle:'line'}},
         tooltip:{
-          backgroundColor:'#1a1916',titleFont:CHART_FONT,bodyFont:CHART_FONT_SM,padding:12,cornerRadius:8,
+          backgroundColor:'#1a1916',titleFont:{family:'Inter',size:12},bodyFont:{family:'Inter',size:11},padding:12,cornerRadius:8,
           callbacks:{
             title:chartTooltipTitle,
             label:function(c){ return ' '+c.dataset.label+': '+fmt$(c.raw); },
@@ -784,8 +783,8 @@ function renderComposition(d, compare){
         }
       },
       scales:{
-        y:{stacked:true, ticks:{callback:fmt$,font:MONO_FONT,color:AXIS_COLOR},grid:{color:GRID_COLOR}, beginAtZero:false},
-        x:{grid:{display:false},ticks:{font:CHART_FONT_SM,color:AXIS_COLOR}}
+        y:{ticks:{callback:fmt$,font:{family:'JetBrains Mono',size:11},color:'#8c8980'},grid:{color:'rgba(0,0,0,.04)'},beginAtZero:false},
+        x:{grid:{display:false},ticks:{font:{family:'Inter',size:11},color:'#8c8980'}}
       },
       interaction:{mode:'index',intersect:false}
     }
@@ -799,14 +798,14 @@ function renderGrowth(d, compare){
   const r = document.getElementById('ch-rev');
   if(!r) return; if(r._chart) r._chart.destroy();
 
-  const segColors = [COL.primary, COL.secondary, COL.tertiary];
+  const segColors = ['#3b82f6','#7c3aed','#d97706'];
   const datasets = [];
   let ci = 0;
   for(const [k,seg] of Object.entries(d.segments)){
     const c = segColors[ci++];
-    datasets.push({label:seg.label+' MoM', data:seg.momGrowth, borderColor:c, backgroundColor:c.replace(')',',.08)').replace('rgb(','rgba(').replace('#',''), borderWidth:2, tension:.4, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:c, fill:true});
+    datasets.push({label:seg.label+' MoM', data:seg.momGrowth, borderColor:c, borderWidth:1.8, borderDash:[6,3], tension:.35, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:c, fill:false});
   }
-  datasets.push({label:'Overall MoM', data:d.total.momGrowth, borderColor:COL.neutral, borderWidth:2.5, tension:.4, pointRadius:0, borderDash:[6,4], fill:false});
+  datasets.push({label:'Overall MoM', data:d.total.momGrowth, borderColor:'#1a1916', borderWidth:2.5, tension:.35, pointRadius:0, fill:false});
 
   r._chart = new Chart(r, {
     type:'line',
@@ -814,9 +813,9 @@ function renderGrowth(d, compare){
     options:{
       responsive:true, maintainAspectRatio:false,
       plugins:{
-        legend:{position:'bottom',labels:{font:CHART_FONT_SM,boxWidth:12,padding:16,color:AXIS_COLOR,usePointStyle:true,pointStyle:'circle'}},
+        legend:{position:'bottom',labels:{font:{family:'Inter',size:11},boxWidth:10,padding:14,color:'#8c8980',usePointStyle:true,pointStyle:'line'}},
         tooltip:{
-          backgroundColor:'#1a1916',titleFont:CHART_FONT,bodyFont:CHART_FONT_SM,padding:12,cornerRadius:8,
+          backgroundColor:'#1a1916',titleFont:{family:'Inter',size:12},bodyFont:{family:'Inter',size:11},padding:12,cornerRadius:8,
           callbacks:{
             title:chartTooltipTitle,
             label:function(c){ return ' '+c.dataset.label+': '+c.raw+'%'; }
@@ -824,8 +823,8 @@ function renderGrowth(d, compare){
         }
       },
       scales:{
-        y:{ticks:{callback:v=>v+'%',font:MONO_FONT,color:AXIS_COLOR},grid:{color:GRID_COLOR}, beginAtZero:false},
-        x:{grid:{display:false},ticks:{font:CHART_FONT_SM,color:AXIS_COLOR}}
+        y:{ticks:{callback:v=>v+'%',font:{family:'JetBrains Mono',size:11},color:'#8c8980'},grid:{color:'rgba(0,0,0,.04)'},beginAtZero:false},
+        x:{grid:{display:false},ticks:{font:{family:'Inter',size:11},color:'#8c8980'}}
       },
       interaction:{mode:'index',intersect:false}
     }
@@ -838,12 +837,12 @@ function renderArpuView(d){
   if(!r) return; if(r._chart) r._chart.destroy();
 
   const datasets = [];
-  datasets.push({label:'Overall ARPU', data:d.arpu.overall, borderColor:COL.neutral, borderWidth:2.5, tension:.4, pointRadius:0, fill:false});
+  datasets.push({label:'Overall ARPU', data:d.arpu.overall, borderColor:'#1a1916', borderWidth:2.5, tension:.35, pointRadius:0, fill:false});
 
-  const segColors = [COL.primary, COL.secondary, COL.tertiary];
+  const segColors = ['#3b82f6','#7c3aed','#d97706'];
   let ci = 0;
   for(const [k,seg] of Object.entries(d.segments)){
-    if(d.arpu[k]) datasets.push({label:seg.label+' ARPU', data:d.arpu[k], borderColor:segColors[ci], borderWidth:2, tension:.4, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:segColors[ci], fill:false});
+    if(d.arpu[k]) datasets.push({label:seg.label+' ARPU', data:d.arpu[k], borderColor:segColors[ci], borderWidth:1.8, borderDash:[6,3], tension:.35, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:segColors[ci], fill:false});
     ci++;
   }
 
@@ -853,9 +852,9 @@ function renderArpuView(d){
     options:{
       responsive:true, maintainAspectRatio:false,
       plugins:{
-        legend:{position:'bottom',labels:{font:CHART_FONT_SM,boxWidth:12,padding:16,color:AXIS_COLOR,usePointStyle:true,pointStyle:'circle'}},
+        legend:{position:'bottom',labels:{font:{family:'Inter',size:11},boxWidth:10,padding:14,color:'#8c8980',usePointStyle:true,pointStyle:'line'}},
         tooltip:{
-          backgroundColor:'#1a1916',titleFont:CHART_FONT,bodyFont:CHART_FONT_SM,padding:12,cornerRadius:8,
+          backgroundColor:'#1a1916',titleFont:{family:'Inter',size:12},bodyFont:{family:'Inter',size:11},padding:12,cornerRadius:8,
           callbacks:{
             title:chartTooltipTitle,
             label:function(c){ return ' '+c.dataset.label+': $'+c.raw+'K'; }
@@ -863,8 +862,8 @@ function renderArpuView(d){
         }
       },
       scales:{
-        y:{position:'left', title:{display:true,text:'Overall / Mid-Market / SMB',font:CHART_FONT_SM,color:AXIS_COLOR}, ticks:{callback:fmt$,font:MONO_FONT,color:AXIS_COLOR},grid:{color:GRID_COLOR},beginAtZero:true},
-        y1:{position:'right', title:{display:true,text:'Enterprise',font:CHART_FONT_SM,color:AXIS_COLOR}, ticks:{callback:fmt$,font:MONO_FONT,color:AXIS_COLOR},grid:{drawOnChartArea:false},beginAtZero:true}
+        y:{position:'left', title:{display:true,text:'Overall / Mid-Market / SMB',font:{family:'Inter',size:11},color:'#8c8980'}, ticks:{callback:fmt$,font:{family:'JetBrains Mono',size:11},color:'#8c8980'},grid:{color:'rgba(0,0,0,.04)'},beginAtZero:true},
+        y1:{position:'right', title:{display:true,text:'Enterprise',font:{family:'Inter',size:11},color:'#8c8980'}, ticks:{callback:fmt$,font:{family:'JetBrains Mono',size:11},color:'#8c8980'},grid:{drawOnChartArea:false},beginAtZero:true}
       },
       interaction:{mode:'index',intersect:false}
     }
@@ -877,12 +876,12 @@ function renderYoY(d){
   if(!r) return; if(r._chart) r._chart.destroy();
 
   const datasets = [];
-  datasets.push({label:'This Year MRR', data:d.total.mrr, borderColor:COL.primary, borderWidth:2.5, tension:.4, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:COL.primary, fill:false});
+  datasets.push({label:'This Year MRR', data:d.total.mrr, borderColor:'#1a1916', borderWidth:2.5, tension:.35, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:'#1a1916', fill:false});
 
-  const segColors = [COL.primary, COL.secondary, COL.tertiary];
+  const segColors = ['#3b82f6','#7c3aed','#d97706'];
   let ci = 0;
   for(const [k,seg] of Object.entries(d.segments)){
-    datasets.push({label:seg.label+' (Last Year)', data:seg.yoyMrr, borderColor:segColors[ci], borderDash:[8,5], borderWidth:1.5, tension:.4, pointRadius:0, fill:false, borderCapStyle:'round'});
+    datasets.push({label:seg.label+' (Last Year)', data:seg.yoyMrr, borderColor:segColors[ci], borderDash:[4,4], borderWidth:1.8, tension:.35, pointRadius:0, fill:false, borderCapStyle:'round'});
     ci++;
   }
 
@@ -894,9 +893,9 @@ function renderYoY(d){
     options:{
       responsive:true, maintainAspectRatio:false,
       plugins:{
-        legend:{position:'bottom',labels:{font:CHART_FONT_SM,boxWidth:12,padding:16,color:AXIS_COLOR,usePointStyle:true,pointStyle:'circle'}},
+        legend:{position:'bottom',labels:{font:{family:'Inter',size:11},boxWidth:10,padding:14,color:'#8c8980',usePointStyle:true,pointStyle:'line'}},
         tooltip:{
-          backgroundColor:'#1a1916',titleFont:CHART_FONT,bodyFont:CHART_FONT_SM,padding:12,cornerRadius:8,
+          backgroundColor:'#1a1916',titleFont:{family:'Inter',size:12},bodyFont:{family:'Inter',size:11},padding:12,cornerRadius:8,
           callbacks:{
             title:chartTooltipTitle,
             label:function(c){ return ' '+c.dataset.label+': '+fmt$(c.raw); },
@@ -908,8 +907,8 @@ function renderYoY(d){
         }
       },
       scales:{
-        y:{ticks:{callback:fmt$,font:MONO_FONT,color:AXIS_COLOR},grid:{color:GRID_COLOR},beginAtZero:false},
-        x:{grid:{display:false},ticks:{font:CHART_FONT_SM,color:AXIS_COLOR}}
+        y:{ticks:{callback:fmt$,font:{family:'JetBrains Mono',size:11},color:'#8c8980'},grid:{color:'rgba(0,0,0,.04)'},beginAtZero:false},
+        x:{grid:{display:false},ticks:{font:{family:'Inter',size:11},color:'#8c8980'}}
       },
       interaction:{mode:'index',intersect:false}
     }
@@ -922,9 +921,9 @@ function renderChurnVsNew(d){
   if(!r) return; if(r._chart) r._chart.destroy();
 
   const datasets = [
-    {label:'New Business', data:d.total.newBusiness, backgroundColor:COL.positive+'55', borderColor:COL.positive, borderWidth:1.5, borderRadius:4, type:'bar', order:1},
-    {label:'Churn', data:d.total.churned, backgroundColor:COL.negative+'55', borderColor:COL.negative, borderWidth:1.5, borderRadius:4, type:'bar', order:1},
-    {label:'Net New MRR', data:d.total.netNew, borderColor:COL.primary, borderWidth:2.5, tension:.4, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:COL.primary, type:'line', fill:false, order:0}
+    {label:'New Business', data:d.total.newBusiness, backgroundColor:'rgba(22,163,74,.35)', borderColor:'#16a34a', borderWidth:1, borderRadius:4, type:'bar', order:1},
+    {label:'Churn', data:d.total.churned, backgroundColor:'rgba(239,68,68,.35)', borderColor:'#ef4444', borderWidth:1, borderRadius:4, type:'bar', order:1},
+    {label:'Net New MRR', data:d.total.netNew, borderColor:'#1a1916', borderWidth:2.5, tension:.35, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:'#1a1916', type:'line', fill:false, order:0}
   ];
 
   r._chart = new Chart(r, {
@@ -933,9 +932,9 @@ function renderChurnVsNew(d){
     options:{
       responsive:true, maintainAspectRatio:false,
       plugins:{
-        legend:{position:'bottom',labels:{font:CHART_FONT_SM,boxWidth:12,padding:16,color:AXIS_COLOR,usePointStyle:true,pointStyle:'circle'}},
+        legend:{position:'bottom',labels:{font:{family:'Inter',size:11},boxWidth:10,padding:14,color:'#8c8980',usePointStyle:true,pointStyle:'line'}},
         tooltip:{
-          backgroundColor:'#1a1916',titleFont:CHART_FONT,bodyFont:CHART_FONT_SM,padding:12,cornerRadius:8,
+          backgroundColor:'#1a1916',titleFont:{family:'Inter',size:12},bodyFont:{family:'Inter',size:11},padding:12,cornerRadius:8,
           callbacks:{
             title:chartTooltipTitle,
             label:function(c){ return ' '+c.dataset.label+': '+fmt$(c.raw); }
@@ -943,8 +942,8 @@ function renderChurnVsNew(d){
         }
       },
       scales:{
-        y:{ticks:{callback:fmt$,font:MONO_FONT,color:AXIS_COLOR},grid:{color:GRID_COLOR}},
-        x:{grid:{display:false},ticks:{font:CHART_FONT_SM,color:AXIS_COLOR}}
+        y:{ticks:{callback:fmt$,font:{family:'JetBrains Mono',size:11},color:'#8c8980'},grid:{color:'rgba(0,0,0,.04)'}},
+        x:{grid:{display:false},ticks:{font:{family:'Inter',size:11},color:'#8c8980'}}
       },
       interaction:{mode:'index',intersect:false}
     }
@@ -1006,7 +1005,11 @@ function generateInsights(raw, range){
   const churnTrend = raw.total.churned.slice(-3).reduce((a,b)=>a+b,0);
   const churnBase = raw.total.churned.slice(start, start+3).reduce((a,b)=>a+b,0);
   if(Math.abs(churnTrend) > Math.abs(churnBase) * 1.2){
-    insights.push({type:'critical',icon:ICN.alert,text:`<b>Churn accelerating:</b> Monthly churn grew from $${Math.abs(churnBase)}K → $${Math.abs(churnTrend)}K. Most of it is SMB ($${Math.abs(raw.segments.smb.churned.slice(-3).reduce((a,b)=>a+b,0))}K). The 205 SMB accounts generate only $140K MRR — that's $683/account. Cost to serve likely exceeds revenue per account.`});
+    const smbChurnLast3 = Math.abs(raw.segments.smb.churned.slice(-3).reduce((a,b)=>a+b,0));
+    const smbCust = raw.segments.smb.customers[len-1];
+    const smbMrr = raw.segments.smb.mrr[len-1];
+    const smbArpu = smbCust > 0 ? (smbMrr / smbCust).toFixed(0) : 0;
+    insights.push({type:'critical',icon:ICN.alert,text:`<b>Churn accelerating:</b> Monthly churn grew from $${Math.abs(churnBase)}K → $${Math.abs(churnTrend)}K. Most of it is SMB ($${smbChurnLast3}K). ${smbCust} SMB accounts generate only $${smbMrr}K MRR — that's $${smbArpu}/account. Cost to serve likely exceeds revenue per account.`});
   }
 
   // 6. Target performance
@@ -1014,13 +1017,14 @@ function generateInsights(raw, range){
   const lastTarget = raw.total.target[len-1];
   const vsTarget = ((lastMrr - lastTarget)/lastTarget*100).toFixed(1);
   if(vsTarget > 0){
-    insights.push({type:'positive',icon:ICN.target,text:`<b>Beating target by ${vsTarget}%</b> ($${lastMrr-lastTarget}K). Buffer is shrinking though — last month was only $${lastMrr-lastTarget}K ahead. At current trajectory, Q2 target of $1,420K will require acceleration.`});
+    insights.push({type:'positive',icon:ICN.target,text:`<b>Beating target by ${vsTarget}%</b> ($${lastMrr-lastTarget}K). Buffer is shrinking though — last month was only $${lastMrr-lastTarget}K ahead. At current trajectory, Q2 target will require acceleration.`});
   }
 
   // 7. Enterprise concentration risk
   const entPct = (raw.segments.enterprise.mrr[len-1] / totalMrr[len-1] * 100).toFixed(0);
   if(entPct > 55){
-    insights.push({type:'info',icon:ICN.shield,text:`<b>Enterprise at ${entPct}% of revenue.</b> High concentration risk — one Enterprise churn event could swing MRR by $30-50K. Diversification opportunity: Mid-Market is growing 2.6% MoM with 106% NRR. Scale that segment to reduce dependency.`});
+    const mmNrr = 106; // could be dynamic if data included NRR
+    insights.push({type:'info',icon:ICN.shield,text:`<b>Enterprise at ${entPct}% of revenue.</b> High concentration risk — one Enterprise churn event could swing MRR by $30-50K. Diversification opportunity: Mid-Market is growing steadily with strong NRR. Scale that segment to reduce dependency.`});
   }
 
   // Render
