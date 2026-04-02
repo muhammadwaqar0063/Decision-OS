@@ -999,7 +999,7 @@ function generateInsights(raw, range){
   const avgRecent = recent.reduce((a,b)=>a+b,0)/recent.length;
   const avgEarlier = earlier.length?earlier.reduce((a,b)=>a+b,0)/earlier.length:avgRecent;
   if(avgEarlier > 0 && avgRecent < avgEarlier * 0.8){
-    insights.push({type:'warning',icon:ICN.caution,text:`<b>Growth slowing:</b> MoM ${avgEarlier.toFixed(1)}% → ${avgRecent.toFixed(1)}%. Not a crisis yet — monitor pipeline coverage and sales capacity.`});
+    insights.push({type:'warning',icon:ICN.caution,text:`<b>Growth slowing:</b> MoM ${avgEarlier.toFixed(1)}% → ${avgRecent.toFixed(1)}%. Check pipeline coverage and sales capacity.`});
   }
 
   // 2. SMB health
@@ -1009,20 +1009,20 @@ function generateInsights(raw, range){
   const smbChurnRate = Math.abs(raw.segments.smb.churned.slice(-3).reduce((a,b)=>a+b,0));
   const smbNewRate = raw.segments.smb.new.slice(-3).reduce((a,b)=>a+b,0);
   if(smbLast < smbPeak * 0.95 || smbFlatMonths >= 2){
-    insights.push({type:'warning',icon:ICN.caution,text:`<b>SMB under pressure:</b> peaked $${smbPeak}K → now $${smbLast}K. Last Q: +${smbNewRate} new, -$${smbChurnRate}K churned. NRR 97% — acquiring customers you can't retain.`});
+    insights.push({type:'warning',icon:ICN.caution,text:`<b>SMB under pressure:</b> peaked $${smbPeak}K, now $${smbLast}K. Last Q: +${smbNewRate} new, -$${smbChurnRate}K churned. NRR 97%, you're acquiring customers you can't retain.`});
   }
 
   // 3. Expansion
   const expGrowth = ((raw.total.expansion[len-1] - raw.total.expansion[start]) / raw.total.expansion[start] * 100).toFixed(0);
   if(expGrowth > 15){
-    insights.push({type:'positive',icon:ICN.trendUp,text:`<b>Expansion up ${expGrowth}%</b> ($${raw.total.expansion[start]}K → $${raw.total.expansion[len-1]}K/mo). Your most efficient lever — $0 CAC. Double down on CS-led upsells.`});
+    insights.push({type:'positive',icon:ICN.trendUp,text:`<b>Expansion up ${expGrowth}%</b> ($${raw.total.expansion[start]}K → $${raw.total.expansion[len-1]}K/mo). Zero CAC, this is your best revenue lever. Push CS-led upsells harder.`});
   }
 
   // 4. Customer acquisition
   const custRecent = raw.customers.new.slice(-3).reduce((a,b)=>a+b,0);
   const custEarlier = raw.customers.new.slice(start, start+3).reduce((a,b)=>a+b,0);
   if(custEarlier > 0 && custRecent < custEarlier * 0.7){
-    insights.push({type:'info',icon:ICN.trendDown,text:`<b>New adds slowed:</b> ${custEarlier} → ${custRecent}/quarter. ARPU rose though — check if this is intentional upmarket shift or demand softness.`});
+    insights.push({type:'info',icon:ICN.trendDown,text:`<b>New adds slowed:</b> ${custEarlier} → ${custRecent}/quarter. ARPU rose though, check if this is intentional upmarket shift or demand softness.`});
   }
 
   // 5. Churn
@@ -1030,7 +1030,7 @@ function generateInsights(raw, range){
   const churnBase = raw.total.churned.slice(start, start+3).reduce((a,b)=>a+b,0);
   if(Math.abs(churnTrend) > Math.abs(churnBase) * 1.15){
     const smbChurnLast3 = Math.abs(raw.segments.smb.churned.slice(-3).reduce((a,b)=>a+b,0));
-    insights.push({type:'critical',icon:ICN.alert,text:`<b>Churn accelerating:</b> $${Math.abs(churnBase)}K → $${Math.abs(churnTrend)}K/quarter. Mostly SMB ($${smbChurnLast3}K). Consider raising floor price or sunsetting self-serve SMB tier.`});
+    insights.push({type:'critical',icon:ICN.alert,text:`<b>Churn accelerating:</b> $${Math.abs(churnBase)}K → $${Math.abs(churnTrend)}K/quarter. Mostly SMB ($${smbChurnLast3}K). Raise the floor price, or sunset the self-serve SMB tier.`});
   }
 
   // 6. Target
@@ -1038,26 +1038,26 @@ function generateInsights(raw, range){
   const lastTarget = raw.total.target[len-1];
   const vsTarget = ((lastMrr - lastTarget)/lastTarget*100).toFixed(1);
   if(parseFloat(vsTarget) > 0){
-    insights.push({type:'positive',icon:ICN.target,text:`<b>Beating target ${vsTarget}%</b> ($${lastMrr-lastTarget}K ahead). Buffer is thin — Q2 needs acceleration.`});
+    insights.push({type:'positive',icon:ICN.target,text:`<b>Beating target ${vsTarget}%</b> ($${lastMrr-lastTarget}K ahead). Buffer is thin, Q2 needs acceleration.`});
   } else {
-    insights.push({type:'warning',icon:ICN.caution,text:`<b>Below target ${Math.abs(vsTarget)}%</b> ($${Math.abs(lastMrr-lastTarget)}K short). Gap widening — pipeline needs 2x coverage to catch up.`});
+    insights.push({type:'warning',icon:ICN.caution,text:`<b>Below target ${Math.abs(vsTarget)}%</b> ($${Math.abs(lastMrr-lastTarget)}K short). Gap is widening, pipeline needs 2x coverage to catch up.`});
   }
 
   // 7. Enterprise concentration
   const entPct = (raw.segments.enterprise.mrr[len-1] / totalMrr[len-1] * 100).toFixed(0);
   if(entPct > 55){
-    insights.push({type:'info',icon:ICN.shield,text:`<b>Enterprise at ${entPct}%</b> — concentration risk. Mid-Market (72 accounts, 106% NRR) is your diversification lever.`});
+    insights.push({type:'info',icon:ICN.shield,text:`<b>Enterprise at ${entPct}%</b>, concentration risk. Mid-Market (72 accounts, 106% NRR) is the diversification play.`});
   }
 
   // 8. Negative growth months
   const negMonths = raw.total.momGrowth.map((g,i)=>g<0?raw.months[i]:null).filter(Boolean);
   if(negMonths.length > 0){
-    insights.push({type:'info',icon:ICN.chart,text:`<b>${negMonths.length} negative month(s):</b> ${negMonths.join(', ')}. Seasonal dips — mitigate by front-loading Q1/Q3 closings.`});
+    insights.push({type:'info',icon:ICN.chart,text:`<b>${negMonths.length} negative month(s):</b> ${negMonths.join(', ')}. Seasonal dips, mitigate by front-loading Q1/Q3 closings.`});
   }
 
   // Render
   if(insights.length === 0){
-    insights.push({type:'info',icon:ICN.chart,text:'Revenue metrics are within normal ranges. No significant trends detected for the selected period.'});
+    insights.push({type:'info',icon:ICN.chart,text:'Revenue metrics are within normal ranges, nothing unusual for the selected period.'});
   }
 
   const borderColors = {critical:'#ef4444',warning:'#f59e0b',positive:'#10b981',info:'#6366f1'};
