@@ -1067,17 +1067,9 @@ function generateInsights(raw, range){
   const priority = {critical:0,warning:1,positive:2,info:3};
   insights.sort((a,b)=>(priority[a.type]||3)-(priority[b.type]||3));
 
-  const maxShow = 5;
-  const shown = insights.slice(0, maxShow);
-  const hidden = insights.length - maxShow;
-
-  box.innerHTML = shown.map(i => `<div style="margin-bottom:5px;padding:6px 9px;border-radius:6px;font-size:11px;line-height:1.5;background:${bgColors[i.type]||bgColors.info};border-left:3px solid ${borderColors[i.type]||'#6366f1'};display:flex;align-items:flex-start;gap:6px"><span style="flex-shrink:0;margin-top:1px">${i.icon}</span><span>${i.text}</span></div>`).join('');
-
-  const moreEl = document.getElementById('rev-insights-more');
-  if(moreEl){
-    if(hidden > 0){ moreEl.style.display='block'; moreEl.textContent='+'+hidden+' more insight'+(hidden>1?'s':''); }
-    else { moreEl.style.display='none'; }
-  }
+  window._revInsights = insights;
+  window._revInsightsExpanded = false;
+  renderInsightsList();
 
   // Pulse the insights button
   const btn = document.getElementById('rev-insights-btn');
@@ -1087,6 +1079,29 @@ function generateInsights(raw, range){
     btn.style.background = 'var(--blue-bg,rgba(59,130,246,.08))';
   }
 }
+
+function renderInsightsList(){
+  const box = document.getElementById('rev-insights-content');
+  const moreEl = document.getElementById('rev-insights-more');
+  if(!box || !window._revInsights) return;
+  const all = window._revInsights;
+  const expanded = window._revInsightsExpanded;
+  const borderColors = {critical:'#ef4444',warning:'#f59e0b',positive:'#10b981',info:'#6366f1'};
+  const bgColors = {critical:'rgba(239,68,68,.05)',warning:'rgba(245,158,11,.05)',positive:'rgba(16,185,129,.05)',info:'rgba(99,102,241,.04)'};
+  const maxShow = 5;
+  const shown = expanded ? all : all.slice(0, maxShow);
+  const hidden = all.length - maxShow;
+
+  box.innerHTML = shown.map(i => `<div style="margin-bottom:5px;padding:6px 9px;border-radius:6px;font-size:11px;line-height:1.5;background:${bgColors[i.type]||bgColors.info};border-left:3px solid ${borderColors[i.type]||'#6366f1'};display:flex;align-items:flex-start;gap:6px"><span style="flex-shrink:0;margin-top:1px">${i.icon}</span><span>${i.text}</span></div>`).join('');
+
+  if(moreEl){
+    if(hidden > 0){
+      moreEl.style.display='block';
+      moreEl.innerHTML = expanded
+        ? '<a href="#" onclick="window._revInsightsExpanded=false;renderInsightsList();return false" style="color:var(--blue);text-decoration:none;font-weight:500;cursor:pointer">Show less</a>'
+        : '<a href="#" onclick="window._revInsightsExpanded=true;renderInsightsList();return false" style="color:var(--blue);text-decoration:none;font-weight:500;cursor:pointer">+'+hidden+' more insight'+(hidden>1?'s':'')+'</a>';
+    } else { moreEl.style.display='none'; }
+  }
 
 function countFlat(arr){
   let c=0;
