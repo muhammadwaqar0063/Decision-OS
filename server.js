@@ -277,6 +277,26 @@ if (fs.existsSync(dataDir)) {
   });
 }
 
+// ── Auto Git Pull ──
+const { execSync } = require('child_process');
+const GIT_PULL_INTERVAL = 10 * 1000; // 10 seconds
+
+function autoPull() {
+  try {
+    const result = execSync('git pull --ff-only', { cwd: __dirname, encoding: 'utf8', timeout: 15000 });
+    if (!result.includes('Already up to date')) {
+      console.log(`[GIT] Pulled changes:\n${result.trim()}`);
+      cache.flushAll();
+      io.emit('git-update', { message: 'New changes pulled. Refresh to see updates.', timestamp: new Date().toISOString() });
+    }
+  } catch (e) {
+    // silent — git not available or no remote
+  }
+}
+
+setInterval(autoPull, GIT_PULL_INTERVAL);
+autoPull(); // run once on startup
+
 // ── Clean URL support (/ceo → ceo) ──
 // Redirect .html URLs to clean URLs
 app.use((req, res, next) => {

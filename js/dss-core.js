@@ -205,6 +205,26 @@ document.addEventListener('click', (e) => {
   }
 });
 
+// ── Auto-reload on git pull ──
+(function() {
+  let lastHash = null;
+  async function checkForUpdates() {
+    try {
+      const res = await fetch('css/dss-shared.css?t=' + Date.now());
+      const text = await res.text();
+      // Simple hash: sum of char codes + length
+      let h = text.length;
+      for (let i = 0; i < text.length; i += 100) h += text.charCodeAt(i);
+      const hash = h.toString(36);
+      if (lastHash !== null && hash !== lastHash) {
+        location.reload();
+      }
+      lastHash = hash;
+    } catch {}
+  }
+  setInterval(checkForUpdates, 10000);
+})();
+
 // ── Auto-init on DOMContentLoaded ──
 document.addEventListener('DOMContentLoaded', () => {
   // Render auth nav if available
