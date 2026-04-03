@@ -55,6 +55,31 @@
         }
       },
       "lastUpdated": "2026-04-03T00:11:16.918Z"
+    },
+    "pivot-strategic": {
+      "steps": {
+        "s1": {
+          "status": "active",
+          "note": "Net new ARR $1.24M \u2014 below $1.5M threshold. One more quarter triggers pivot evaluation."
+        },
+        "s2": {
+          "status": "pending",
+          "note": null
+        },
+        "s3": {
+          "status": "pending",
+          "note": null
+        },
+        "s4": {
+          "status": "pending",
+          "note": null
+        },
+        "s5": {
+          "status": "pending",
+          "note": null
+        }
+      },
+      "lastUpdated": "2026-03-29T07:30:00+08:00"
     }
   }
 }

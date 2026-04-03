@@ -8,8 +8,12 @@
       "category": "capital",
       "statusLabel": "Active | Monitor",
       "statusColor": "amber",
-      "description": "Structured path from ARR milestone to Series C close. Each step has a data gate — no gut feelings.",
-      "dataSources": ["financials", "company", "revenue-mix"],
+      "description": "Structured path from ARR milestone to Series C close. Each step has a data gate \u2014 no gut feelings.",
+      "dataSources": [
+        "financials",
+        "company",
+        "revenue-mix"
+      ],
       "costOfInaction": {
         "monthlyCost": 42000,
         "description": "Delayed Series C = $42K/mo in valuation gap growth",
@@ -41,7 +45,7 @@
         },
         {
           "id": "s3",
-          "title": "Fix burn multiple below 2×",
+          "title": "Fix burn multiple below 2\u00d7",
           "statusRule": {
             "source": "financials",
             "path": "financials.burnMultiple",
@@ -52,24 +56,24 @@
             "source": "financials",
             "path": "financials.burnMultiple",
             "format": "number",
-            "suffix": "×"
+            "suffix": "\u00d7"
           },
-          "targetDisplay": "<1.8×",
-          "description": "Reduce SMB acquisition spend. Focus on enterprise where LTV:CAC is 6.2× vs SMB's 2.8×",
+          "targetDisplay": "<1.8\u00d7",
+          "description": "Reduce SMB acquisition spend. Focus on enterprise where LTV:CAC is 6.2\u00d7 vs SMB's 2.8\u00d7",
           "recommendations": [
             {
               "label": "Cut SMB acquisition budget 30%",
-              "impact": "Burn multiple drops to 1.7×",
+              "impact": "Burn multiple drops to 1.7\u00d7",
               "detail": "SMB CAC payback is 22mo vs Enterprise's 8mo. Redirect $126K/yr to enterprise channel."
             },
             {
               "label": "Shift 2 SDRs from SMB to Enterprise",
-              "impact": "Burn multiple drops to 1.8×",
-              "detail": "Enterprise pipeline coverage improves from 2.8× to 3.4×. SMB pipeline already over-served."
+              "impact": "Burn multiple drops to 1.8\u00d7",
+              "detail": "Enterprise pipeline coverage improves from 2.8\u00d7 to 3.4\u00d7. SMB pipeline already over-served."
             },
             {
               "label": "Raise SMB pricing 20%",
-              "impact": "Burn multiple drops to 1.9×, some churn risk",
+              "impact": "Burn multiple drops to 1.9\u00d7, some churn risk",
               "detail": "SMB NRR is 96% (below breakeven). Price-sensitive segment, expect 8-12% churn spike."
             }
           ],
@@ -79,18 +83,26 @@
         {
           "id": "s4",
           "title": "Build investor deck",
-          "statusRule": { "manual": true },
+          "statusRule": {
+            "manual": true
+          },
           "owner": "CEO",
-          "dependencies": ["s3"],
+          "dependencies": [
+            "s3"
+          ],
           "estimatedDays": 14
         },
         {
           "id": "s5",
           "title": "Begin conversations",
-          "statusRule": { "manual": true },
+          "statusRule": {
+            "manual": true
+          },
           "owner": "CEO",
           "targetDate": "Q3 2026",
-          "dependencies": ["s4"],
+          "dependencies": [
+            "s4"
+          ],
           "estimatedDays": 60
         }
       ],
@@ -111,23 +123,27 @@
       "statusLabel": "Blocked",
       "statusColor": "red",
       "description": "Data-gated hiring. Pipeline coverage, rep productivity, and CFO scenario check must all pass before offers go out.",
-      "dataSources": ["pipeline", "financials", "company"],
+      "dataSources": [
+        "pipeline",
+        "financials",
+        "company"
+      ],
       "costOfInaction": {
         "monthlyCost": 144000,
-        "description": "3 unfilled reps × $48K/mo revenue capacity = $144K/mo lost",
-        "basis": "Average quota attainment × per-rep revenue"
+        "description": "3 unfilled reps \u00d7 $48K/mo revenue capacity = $144K/mo lost",
+        "basis": "Average quota attainment \u00d7 per-rep revenue"
       },
       "steps": [
         {
           "id": "s1",
-          "title": "Pipeline coverage > 3×",
+          "title": "Pipeline coverage > 3\u00d7",
           "statusRule": {
             "source": "pipeline",
             "path": "pipeline.coverageRatio",
             "operator": ">",
             "threshold": 3.0
           },
-          "completedText": "Hit 3.2× last month",
+          "completedText": "Hit 3.2\u00d7 last month",
           "owner": "CRO"
         },
         {
@@ -157,50 +173,71 @@
             "format": "number",
             "suffix": "mo"
           },
-          "targetDisplay": "≥12mo",
-          "description": "Bear scenario must show ≥12mo runway with planned hires factored in.",
+          "targetDisplay": "\u226512mo",
+          "description": "Bear scenario must show \u226512mo runway with planned hires factored in.",
           "blockReason": "Bear scenario shows 11.8mo runway with Plan hiring. Below 12mo minimum.",
           "resolutionOptions": [
             {
               "id": "opt1",
               "label": "Defer hiring 8 weeks",
-              "impact": "Runway becomes 12.4mo ✓",
-              "computedEffect": { "adjustMonths": 2, "resultRunway": 12.4 },
-              "tradeoff": "Pipeline coverage may drop to 2.6× without new reps"
+              "impact": "Runway becomes 12.4mo \u2713",
+              "computedEffect": {
+                "adjustMonths": 2,
+                "resultRunway": 12.4
+              },
+              "tradeoff": "Pipeline coverage may drop to 2.6\u00d7 without new reps"
             },
             {
               "id": "opt2",
               "label": "Hire 2 instead of 3",
-              "impact": "Runway becomes 12.1mo ✓",
-              "computedEffect": { "reduceHires": 1, "resultRunway": 12.1 },
+              "impact": "Runway becomes 12.1mo \u2713",
+              "computedEffect": {
+                "reduceHires": 1,
+                "resultRunway": 12.1
+              },
               "tradeoff": "Slower revenue ramp, ~$180K/yr less new ARR capacity"
             },
             {
               "id": "opt3",
               "label": "Cut marketing spend 15%",
-              "impact": "Runway becomes 12.6mo ✓",
-              "computedEffect": { "cutSpendPct": 15, "resultRunway": 12.6 },
+              "impact": "Runway becomes 12.6mo \u2713",
+              "computedEffect": {
+                "cutSpendPct": 15,
+                "resultRunway": 12.6
+              },
               "tradeoff": "Top-of-funnel lead volume drops ~20% in 2 months"
             }
           ],
           "owner": "CFO",
-          "crossPortalLink": { "portal": "cfo", "section": "scenarios", "label": "View CFO scenario calculator" },
+          "crossPortalLink": {
+            "portal": "cfo",
+            "section": "scenarios",
+            "label": "View CFO scenario calculator"
+          },
           "costOfDelay": 144000
         },
         {
           "id": "s4",
           "title": "CEO approval",
-          "statusRule": { "manual": true },
+          "statusRule": {
+            "manual": true
+          },
           "owner": "CEO",
-          "dependencies": ["s3"],
+          "dependencies": [
+            "s3"
+          ],
           "estimatedDays": 3
         },
         {
           "id": "s5",
           "title": "Post roles + hire",
-          "statusRule": { "manual": true },
+          "statusRule": {
+            "manual": true
+          },
           "owner": "HR",
-          "dependencies": ["s4"],
+          "dependencies": [
+            "s4"
+          ],
           "estimatedDays": 30,
           "targetDate": "30-day search target"
         }
@@ -213,6 +250,121 @@
           "options": true
         }
       }
+    },
+    {
+      "id": "pivot-strategic",
+      "portal": "ceo",
+      "title": "Pivot / Strategic Direction",
+      "subtitle": "Go/no-go on changing the growth engine",
+      "category": "strategy",
+      "statusLabel": "Monitor",
+      "statusColor": "amber",
+      "description": "When core growth metrics plateau for 2+ quarters despite execution, evaluate whether the current strategy can reach the next milestone. This playbook gates the pivot decision with data, not panic.",
+      "dataSources": [
+        "company",
+        "financials",
+        "revenue-trend",
+        "revenue-mix",
+        "pipeline"
+      ],
+      "costOfInaction": {
+        "monthlyCost": 85000,
+        "description": "Continuing a stalled strategy burns $85K/mo in misallocated capital",
+        "basis": "SMB segment drag + below-target growth rate = value destruction"
+      },
+      "steps": [
+        {
+          "id": "s1",
+          "title": "Growth rate below target for 2+ quarters",
+          "statusRule": {
+            "manual": true
+          },
+          "liveValue": {
+            "source": "company",
+            "path": "company.netNewARR",
+            "format": "currency"
+          },
+          "targetDisplay": ">$1.5M/quarter",
+          "owner": "CEO",
+          "completedText": "Growth on track, no pivot trigger",
+          "description": "If net new ARR stays below $1.5M for 2 quarters while competitors grow 20%+, the current GTM engine may be exhausted."
+        },
+        {
+          "id": "s2",
+          "title": "Segment health audit",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CRO",
+          "description": "Deep dive each segment: enterprise, mid-market, SMB. Which is growing? Which is dragging? Where's PMF strongest?",
+          "recommendations": [
+            {
+              "label": "Double down on Enterprise",
+              "impact": "Focus 80% of resources on $100K+ deals",
+              "detail": "Enterprise has 112% NRR, 6.2\u00d7 LTV:CAC, and $7.2M ARR. This is the growth engine.",
+              "runwayImpact": "Neutral short-term",
+              "arrImpact": "+$2.1M ARR potential at full focus"
+            },
+            {
+              "label": "Exit SMB entirely",
+              "impact": "Shed 207 customers, redeploy 8 headcount",
+              "detail": "SMB NRR is 96% (below breakeven), $0.52K ARPU declining 5%/quarter. This segment is destroying value.",
+              "runwayImpact": "+3.1mo from cost savings",
+              "arrImpact": "-$3.4M ARR, +$680K margin"
+            },
+            {
+              "label": "Pivot SMB to self-serve PLG",
+              "impact": "Automate onboarding, cut CSM cost to zero",
+              "detail": "Replace human-touch SMB with product-led growth. ARPU drops to $0.3K but cost-to-serve drops 90%.",
+              "runwayImpact": "+1.8mo",
+              "arrImpact": "-$1.1M ARR, +$420K margin"
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "title": "Competitive position assessment",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CEO",
+          "description": "Are we losing deals because of features, pricing, or market fit? Win/loss analysis + competitor benchmarking.",
+          "dependencies": [
+            "s2"
+          ]
+        },
+        {
+          "id": "s4",
+          "title": "Board alignment on direction",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CEO",
+          "description": "Present the data, the options, and a recommendation. Board must approve any strategic pivot before execution begins.",
+          "dependencies": [
+            "s3"
+          ],
+          "estimatedDays": 21,
+          "crossPortalLink": {
+            "portal": "ceo",
+            "section": "board",
+            "label": "View board readiness metrics"
+          }
+        },
+        {
+          "id": "s5",
+          "title": "Execute new strategy",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CEO",
+          "description": "90-day execution plan with weekly milestones. First milestone must show traction within 30 days or re-evaluate.",
+          "dependencies": [
+            "s4"
+          ],
+          "estimatedDays": 90
+        }
+      ]
     }
   ]
 }

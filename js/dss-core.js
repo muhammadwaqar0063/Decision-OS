@@ -281,6 +281,26 @@ var PLAYBOOK_FALLBACK = {
         { id:"s4", title:"CEO approval", state:{status:"pending"}, statusRule:{manual:true}, owner:"CEO", dependencies:["s3"] },
         { id:"s5", title:"Post roles + hire", state:{status:"pending"}, statusRule:{manual:true}, owner:"HR", targetDate:"30-day search target" }
       ]
+    },
+    {
+      id: "pivot-strategic", portal: "ceo", title: "Pivot / Strategic Direction", subtitle: "Go/no-go on changing the growth engine", category: "strategy",
+      statusLabel: "Monitor", statusColor: "amber",
+      costOfInaction: { monthlyCost: 85000, description: "Continuing a stalled strategy burns $85K/mo in misallocated capital" },
+      steps: [
+        { id:"s1", title:"Growth rate below target for 2+ quarters", autoStatus:"active", state:{status:"active", note:"Net new ARR $1.24M — below $1.5M threshold. One more quarter triggers pivot evaluation."}, liveValueComputed:1240000, liveValue:{format:"currency"}, targetDisplay:">$1.5M/quarter", owner:"CEO",
+          description:"Net new ARR $1.24M — below $1.5M threshold. One more quarter triggers pivot evaluation." },
+        { id:"s2", title:"Segment health audit", state:{status:"pending"}, statusRule:{manual:true}, owner:"CRO",
+          description:"Deep dive each segment: enterprise, mid-market, SMB. Which is growing? Which is dragging? Where\u2019s PMF strongest?",
+          recommendations:[
+            {label:"Double down on Enterprise",impact:"Focus 80% of resources on $100K+ deals",detail:"Enterprise has 112% NRR, 6.2\u00d7 LTV:CAC, and $7.2M ARR. This is the growth engine.",runwayImpact:"Neutral short-term",arrImpact:"+$2.1M ARR potential at full focus"},
+            {label:"Exit SMB entirely",impact:"Shed 207 customers, redeploy 8 headcount",detail:"SMB NRR is 96% (below breakeven), $0.52K ARPU declining 5%/quarter. This segment is destroying value.",runwayImpact:"+3.1mo from cost savings",arrImpact:"-$3.4M ARR, +$680K margin"},
+            {label:"Pivot SMB to self-serve PLG",impact:"Automate onboarding, cut CSM cost to zero",detail:"Replace human-touch SMB with product-led growth. ARPU drops to $0.3K but cost-to-serve drops 90%.",runwayImpact:"+1.8mo",arrImpact:"-$1.1M ARR, +$420K margin"}
+          ]},
+        { id:"s3", title:"Competitive position assessment", state:{status:"pending"}, statusRule:{manual:true}, owner:"CEO", dependencies:["s2"] },
+        { id:"s4", title:"Board alignment on direction", state:{status:"pending"}, statusRule:{manual:true}, owner:"CEO", estimatedDays:21, dependencies:["s3"],
+          crossPortalLink:{portal:"ceo",section:"board",label:"View board readiness metrics"} },
+        { id:"s5", title:"Execute new strategy", state:{status:"pending"}, statusRule:{manual:true}, owner:"CEO", estimatedDays:90, dependencies:["s4"] }
+      ]
     }
   ],
   lastUpdated: new Date().toISOString()
@@ -517,8 +537,9 @@ async function renderPlaybooks(portal) {
         html += '</div>';
 
         // Existing note
-        if (step.state?.note) {
-          html += `<div class="pb-note-existing"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> ${escapeHtml(step.state.note)}</div>`;
+        const existingNote = step.state?.note || step.note;
+        if (existingNote) {
+          html += `<div class="pb-note-existing"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> ${escapeHtml(existingNote)}</div>`;
         }
 
         html += '</div>'; // .pb-detail
