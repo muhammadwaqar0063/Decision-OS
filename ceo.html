@@ -628,7 +628,6 @@ function show(id,el){
   document.getElementById('s-'+id).classList.add('on');
   if(el)el.classList.add('on');
   loadRevenueTrend();
-  if(id==='playbooks')renderPlaybooks('ceo');
 }
 
 function setScenario(type,btn){
@@ -1170,6 +1169,16 @@ loadRevenueMix();
 <script src="auth.js">
 </script>
 <script src="js/dss-core.js">
+</script>
+<script>
+// Wrap show() to trigger playbook rendering
+(function(){
+  var _origShow = show;
+  show = function(id, el){
+    _origShow(id, el);
+    if(id === 'playbooks') renderPlaybooks('ceo');
+  };
+})();
 </script>
 <script src="js/dss-data.js">
 </script>
