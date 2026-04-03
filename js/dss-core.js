@@ -441,17 +441,18 @@ async function renderPlaybooks(portal) {
 
   const playbooks = playbooksData.playbooks || [];
 
-  // Populate sub-nav
-  const subnav = document.getElementById('pb-subnav');
-  if (subnav) {
-    let subHtml = '<button class="pb-subtab on" onclick="filterPlaybook(\'all\',this)">All</button>';
+  // Populate dropdown menu
+  const ddMenu = document.getElementById('pb-dropdown-menu');
+  if (ddMenu) {
+    let ddHtml = '<div class="pb-dd-item pb-dd-all" onclick="filterPlaybook(\'all\')"><span class="pb-dd-dot pb-subdot-blue"></span>All Playbooks</div>';
     playbooks.forEach(pb => {
-      subHtml += '<button class="pb-subtab" onclick="filterPlaybook(\'' + pb.id + '\',this)" data-pb-id="' + pb.id + '">';
-      subHtml += '<span class="pb-subdot pb-subdot-' + pb.statusColor + '"></span>';
-      subHtml += escapeHtml(pb.title);
-      subHtml += '</button>';
+      ddHtml += '<div class="pb-dd-item" onclick="filterPlaybook(\'' + pb.id + '\')">';
+      ddHtml += '<span class="pb-dd-dot pb-subdot-' + pb.statusColor + '"></span>';
+      ddHtml += '<div class="pb-dd-info"><span class="pb-dd-title">' + escapeHtml(pb.title) + '</span>';
+      ddHtml += '<span class="pb-dd-status">' + escapeHtml(pb.statusLabel) + '</span></div>';
+      ddHtml += '</div>';
     });
-    subnav.innerHTML = subHtml;
+    ddMenu.innerHTML = ddHtml;
   }
 
   containers.forEach(container => {
@@ -702,10 +703,11 @@ async function renderPlaybooks(portal) {
 }
 
 
-function filterPlaybook(pbId, btn) {
-  // Update sub-tab active state
-  document.querySelectorAll('.pb-subtab').forEach(t => t.classList.remove('on'));
-  if (btn) btn.classList.add('on');
+function filterPlaybook(pbId) {
+  // Show the playbooks tab
+  show('playbooks', document.querySelector('.tab-dropdown .tab'));
+  // Close dropdown
+  document.getElementById('pb-dropdown-menu')?.classList.remove('show');
 
   const grid = document.getElementById('pb-grid');
   if (!grid) return;
@@ -720,7 +722,9 @@ function filterPlaybook(pbId, btn) {
     grid.classList.add('pb-grid-single');
   }
   // Scroll to top of playbooks section
-  document.getElementById('s-playbooks')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  setTimeout(() => {
+    document.getElementById('s-playbooks')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
 }
 
 function togglePlaybookStep(stepId) {
