@@ -307,15 +307,15 @@ var PLAYBOOK_FALLBACK = {
       statusLabel: "Evaluate", statusColor: "amber",
       costOfInaction: { monthlyCost: 62000, description: "Underpriced tiers leave $62K/mo on the table while NRR erodes" },
       steps: [
-        { id:"s1", title:"Pricing health diagnostic", state:{status:"active", note:"SMB NRR at 96% signals pricing misalignment. Enterprise at 112% indicates room to increase."}, statusRule:{manual:true}, owner:"CPO",
+        { id:"s1", title:"Pricing health diagnostic", state:{status:"done", completedAt:"2026-02-15T00:00:00+08:00", note:"Diagnosis complete. SMB NRR at 96% = pricing leak. Enterprise LTV:CAC 6.2\u00d7 = underpriced by 25-40%. Mid-market healthy at 106%."}, statusRule:{manual:true}, owner:"CPO", completedText:"Completed Feb 15, 2026",
           description:"Are customers churning on price or value? Analyze win/loss, NPS verbatims, and segment-level NRR.",
           recommendations:[
             {label:"Raise Enterprise prices 25-40%",impact:"Enterprise ARPU from $35.6K to $44-50K",detail:"Enterprise NRR is 112% and LTV:CAC is 6.2\u00d7. Customers are getting 6\u00d7 the value they pay for. Price to value.",runwayImpact:"+2.4mo from increased ARR",arrImpact:"+$1.5-2.4M ARR from existing base"},
             {label:"Introduce usage-based tier for SMB",impact:"Replace flat $0.52K ARPU with consumption pricing",detail:"SMB NRR at 96% means flat pricing doesn\u2019t capture growth. Usage-based aligns cost with value.",runwayImpact:"+1.2mo",arrImpact:"+$340K from usage expansion"},
             {label:"Kill the free/cheap tier entirely",impact:"Raise SMB floor from $0.52K to $0.8K minimum",detail:"Bottom 40% of SMB accounts use <$200/mo in value. They cost more in support than they pay.",runwayImpact:"+0.8mo from reduced support load",arrImpact:"-15% SMB customers, +$180K net ARR"}
           ]},
-        { id:"s2", title:"Competitive pricing benchmark", state:{status:"pending"}, statusRule:{manual:true}, owner:"CPO", dependencies:["s1"] },
-        { id:"s3", title:"Model new pricing tiers", state:{status:"pending"}, statusRule:{manual:true}, owner:"CPO", estimatedDays:21, dependencies:["s2"] },
+        { id:"s2", title:"Competitive pricing benchmark", state:{status:"done", completedAt:"2026-03-10T00:00:00+08:00", note:"We\u2019re 35% below Enterprise market median. SMB is at market but value delivery doesn\u2019t match. Mid-market slightly below."}, statusRule:{manual:true}, owner:"CPO", completedText:"Completed Mar 10, 2026", dependencies:["s1"] },
+        { id:"s3", title:"Model new pricing tiers", state:{status:"active", note:"Working on tier design. Usage-based for SMB, seat-based for Enterprise. Targeting May board review."}, statusRule:{manual:true}, owner:"CPO", estimatedDays:21, dependencies:["s2"] },
         { id:"s4", title:"Grandfather existing customers", state:{status:"pending"}, statusRule:{manual:true}, owner:"CEO", dependencies:["s3"],
           crossPortalLink:{portal:"cs",section:"atrisk",label:"View at-risk accounts for churn modeling"},
           resolutionOptions:[
@@ -403,7 +403,7 @@ async function renderPlaybooks(portal) {
       else if (stepState === 'blocked') visualStatus = 'blocked';
       else if (autoStatus === 'active' || stepState === 'active') visualStatus = 'active';
 
-      const isExpandable = visualStatus === 'active' || visualStatus === 'blocked';
+      const isExpandable = visualStatus === 'active' || visualStatus === 'blocked' || visualStatus === 'done';
       const stepId = `pb-${pb.id}-${step.id}`;
 
       // Compute progress toward threshold for active steps
@@ -478,7 +478,7 @@ async function renderPlaybooks(portal) {
 
       // Expand indicator for expandable steps
       if (isExpandable) {
-        html += `<div class="pb-expand-hint">Click to ${visualStatus === 'blocked' ? 'resolve' : 'see options'}</div>`;
+        html += `<div class="pb-expand-hint">Click to ${visualStatus === 'blocked' ? 'resolve' : visualStatus === 'done' ? 'see what happened' : 'see options'}</div>`;
       }
 
       html += '</div>'; // .pb-step-body
@@ -487,6 +487,18 @@ async function renderPlaybooks(portal) {
       // ═══ EXPANDED DETAIL PANEL ═══
       if (isExpandable) {
         html += `<div class="pb-detail" id="${stepId}-detail" style="display:none">`;
+
+        // Completion detail (for done steps)
+        if (visualStatus === 'done') {
+          const completedAt = step.state?.completedAt || step.completedAt;
+          const completedText = step.completedText || 'Completed';
+          html += '<div class="pb-completion-block">';
+          html += '<div class="pb-completion-header"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
+          html += '<span class="pb-completion-label">' + escapeHtml(completedText) + '</span></div>';
+          if (completedAt) html += '<div class="pb-completion-date">Completed ' + new Date(completedAt).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) + '</div>';
+          if (step.owner) html += '<div class="pb-completion-owner">Owned by <strong>' + escapeHtml(step.owner) + '</strong></div>';
+          html += '</div>';
+        }
 
         // Block reason
         if (step.blockReason) {

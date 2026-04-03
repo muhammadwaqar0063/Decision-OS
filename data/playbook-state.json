@@ -84,16 +84,18 @@
     "pricing-change": {
       "steps": {
         "s1": {
-          "status": "active",
-          "note": "SMB NRR at 96% signals pricing misalignment. Enterprise at 112% indicates room to increase."
+          "status": "done",
+          "completedAt": "2026-02-15T00:00:00+08:00",
+          "note": "Diagnosis complete. SMB NRR at 96% = pricing leak. Enterprise LTV:CAC 6.2\u00d7 = underpriced by 25-40%. Mid-market healthy at 106%."
         },
         "s2": {
-          "status": "pending",
-          "note": null
+          "status": "done",
+          "completedAt": "2026-03-10T00:00:00+08:00",
+          "note": "We're 35% below Enterprise market median. SMB is at market but value delivery doesn't match. Mid-market slightly below."
         },
         "s3": {
-          "status": "pending",
-          "note": null
+          "status": "active",
+          "note": "Working on tier design. Usage-based for SMB, seat-based for Enterprise. Targeting May board review."
         },
         "s4": {
           "status": "pending",

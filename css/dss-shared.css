@@ -639,6 +639,13 @@ tr.good td{background:var(--green-soft)!important}
 .pb-note-area button{padding:8px 16px;border-radius:7px;border:none;background:var(--blue);color:#fff;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--sans)}
 .pb-note-existing{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink3);margin-top:8px;padding:8px 12px;background:var(--bg2);border-radius:6px;line-height:1.4}
 
+
+/* Completion detail block */
+.pb-completion-block{padding:12px 14px;background:var(--green-soft);border:1px solid rgba(22,163,74,.15);border-radius:8px;margin-bottom:12px}
+.pb-completion-header{display:flex;align-items:center;gap:8px}
+.pb-completion-label{font-size:13px;font-weight:600;color:var(--green-text)}
+.pb-completion-date{font-size:11px;color:var(--ink3);margin-top:4px;margin-left:24px}
+.pb-completion-owner{font-size:11px;color:var(--ink3);margin-top:2px;margin-left:24px}
 /* Footer */
 .pb-footer{font-size:10px;color:var(--ink5);text-align:right;margin-top:12px;padding-top:8px;border-top:1px solid var(--border)}
 
