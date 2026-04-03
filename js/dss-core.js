@@ -315,7 +315,13 @@ var PLAYBOOK_FALLBACK = {
             {label:"Kill the free/cheap tier entirely",impact:"Raise SMB floor from $0.52K to $0.8K minimum",detail:"Bottom 40% of SMB accounts use <$200/mo in value. They cost more in support than they pay.",runwayImpact:"+0.8mo from reduced support load",arrImpact:"-15% SMB customers, +$180K net ARR"}
           ]},
         { id:"s2", title:"Competitive pricing benchmark", state:{status:"done", completedAt:"2026-03-10T00:00:00+08:00", note:"We\u2019re 35% below Enterprise market median. SMB is at market but value delivery doesn\u2019t match. Mid-market slightly below."}, statusRule:{manual:true}, owner:"CPO", completedText:"Completed Mar 10, 2026", dependencies:["s1"] },
-        { id:"s3", title:"Model new pricing tiers", state:{status:"active", note:"Working on tier design. Usage-based for SMB, seat-based for Enterprise. Targeting May board review."}, statusRule:{manual:true}, owner:"CPO", estimatedDays:21, dependencies:["s2"] },
+        { id:"s3", title:"Model new pricing tiers", state:{status:"active", note:"Working on tier design. Usage-based for SMB, seat-based for Enterprise. Targeting May board review."}, statusRule:{manual:true}, owner:"CPO", estimatedDays:21, dependencies:["s2"],
+          description:"Design the new pricing structure. Three models under evaluation: hybrid seat + usage, pure usage-based, or value-based tiered.",
+          recommendations:[
+            {label:"Hybrid: seat-based Enterprise + usage SMB",impact:"Best of both \u2014 predictable base + growth capture",detail:"Enterprise stays per-seat (they want predictability). SMB moves to usage (they grow organically). Mid-market gets hybrid.",runwayImpact:"+1.8mo projected",arrImpact:"+$1.2M ARR from usage capture"},
+            {label:"Pure usage-based across all tiers",impact:"Maximum growth alignment, but revenue volatility",detail:"Every customer pays for what they use. Upside: heavy users pay more automatically. Downside: revenue becomes lumpy.",runwayImpact:"+2.1mo best case",arrImpact:"+$1.8M best case"},
+            {label:"Value-based tiers (Good / Better / Best)",impact:"Clear upgrade path, proven SaaS model",detail:"3 tiers with feature gating. Simplest to sell and understand. Risk: doesn\u2019t capture usage growth within a tier.",runwayImpact:"+1.2mo",arrImpact:"+$800K from tier upgrades"}
+          ] },
         { id:"s4", title:"Grandfather existing customers", state:{status:"pending"}, statusRule:{manual:true}, owner:"CEO", dependencies:["s3"],
           crossPortalLink:{portal:"cs",section:"atrisk",label:"View at-risk accounts for churn modeling"},
           resolutionOptions:[
