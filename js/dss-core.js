@@ -379,6 +379,46 @@ var PLAYBOOK_FALLBACK = {
         { id:"s4", title:"Integration plan", state:{status:"pending"}, statusRule:{manual:true}, owner:"COO", estimatedDays:21, dependencies:["s3"] },
         { id:"s5", title:"Board vote + close", state:{status:"pending"}, statusRule:{manual:true}, owner:"CEO", estimatedDays:14, dependencies:["s4"] }
       ]
+    },
+    {
+      id: "crisis-exec-departure", portal: "ceo", title: "Crisis / Key Exec Departure", subtitle: "When leadership breaks \u2014 what happens next", category: "operations",
+      statusLabel: "Standby", statusColor: "green",
+      costOfInaction: { monthlyCost: 250000, description: "Each month with a vacant C-level = $250K in delayed decisions, team drift, and customer confidence loss" },
+      steps: [
+        { id:"s1", title:"Immediate stabilization (Hour 0-24)", state:{status:"pending"}, statusRule:{manual:true}, owner:"CEO",
+          description:"Lock down the function. Name interim leader. Freeze non-critical decisions.",
+          recommendations:[
+            {label:"CEO takes direct control",impact:"Maximum authority, zero transition gap",detail:"CEO absorbs departing exec\u2019s direct reports temporarily. Best for small teams.",runwayImpact:"Neutral",arrImpact:"Protects $X ARR at risk"},
+            {label:"Promote from within (interim)",impact:"Fastest, preserves team morale",detail:"Elevate strongest VP or director. Team knows them, minimal disruption.",runwayImpact:"Neutral",arrImpact:"Minimal disruption if right person"},
+            {label:"Hire external interim exec",impact:"Experienced but slow to ramp",detail:"Fractional CRO/CFO/CTO on 3-6 month contracts. $15-25K/mo.",runwayImpact:"-$45K-150K contract",arrImpact:"Stabilizes function"}
+          ]},
+        { id:"s2", title:"Internal communication (Hour 24-48)", state:{status:"pending"}, statusRule:{manual:true}, owner:"CEO", dependencies:["s1"] },
+        { id:"s3", title:"External communication (Hour 48-72)", state:{status:"pending"}, statusRule:{manual:true}, owner:"CEO", dependencies:["s2"] },
+        { id:"s4", title:"Replacement strategy", state:{status:"pending"}, statusRule:{manual:true}, owner:"CEO", dependencies:["s3"],
+          resolutionOptions:[
+            {id:"opt1",label:"Internal promotion",impact:"60-day transition, team stays stable",tradeoff:"May lack external perspective, creates new VP gap",arrCost:"Minimal",timeCost:"60 days"},
+            {id:"opt2",label:"Executive search (retained)",impact:"Best candidate, widest net",tradeoff:"Expensive ($80-150K fee), takes 90-120 days",arrCost:"-$80-150K search fee",timeCost:"90-120 days"},
+            {id:"opt3",label:"Restructure the function",impact:"Eliminate the role, distribute to VPs",tradeoff:"Works if function is mature enough",arrCost:"+$200K savings",timeCost:"30 days"}
+          ]},
+        { id:"s5", title:"90-day recovery plan", state:{status:"pending"}, statusRule:{manual:true}, owner:"CEO", estimatedDays:90, dependencies:["s4"] }
+      ]
+    },
+    {
+      id: "product-sunset", portal: "ceo", title: "Product Sunset", subtitle: "Kill what doesn\u2019t earn its keep", category: "product",
+      statusLabel: "Evaluate", statusColor: "amber",
+      costOfInaction: { monthlyCost: 78000, description: "Supporting a dying product costs $78K/mo in engineering, support, and opportunity cost" },
+      steps: [
+        { id:"s1", title:"Product health scorecard", state:{status:"active", note:"Legacy API v1 and SMB Analytics flagged as sunset candidates."}, statusRule:{manual:true}, owner:"CPO",
+          description:"Score each product line on: ARR, growth, NRR, support burden, engineering cost, strategic alignment. Below 40/100 = sunset candidate.",
+          recommendations:[
+            {label:"Sunset Legacy API (v1)",impact:"Free 4 engineers, save $480K/yr",detail:"v1 has 23 customers ($180K ARR), declining 15%/quarter. All functionality in v2. Migration path exists.",runwayImpact:"+2.8mo from savings",arrImpact:"-$180K ARR (60% migrate = -$72K net)"},
+            {label:"Open-source Internal Tools Suite",impact:"Community maintenance, free 2 engineers",detail:"45 customers ($120K ARR) but we maintain it for free. Open-source + paid support tier.",runwayImpact:"+1.4mo",arrImpact:"-$60K ARR (50% take paid support)"},
+            {label:"Sell SMB Analytics Module",impact:"Lump sum + ongoing royalty",detail:"Standalone module, $280K ARR. Competitor interested. Sell with 2-year transition + 5% royalty.",runwayImpact:"+$800K lump + $14K/yr",arrImpact:"-$280K ARR, +$800K cash"}
+          ]},
+        { id:"s2", title:"Customer migration plan", state:{status:"pending"}, statusRule:{manual:true}, owner:"CPO", estimatedDays:30, dependencies:["s1"] },
+        { id:"s3", title:"Team reallocation", state:{status:"pending"}, statusRule:{manual:true}, owner:"COO", dependencies:["s2"] },
+        { id:"s4", title:"Sunset execution + monitoring", state:{status:"pending"}, statusRule:{manual:true}, owner:"CPO", estimatedDays:180, dependencies:["s3"] }
+      ]
     }
   ],
   lastUpdated: new Date().toISOString()

@@ -801,6 +801,228 @@
           "estimatedDays": 14
         }
       ]
+    },
+    {
+      "id": "crisis-exec-departure",
+      "portal": "ceo",
+      "title": "Crisis / Key Exec Departure",
+      "subtitle": "When leadership breaks \u2014 what happens next",
+      "category": "operations",
+      "statusLabel": "Standby",
+      "statusColor": "green",
+      "description": "A C-level leaves, gets fired, or a crisis hits. This playbook runs the first 72 hours: stabilize the team, protect customers, communicate externally, and name the replacement path.",
+      "dataSources": [
+        "company",
+        "financials",
+        "alerts"
+      ],
+      "costOfInaction": {
+        "monthlyCost": 250000,
+        "description": "Each month with a vacant C-level = $250K in delayed decisions, team drift, and customer confidence loss",
+        "basis": "Decision backlog + team velocity drop + customer churn acceleration"
+      },
+      "steps": [
+        {
+          "id": "s1",
+          "title": "Immediate stabilization (Hour 0-24)",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CEO",
+          "description": "Lock down the function. Name interim leader. Freeze non-critical decisions. Brief the leadership team privately before any external communication.",
+          "recommendations": [
+            {
+              "label": "CEO takes direct control",
+              "impact": "Maximum authority, zero transition gap",
+              "detail": "CEO absorbs the departing exec's direct reports temporarily. Best for small leadership teams. Risk: CEO bandwidth.",
+              "runwayImpact": "Neutral",
+              "arrImpact": "Protects $X ARR at risk during transition"
+            },
+            {
+              "label": "Promote from within (interim)",
+              "impact": "Fastest, preserves team morale",
+              "detail": "Elevate the strongest VP or director to interim. Team knows them, minimal disruption. Risk: may not be ready for C-level scope.",
+              "runwayImpact": "Neutral",
+              "arrImpact": "Minimal disruption if right person chosen"
+            },
+            {
+              "label": "Hire external interim exec",
+              "impact": "Experienced but slow to ramp",
+              "detail": "Fractional CRO/CFO/CTO available on 3-6 month contracts. $15-25K/mo. Immediate experience but needs 2-4 weeks to learn the business.",
+              "runwayImpact": "-$45K-150K for contract period",
+              "arrImpact": "Stabilizes function, may miss growth targets"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Internal communication (Hour 24-48)",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CEO",
+          "description": "All-hands message. Transparent but controlled. Key points: what happened, what changes, what stays the same, who's in charge now.",
+          "dependencies": [
+            "s1"
+          ]
+        },
+        {
+          "id": "s3",
+          "title": "External communication (Hour 48-72)",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CEO",
+          "description": "Board notification, key customer outreach, partner communication. Proactive beats reactive \u2014 if they hear it from someone else, trust breaks.",
+          "dependencies": [
+            "s2"
+          ]
+        },
+        {
+          "id": "s4",
+          "title": "Replacement strategy",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CEO",
+          "description": "Permanent replacement path: internal promotion, executive search, or restructure the role. Decide within 2 weeks, fill within 90 days.",
+          "dependencies": [
+            "s3"
+          ],
+          "resolutionOptions": [
+            {
+              "id": "opt1",
+              "label": "Internal promotion",
+              "impact": "60-day transition, team stays stable",
+              "tradeoff": "May lack external perspective, creates new VP gap",
+              "arrCost": "Minimal",
+              "timeCost": "60 days"
+            },
+            {
+              "id": "opt2",
+              "label": "Executive search (retained)",
+              "impact": "Best candidate, widest net",
+              "tradeoff": "Expensive ($80-150K fee), takes 90-120 days",
+              "arrCost": "-$80-150K search fee",
+              "timeCost": "90-120 days"
+            },
+            {
+              "id": "opt3",
+              "label": "Restructure the function",
+              "impact": "Eliminate the role, distribute to VPs",
+              "tradeoff": "Works if function is mature enough. Doesn't work if it needs a strong leader.",
+              "arrCost": "+$200K savings (no C-level comp)",
+              "timeCost": "30 days"
+            }
+          ]
+        },
+        {
+          "id": "s5",
+          "title": "90-day recovery plan",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CEO",
+          "description": "Weekly check-ins with interim/new leader. Track: decision backlog clearance, team morale pulse, customer confidence metrics. If not recovering by day 60, escalate.",
+          "dependencies": [
+            "s4"
+          ],
+          "estimatedDays": 90
+        }
+      ]
+    },
+    {
+      "id": "product-sunset",
+      "portal": "ceo",
+      "title": "Product Sunset",
+      "subtitle": "Kill what doesn't earn its keep",
+      "category": "product",
+      "statusLabel": "Evaluate",
+      "statusColor": "amber",
+      "description": "Every product line should justify its existence. When one drains resources without proportional return, this playbook evaluates whether to sunset, sell, or open-source it.",
+      "dataSources": [
+        "company",
+        "financials",
+        "revenue-mix",
+        "accounts"
+      ],
+      "costOfInaction": {
+        "monthlyCost": 78000,
+        "description": "Supporting a dying product costs $78K/mo in engineering, support, and opportunity cost",
+        "basis": "8 engineers + 4 support staff tied to product with <$400K ARR"
+      },
+      "steps": [
+        {
+          "id": "s1",
+          "title": "Product health scorecard",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CPO",
+          "description": "Score each product line on: ARR contribution, growth rate, NRR, support burden, engineering cost, strategic alignment. Below 40/100 = sunset candidate.",
+          "recommendations": [
+            {
+              "label": "Sunset Legacy API (v1)",
+              "impact": "Free 4 engineers, save $480K/yr",
+              "detail": "v1 API has 23 customers ($180K ARR), declining 15%/quarter. All functionality available in v2. Migration path exists.",
+              "runwayImpact": "+2.8mo from cost savings",
+              "arrImpact": "-$180K ARR (expect 60% migrate = -$72K net)"
+            },
+            {
+              "label": "Open-source Internal Tools Suite",
+              "impact": "Community maintenance, free 2 engineers",
+              "detail": "Internal tooling product has 45 customers ($120K ARR) but we maintain it for free anyway. Open-source + offer paid support tier.",
+              "runwayImpact": "+1.4mo",
+              "arrImpact": "-$60K ARR (50% take paid support), +community"
+            },
+            {
+              "label": "Sell SMB Analytics Module",
+              "impact": "Lump sum + ongoing royalty",
+              "detail": "Standalone module worth $280K ARR. A competitor has expressed interest. Sell with 2-year transition + 5% royalty on their revenue from it.",
+              "runwayImpact": "+$800K lump sum + $14K/yr royalty",
+              "arrImpact": "-$280K ARR, +$800K cash"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Customer migration plan",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CPO",
+          "description": "For each sunset candidate: migration path, timeline, support commitment. Communicate to customers 90 days before end-of-life. Offer incentives to migrate early.",
+          "dependencies": [
+            "s1"
+          ],
+          "estimatedDays": 30
+        },
+        {
+          "id": "s3",
+          "title": "Team reallocation",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "COO",
+          "description": "Where do the freed engineers and support staff go? Reassign to highest-priority product lines. Avoid layoffs if possible \u2014 retrain and redeploy.",
+          "dependencies": [
+            "s2"
+          ]
+        },
+        {
+          "id": "s4",
+          "title": "Sunset execution + monitoring",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CPO",
+          "description": "Execute the sunset: disable new signups, begin migration, track adoption. Kill switch at 6 months \u2014 if <80% migrated, extend or force-migrate.",
+          "dependencies": [
+            "s3"
+          ],
+          "estimatedDays": 180
+        }
+      ]
     }
   ]
 }
