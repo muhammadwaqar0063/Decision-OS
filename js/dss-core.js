@@ -301,6 +301,30 @@ var PLAYBOOK_FALLBACK = {
           crossPortalLink:{portal:"ceo",section:"board",label:"View board readiness metrics"} },
         { id:"s5", title:"Execute new strategy", state:{status:"pending"}, statusRule:{manual:true}, owner:"CEO", estimatedDays:90, dependencies:["s4"] }
       ]
+    },
+    {
+      id: "pricing-change", portal: "ceo", title: "Pricing Model Change", subtitle: "Restructure how you capture value", category: "growth",
+      statusLabel: "Evaluate", statusColor: "amber",
+      costOfInaction: { monthlyCost: 62000, description: "Underpriced tiers leave $62K/mo on the table while NRR erodes" },
+      steps: [
+        { id:"s1", title:"Pricing health diagnostic", state:{status:"active", note:"SMB NRR at 96% signals pricing misalignment. Enterprise at 112% indicates room to increase."}, statusRule:{manual:true}, owner:"CPO",
+          description:"Are customers churning on price or value? Analyze win/loss, NPS verbatims, and segment-level NRR.",
+          recommendations:[
+            {label:"Raise Enterprise prices 25-40%",impact:"Enterprise ARPU from $35.6K to $44-50K",detail:"Enterprise NRR is 112% and LTV:CAC is 6.2\u00d7. Customers are getting 6\u00d7 the value they pay for. Price to value.",runwayImpact:"+2.4mo from increased ARR",arrImpact:"+$1.5-2.4M ARR from existing base"},
+            {label:"Introduce usage-based tier for SMB",impact:"Replace flat $0.52K ARPU with consumption pricing",detail:"SMB NRR at 96% means flat pricing doesn\u2019t capture growth. Usage-based aligns cost with value.",runwayImpact:"+1.2mo",arrImpact:"+$340K from usage expansion"},
+            {label:"Kill the free/cheap tier entirely",impact:"Raise SMB floor from $0.52K to $0.8K minimum",detail:"Bottom 40% of SMB accounts use <$200/mo in value. They cost more in support than they pay.",runwayImpact:"+0.8mo from reduced support load",arrImpact:"-15% SMB customers, +$180K net ARR"}
+          ]},
+        { id:"s2", title:"Competitive pricing benchmark", state:{status:"pending"}, statusRule:{manual:true}, owner:"CPO", dependencies:["s1"] },
+        { id:"s3", title:"Model new pricing tiers", state:{status:"pending"}, statusRule:{manual:true}, owner:"CPO", estimatedDays:21, dependencies:["s2"] },
+        { id:"s4", title:"Grandfather existing customers", state:{status:"pending"}, statusRule:{manual:true}, owner:"CEO", dependencies:["s3"],
+          crossPortalLink:{portal:"cs",section:"atrisk",label:"View at-risk accounts for churn modeling"},
+          resolutionOptions:[
+            {id:"opt1",label:"Grandfather permanently",impact:"Zero churn from pricing change",tradeoff:"$1.8M/yr revenue gap vs new customers on new pricing",arrCost:"-$1.8M/yr gap",timeCost:"Permanent"},
+            {id:"opt2",label:"12-month grandfather period",impact:"Expected 3-5% churn at migration",tradeoff:"Balanced \u2014 gives customers time to adapt, closes gap in year 2",arrCost:"-$200K one-time churn",timeCost:"12 months"},
+            {id:"opt3",label:"Immediate migration with 20% discount",impact:"Expected 8-12% churn",tradeoff:"Fastest revenue uplift but risky with Enterprise accounts",arrCost:"-$500K-800K churn",timeCost:"0 months"}
+          ]},
+        { id:"s5", title:"Board approval + launch", state:{status:"pending"}, statusRule:{manual:true}, owner:"CEO", estimatedDays:30, dependencies:["s4"] }
+      ]
     }
   ],
   lastUpdated: new Date().toISOString()

@@ -365,6 +365,142 @@
           "estimatedDays": 90
         }
       ]
+    },
+    {
+      "id": "pricing-change",
+      "portal": "ceo",
+      "title": "Pricing Model Change",
+      "subtitle": "Restructure how you capture value",
+      "category": "growth",
+      "statusLabel": "Evaluate",
+      "statusColor": "amber",
+      "description": "When ARPU trends down, NRR drops below 100%, or competitors reprice \u2014 it's time to rethink pricing. This playbook evaluates whether a pricing change fixes the unit economics or just masks a product problem.",
+      "dataSources": [
+        "company",
+        "financials",
+        "revenue-mix",
+        "revenue-trend"
+      ],
+      "costOfInaction": {
+        "monthlyCost": 62000,
+        "description": "Underpriced tiers leave $62K/mo on the table while NRR erodes",
+        "basis": "Enterprise ARPU 6.8\u00d7 SMB but pricing gap is only 4\u00d7 \u2014 value capture leak"
+      },
+      "steps": [
+        {
+          "id": "s1",
+          "title": "Pricing health diagnostic",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CPO",
+          "description": "Are customers chricing on price or value? Analyze win/loss, NPS verbatims, and segment-level NRR. If NRR >110% everywhere, pricing isn't the problem \u2014 product is.",
+          "recommendations": [
+            {
+              "label": "Raise Enterprise prices 25-40%",
+              "impact": "Enterprise ARPU from $35.6K to $44-50K",
+              "detail": "Enterprise NRR is 112% and LTV:CAC is 6.2\u00d7. Customers are getting 6\u00d7 the value they pay for. Price to value.",
+              "runwayImpact": "+2.4mo from increased ARR",
+              "arrImpact": "+$1.5-2.4M ARR from existing base"
+            },
+            {
+              "label": "Introduce usage-based tier for SMB",
+              "impact": "Replace flat $0.52K ARPU with consumption pricing",
+              "detail": "SMB NRR at 96% means flat pricing doesn't capture growth. Usage-based aligns cost with value. Heavy users pay more, light users stay.",
+              "runwayImpact": "+1.2mo",
+              "arrImpact": "+$340K from usage expansion"
+            },
+            {
+              "label": "Kill the free/cheap tier entirely",
+              "impact": "Raise SMB floor from $0.52K to $0.8K minimum",
+              "detail": "Bottom 40% of SMB accounts use <$200/mo in value. They cost more in support than they pay. Minimum price gate filters tire-kickers.",
+              "runwayImpact": "+0.8mo from reduced support load",
+              "arrImpact": "-15% SMB customers, +$180K net ARR"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Competitive pricing benchmark",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CPO",
+          "description": "Where do we sit vs competitors? If we're 40%+ below market, we're leaving money on the table. If we're above, we need to justify with product differentiation.",
+          "dependencies": [
+            "s1"
+          ]
+        },
+        {
+          "id": "s3",
+          "title": "Model new pricing tiers",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CPO",
+          "description": "Design the new pricing structure. Run willingness-to-pay surveys. Model revenue impact at 3 adoption scenarios (optimistic, expected, churn risk).",
+          "dependencies": [
+            "s2"
+          ],
+          "estimatedDays": 21
+        },
+        {
+          "id": "s4",
+          "title": "Grandfather existing customers",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CEO",
+          "description": "Decision: do existing customers keep old pricing forever, for 12 months, or migrate immediately? Each option has different churn and revenue impact.",
+          "resolutionOptions": [
+            {
+              "id": "opt1",
+              "label": "Grandfather permanently",
+              "impact": "Zero churn from pricing change",
+              "tradeoff": "$1.8M/yr revenue gap vs new customers on new pricing",
+              "arrCost": "-$1.8M/yr gap",
+              "timeCost": "Permanent"
+            },
+            {
+              "id": "opt2",
+              "label": "12-month grandfather period",
+              "impact": "Expected 3-5% churn at migration",
+              "tradeoff": "Balanced \u2014 gives customers time to adapt, closes gap in year 2",
+              "arrCost": "-$200K one-time churn",
+              "timeCost": "12 months"
+            },
+            {
+              "id": "opt3",
+              "label": "Immediate migration with 20% discount",
+              "impact": "Expected 8-12% churn",
+              "tradeoff": "Fastest revenue uplift but risky with Enterprise accounts",
+              "arrCost": "-$500K-800K churn",
+              "timeCost": "0 months"
+            }
+          ],
+          "dependencies": [
+            "s3"
+          ],
+          "crossPortalLink": {
+            "portal": "cs",
+            "section": "atrisk",
+            "label": "View at-risk accounts for churn modeling"
+          }
+        },
+        {
+          "id": "s5",
+          "title": "Board approval + launch",
+          "statusRule": {
+            "manual": true
+          },
+          "owner": "CEO",
+          "description": "Present the pricing model, revenue projection, and churn risk to the board. Get approval, then roll out with a 90-day monitoring plan.",
+          "dependencies": [
+            "s4"
+          ],
+          "estimatedDays": 30
+        }
+      ]
     }
   ]
 }

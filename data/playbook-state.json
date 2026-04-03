@@ -80,6 +80,31 @@
         }
       },
       "lastUpdated": "2026-03-29T07:30:00+08:00"
+    },
+    "pricing-change": {
+      "steps": {
+        "s1": {
+          "status": "active",
+          "note": "SMB NRR at 96% signals pricing misalignment. Enterprise at 112% indicates room to increase."
+        },
+        "s2": {
+          "status": "pending",
+          "note": null
+        },
+        "s3": {
+          "status": "pending",
+          "note": null
+        },
+        "s4": {
+          "status": "pending",
+          "note": null
+        },
+        "s5": {
+          "status": "pending",
+          "note": null
+        }
+      },
+      "lastUpdated": "2026-03-29T07:30:00+08:00"
     }
   }
 }
