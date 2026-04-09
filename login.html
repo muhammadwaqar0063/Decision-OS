@@ -11,12 +11,12 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f8f7f4;--surface:#ffffff;
+  --bg:#F5F5F5;--surface:#ffffff;
   --border:#e4e2dc;
-  --ink:#1a1916;--ink2:#262523;--ink3:#7a7770;--ink4:#a8a59e;
-  --blue:#3b82f6;--blue-deep:#1d4ed8;--blue-soft:#dbeafe;
-  --green:#16a34a;--green-soft:#dcfce7;--green-text:#15803d;
-  --red:#dc2626;--red-soft:#fee2e2;--red-text:#b91c1c;
+  --ink:#222222;--ink2:#262523;--ink3:#7a7770;--ink4:#A2AAAD;
+  --blue:#003399;--blue-deep:#002266;--blue-soft:#E0E8F5;
+  --green:#2BDE73;--green-soft:#E3FBED;--green-text:#1A9E52;
+  --red:#FD1D1D;--red-soft:#FFECEC;--red-text:#D11111;
   --amber:#d97706;--amber-soft:#fef3c7;--amber-text:#92400e;
   --mono:'JetBrains Mono',monospace;--sans:'Inter',system-ui,sans-serif;
   --radius:10px;
@@ -79,7 +79,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-
 /* ── LEFT: Brand ── */
 .login-left{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:48px;background:#ffffff;position:relative;overflow:hidden}
 .login-brand{position:relative;text-align:center;max-width:400px;z-index:2}
-.login-brand-icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#3b82f6,#7c3aed);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:0 4px 20px rgba(59,130,246,.15)}
+.login-brand-icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#003399,#FFCC00);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:0 4px 20px rgba(0,51,153,.15)}
 .login-brand-icon svg{width:26px;height:26px;fill:white}
 .login-brand h1{font-size:36px;font-weight:800;color:var(--ink);letter-spacing:-0.04em;margin-bottom:6px;line-height:1.1}
 .login-brand h1 span{display:block;font-weight:300;font-size:16px;color:var(--ink3);letter-spacing:0.02em;margin-top:8px}
@@ -95,7 +95,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-
 .form-group{margin-bottom:16px}
 .form-label{display:block;font-size:11px;font-weight:600;color:var(--ink2);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.04em}
 .form-input{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:8px;font-family:var(--sans);font-size:13px;color:var(--ink);background:var(--bg);transition:all .15s;outline:none}
-.form-input:focus{border-color:var(--blue);background:white;box-shadow:0 0 0 3px rgba(59,130,246,.08)}
+.form-input:focus{border-color:var(--blue);background:white;box-shadow:0 0 0 3px rgba(0,51,153,.08)}
 .form-input::placeholder{color:var(--ink4)}
 .form-input.error{border-color:var(--red);box-shadow:0 0 0 3px rgba(220,38,38,.06)}
 .form-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
@@ -105,7 +105,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-
 .form-link{font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
 .form-link:hover{text-decoration:underline}
 
-.btn-login{width:100%;padding:12px;border:none;border-radius:8px;font-family:var(--sans);font-size:13px;font-weight:600;color:white;background:linear-gradient(135deg,#3b82f6,#2563eb);cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(59,130,246,.25)}
+.btn-login{width:100%;padding:12px;border:none;border-radius:8px;font-family:var(--sans);font-size:13px;font-weight:600;color:#222;background:linear-gradient(135deg,#FFCC00,#E6B800);cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(255,204,0,.25)}
 .btn-login:hover{box-shadow:0 4px 16px rgba(59,130,246,.35);transform:translateY(-1px)}
 .btn-login:active{transform:none}
 .btn-login.loading{pointer-events:none;opacity:.8}
@@ -122,6 +122,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-
 .demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .demo-card{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .15s;background:var(--bg)}
 .demo-card:hover{border-color:var(--blue);background:var(--blue-soft)}
+.form-link{font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.form-check input[type=checkbox]{width:16px;height:16px;accent-color:var(--blue);cursor:pointer}
 .demo-card .da{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:white;flex-shrink:0}
 .demo-card .di{flex:1;min-width:0;overflow:hidden}
 .demo-card .dn{font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

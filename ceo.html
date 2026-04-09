@@ -14,7 +14,7 @@
 <script id="chart-fallback">document.addEventListener("DOMContentLoaded",function(){window.Chart||document.querySelectorAll("canvas").forEach(function(c){var p=c.parentElement;if(p){c.style.display="none";var d=document.createElement("div");d.style.cssText="display:flex;align-items:center;justify-content:center;height:100%;min-height:160px;color:#a8a59e;font-size:12px;font-family:Inter,sans-serif;text-align:center";d.innerHTML="\u26A0 Charts unavailable";p.appendChild(d)}})})
 </script>
 <style>*,*::before,*::after {box-sizing:border-box;margin:0;padding:0}
-:root{--accent:#3b82f6}
+:root{--accent:#FFCC00}
 body {font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased}
 a {color:inherit}
 /* HEADER */
@@ -41,7 +41,7 @@ table {width:100%;border-collapse:collapse;font-size:12px}
 .scen-bar {display:inline-flex;background:var(--bg2);border-radius:8px;padding:3px;gap:2px;border:1px solid var(--border)}
 .scen-btn {padding:7px 22px;border-radius:6px;font-family:var(--sans);font-size:11px;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--ink3);transition:all .15s}
 .scen-btn.s-bear {background:var(--red);color:#fff;box-shadow:0 2px 8px rgba(220,38,38,.2)}
-.scen-btn.s-base {background:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(59,130,246,.2)}
+.scen-btn.s-base {background:var(--gold);color:#222;box-shadow:0 2px 8px rgba(255,204,0,.25)}
 .scen-btn.s-bull {background:var(--green);color:#fff;box-shadow:0 2px 8px rgba(22,163,74,.2)}
 .sg {display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
 .sg-cell {padding:20px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);text-align:center;transition:all .3s;cursor:pointer;box-shadow:var(--shadow)}
@@ -50,11 +50,11 @@ table {width:100%;border-collapse:collapse;font-size:12px}
 .sg-cell .sg-v {font-size:22px;font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:6px;transition:all .4s}
 .sg-cell .sg-s {font-size:10px;color:var(--ink3)}
 /* STORYTELLING */
-.story {background:linear-gradient(135deg,#eff6ff,#f5f3ff);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 24px;color:var(--ink);margin-bottom:12px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
-.story::before {content:'';position:absolute;top:-80px;right:-80px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.08),transparent 70%)}
-.story::after {content:'';position:absolute;bottom:-60px;left:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.06),transparent 70%)}
-.story .s-num {color:var(--blue)}
-.story .s-body strong {color:var(--amber-text);font-weight:600}
+.story {background:linear-gradient(135deg,#002266,#003399);border:1px solid rgba(255,204,0,.15);border-radius:var(--radius-lg);padding:18px 24px;color:#fff;margin-bottom:12px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.story::before {content:'';position:absolute;top:-80px;right:-80px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,204,0,.12),transparent 70%)}
+.story::after {content:'';position:absolute;bottom:-60px;left:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,204,0,.06),transparent 70%)}
+.story .s-num {color:var(--gold)}
+.story .s-body strong {color:var(--gold);font-weight:600}
 /* CALLOUT */
 .cl {border-radius:var(--radius);padding:14px 18px;font-size:12px;line-height:1.7;border:1px solid;margin-bottom:12px}
 /* DECISION FLOW */
@@ -65,8 +65,8 @@ table {width:100%;border-collapse:collapse;font-size:12px}
 /* rp-header h4 styled via dss-shared.css */
 /* PLAYBOOK STEPS */
 .pbs {display:flex;flex-direction:column;gap:6px}
-.pb-step.cur {background:var(--blue-soft);border-color:rgba(59,130,246,.2)}
-.pb-num {width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 6px rgba(59,130,246,.25)}
+.pb-step.cur {background:var(--gold-soft);border-color:rgba(255,204,0,.2)}
+.pb-num {width:28px;height:28px;border-radius:50%;background:var(--gold);color:#222;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 6px rgba(255,204,0,.25)}
 .pb-step.done .pb-num {background:var(--green);box-shadow:0 2px 6px rgba(22,163,74,.25);color:#fff}
 /* CD HEADER with filters */
 .cd-h {display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:18px 20px 0}
@@ -211,7 +211,7 @@ table {width:100%;border-collapse:collapse;font-size:12px}
             <option value="forecast">+ Forecast</option>
           </select>
           <div id="rev-seg-filters" style="display:flex;gap:6px">
-            <label style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--ink3);cursor:pointer"><input type="checkbox" class="rev-seg-cb" value="enterprise" checked onchange="loadRevenueTrend()" style="accent-color:#3b82f6"> <span style="width:8px;height:8px;border-radius:2px;background:#3b82f6;display:inline-block"></span> Enterprise</label>
+            <label style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--ink3);cursor:pointer"><input type="checkbox" class="rev-seg-cb" value="enterprise" checked onchange="loadRevenueTrend()" style="accent-color:#003399"> <span style="width:8px;height:8px;border-radius:2px;background:#003399;display:inline-block"></span> Enterprise</label>
             <label style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--ink3);cursor:pointer"><input type="checkbox" class="rev-seg-cb" value="midmarket" checked onchange="loadRevenueTrend()" style="accent-color:#7c3aed"> <span style="width:8px;height:8px;border-radius:2px;background:#7c3aed;display:inline-block"></span> Mid-Market</label>
             <label style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--ink3);cursor:pointer"><input type="checkbox" class="rev-seg-cb" value="smb" checked onchange="loadRevenueTrend()" style="accent-color:#d97706"> <span style="width:8px;height:8px;border-radius:2px;background:#d97706;display:inline-block"></span> SMB</label>
           </div>
@@ -657,7 +657,7 @@ function setScenario(type,btn){
 const REV_TREND_FALLBACK = {
   months:["Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar"],
   segments:{
-    enterprise:{label:"Enterprise",color:"#3b82f6",data:[576,605,598,612,634,653,670,695,688,712,731,749]},
+    enterprise:{label:"Enterprise",color:"#003399",data:[576,605,598,612,634,653,670,695,688,712,731,749]},
     midmarket:{label:"Mid-Market",color:"#7c3aed",data:[296,312,321,308,325,342,356,368,372,385,398,409]},
     smb:{label:"SMB",color:"#d97706",data:[146,140,133,121,136,143,143,138,127,128,132,135]}
   },
@@ -689,7 +689,7 @@ async function loadRevV2(){
     total:{mrr:[1018,1057,1082,1071,1095,1138,1169,1201,1187,1225,1261,1293],target:[1020,1045,1070,1095,1120,1145,1170,1195,1220,1250,1280,1310],newBusiness:[92,88,74,68,81,97,91,104,78,95,92,101],expansion:[48,52,41,36,44,58,53,61,49,63,67,59],churned:[-28,-31,-24,-32,-27,-35,-29,-26,-34,-30,-33,-38],netNew:[112,109,91,72,98,120,115,139,93,128,126,122],momGrowth:[3.2,3.8,2.4,-1.0,2.2,3.9,2.7,2.7,-1.2,3.2,2.9,2.5],arr:[12216,12684,12984,12852,13140,13656,14028,14412,14244,14700,15132,15516]},
     customers:{total:[252,261,266,264,270,279,284,291,288,293,296,298],new:[20,18,14,11,16,22,17,21,13,16,14,15],churned:[5,4,3,6,4,7,5,4,6,5,5,7],net:[15,14,11,5,12,15,12,17,7,11,9,8]},
     arpu:{overall:[4.04,4.05,4.07,4.05,4.06,4.08,4.12,4.13,4.12,4.18,4.25,4.34],enterprise:[28.8,29.4,29.1,29.5,30.2,31.1,31.8,32.6,33.0,33.9,34.7,35.6],midmarket:[6.3,6.4,6.3,6.4,6.5,6.6,6.7,6.8,6.9,7.0,7.1,7.3],smb:[0.68,0.67,0.65,0.63,0.62,0.61,0.60,0.59,0.57,0.56,0.54,0.52]},
-    segments:{enterprise:{label:"Enterprise",color:"#3b82f6",mrr:[576,605,598,612,634,653,670,695,688,712,731,749],new:[32,36,28,25,34,41,36,40,30,37,34,38],expansion:[28,33,24,22,30,38,34,39,27,40,43,37],churned:[-7,-6,-5,-8,-6,-9,-7,-6,-8,-7,-9,-10],customers:[16,17,17,17,18,18,18,19,19,19,19,19],momGrowth:[2.8,5.0,-1.2,2.3,3.6,3.0,2.6,3.7,-1.0,3.5,2.7,2.5],yoyMrr:[392,410,428,447,465,482,501,520,538,555,572,588]},midmarket:{label:"Mid-Market",color:"#7c3aed",mrr:[296,312,321,308,325,342,356,368,372,385,398,409],new:[35,32,28,24,31,38,34,40,32,36,35,39],expansion:[15,14,12,10,13,17,16,18,14,19,20,18],churned:[-10,-9,-7,-11,-8,-12,-9,-8,-11,-10,-11,-12],customers:[48,52,54,52,55,59,62,66,65,68,70,72],momGrowth:[4.1,5.4,2.9,-4.0,5.5,5.2,4.1,3.4,1.1,3.5,3.4,2.8],yoyMrr:[198,210,222,234,246,258,270,282,294,305,316,327]},smb:{label:"SMB",color:"#d97706",mrr:[146,140,133,121,136,143,143,138,127,128,132,135],new:[25,20,18,19,16,18,21,24,16,22,23,24],expansion:[5,5,5,4,1,3,3,4,8,4,4,4],churned:[-11,-16,-12,-13,-13,-14,-13,-12,-15,-13,-13,-16],customers:[188,192,195,195,197,202,204,206,204,206,207,207],momGrowth:[2.8,-4.1,-5.0,-9.0,12.4,5.1,0.0,-3.5,-8.0,0.8,3.1,2.3],yoyMrr:[118,122,126,130,133,135,137,138,140,141,142,143]}},
+    segments:{enterprise:{label:"Enterprise",color:"#003399",mrr:[576,605,598,612,634,653,670,695,688,712,731,749],new:[32,36,28,25,34,41,36,40,30,37,34,38],expansion:[28,33,24,22,30,38,34,39,27,40,43,37],churned:[-7,-6,-5,-8,-6,-9,-7,-6,-8,-7,-9,-10],customers:[16,17,17,17,18,18,18,19,19,19,19,19],momGrowth:[2.8,5.0,-1.2,2.3,3.6,3.0,2.6,3.7,-1.0,3.5,2.7,2.5],yoyMrr:[392,410,428,447,465,482,501,520,538,555,572,588]},midmarket:{label:"Mid-Market",color:"#7c3aed",mrr:[296,312,321,308,325,342,356,368,372,385,398,409],new:[35,32,28,24,31,38,34,40,32,36,35,39],expansion:[15,14,12,10,13,17,16,18,14,19,20,18],churned:[-10,-9,-7,-11,-8,-12,-9,-8,-11,-10,-11,-12],customers:[48,52,54,52,55,59,62,66,65,68,70,72],momGrowth:[4.1,5.4,2.9,-4.0,5.5,5.2,4.1,3.4,1.1,3.5,3.4,2.8],yoyMrr:[198,210,222,234,246,258,270,282,294,305,316,327]},smb:{label:"SMB",color:"#d97706",mrr:[146,140,133,121,136,143,143,138,127,128,132,135],new:[25,20,18,19,16,18,21,24,16,22,23,24],expansion:[5,5,5,4,1,3,3,4,8,4,4,4],churned:[-11,-16,-12,-13,-13,-14,-13,-12,-15,-13,-13,-16],customers:[188,192,195,195,197,202,204,206,204,206,207,207],momGrowth:[2.8,-4.1,-5.0,-9.0,12.4,5.1,0.0,-3.5,-8.0,0.8,3.1,2.3],yoyMrr:[118,122,126,130,133,135,137,138,140,141,142,143]}},
     forecast:{months:["Apr","May","Jun"],optimistic:[1340,1382,1425],base:[1320,1352,1385],pessimistic:[1298,1315,1330]}
   };
   return REV_V2_DATA;
@@ -734,7 +734,7 @@ const AXIS_COLOR = '#8c8980';
 
 /* ── Professional Color Palette ── */
 const COL = {
-  primary:   '#3b82f6',   // Accent blue — primary line
+  primary:   '#003399',   // Deep blue — primary line
   secondary: '#64748b',   // Slate — secondary
   tertiary:  '#94a3b8',   // Light slate — tertiary
   positive:  '#16a34a',   // Green — growth / new
@@ -759,7 +759,7 @@ function renderComposition(d, compare){
 
   const datasets = [
     {label:'New Business', data:d.total.newBusiness, borderColor:'#16a34a', borderWidth:1.8, borderDash:[6,3], fill:false, tension:.35, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:'#16a34a', order:3},
-    {label:'Expansion', data:d.total.expansion, borderColor:'#3b82f6', borderWidth:1.8, borderDash:[6,3], fill:false, tension:.35, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:'#3b82f6', order:3},
+    {label:'Expansion', data:d.total.expansion, borderColor:'#003399', borderWidth:1.8, borderDash:[6,3], fill:false, tension:.35, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:'#003399', order:3},
     {label:'Churn', data:d.total.churned, borderColor:'#ef4444', borderWidth:1.8, borderDash:[6,3], fill:false, tension:.35, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:'#ef4444', order:3},
     {label:'Total MRR', data:d.total.mrr, borderColor:'#1a1916', backgroundColor:'rgba(0,0,0,.04)', borderWidth:2.5, tension:.35, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:'#1a1916', pointHoverBorderColor:'#fff', pointHoverBorderWidth:2, fill:true, order:1}
   ];
@@ -805,7 +805,7 @@ function renderGrowth(d, compare){
   const r = document.getElementById('ch-rev');
   if(!r) return; if(r._chart) r._chart.destroy();
 
-  const segColors = ['#3b82f6','#7c3aed','#d97706'];
+  const segColors = ['#003399','#7c3aed','#d97706'];
   const datasets = [];
   let ci = 0;
   for(const [k,seg] of Object.entries(d.segments)){
@@ -846,7 +846,7 @@ function renderArpuView(d){
   const datasets = [];
   datasets.push({label:'Overall ARPU', data:d.arpu.overall, borderColor:'#1a1916', borderWidth:2.5, tension:.35, pointRadius:0, fill:false});
 
-  const segColors = ['#3b82f6','#7c3aed','#d97706'];
+  const segColors = ['#003399','#7c3aed','#d97706'];
   let ci = 0;
   for(const [k,seg] of Object.entries(d.segments)){
     if(d.arpu[k]) datasets.push({label:seg.label+' ARPU', data:d.arpu[k], borderColor:segColors[ci], borderWidth:1.8, borderDash:[6,3], tension:.35, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:segColors[ci], fill:false});
@@ -885,7 +885,7 @@ function renderYoY(d){
   const datasets = [];
   datasets.push({label:'This Year MRR', data:d.total.mrr, borderColor:'#1a1916', borderWidth:2.5, tension:.35, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:'#1a1916', fill:false});
 
-  const segColors = ['#3b82f6','#7c3aed','#d97706'];
+  const segColors = ['#003399','#7c3aed','#d97706'];
   let ci = 0;
   for(const [k,seg] of Object.entries(d.segments)){
     datasets.push({label:seg.label+' (Last Year)', data:seg.yoyMrr, borderColor:segColors[ci], borderDash:[4,4], borderWidth:1.8, tension:.35, pointRadius:0, fill:false, borderCapStyle:'round'});
@@ -963,7 +963,7 @@ const ICN = {
   caution: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
   trendUp: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>',
   trendDown: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>',
-  target: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+  target: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFCC00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
   shield: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
   info: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
   chart: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>'
