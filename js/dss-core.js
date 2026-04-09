@@ -116,7 +116,7 @@ function initCharts() {
       canvas._chart = new Chart(ctx, { type, data: chartData, options: {
         responsive: true, maintainAspectRatio: false,
         plugins: { legend: { display: false } },
-        scales: { x: { grid: { display: false } }, y: { grid: { color: '#e4e2dc' } } }
+        scales: { x: { grid: { display: false } }, y: { grid: { color: '#e0e0e0' } } }
       }});
     } catch (e) { console.warn('Chart init error:', e); }
   });
@@ -601,7 +601,7 @@ async function renderPlaybooks(portal) {
           const completedAt = step.state?.completedAt || step.completedAt;
           const completedText = step.completedText || 'Completed';
           html += '<div class="pb-completion-block">';
-          html += '<div class="pb-completion-header"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
+          html += '<div class="pb-completion-header"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2bde73" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
           html += '<span class="pb-completion-label">' + escapeHtml(completedText) + '</span></div>';
           if (completedAt) html += '<div class="pb-completion-date">Completed ' + new Date(completedAt).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) + '</div>';
           if (step.owner) html += '<div class="pb-completion-owner">Owned by <strong>' + escapeHtml(step.owner) + '</strong></div>';

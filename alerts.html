@@ -12,13 +12,13 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f8f7f4;--bg2:#f0eeea;--bg3:#e8e6e1;--bg4:#dddad4;
+  --bg:#f5f5f5;--bg2:#ececec;--bg3:#e0e0e0;--bg4:#d5d5d5;
   --surface:#ffffff;--surface2:#fdfcfb;--surface3:#f9f8f5;
-  --border:#e4e2dc;--border2:#d6d4ce;--border3:#c8c5be;
-  --ink:#1a1916;--ink2:#262523;--ink3:#7a7770;--ink4:#a8a59e;--ink5:#ccc9c2;
-  --blue:#3b82f6;--blue-soft:#dbeafe;--blue-text:#1d4ed8;
-  --green:#16a34a;--green-soft:#dcfce7;--green-text:#15803d;
-  --red:#dc2626;--red-soft:#fee2e2;--red-text:#b91c1c;
+  --border:#e0e0e0;--border2:#d5d5d5;--border3:#d0d0d0;
+  --ink:#222222;--ink2:#222222;--ink3:#7a7770;--ink4:#a2aaad;--ink5:#d5d5d5;
+  --blue:#003399;--blue-soft:#e0e8f5;--blue-text:#003399;
+  --green:#2bde73;--green-soft:#e3fbed;--green-text:#1a9e52;
+  --red:#fd1d1d;--red-soft:#ffecec;--red-text:#d11111;
   --amber:#d97706;--amber-soft:#fef3c7;--amber-text:#b45309;
   --purple:#7c3aed;--purple-soft:#ede9fe;--purple-text:#6d28d9;
   --mono:'JetBrains Mono',monospace;--sans:'Inter',system-ui,sans-serif;
@@ -38,7 +38,7 @@ a{color:inherit;text-decoration:none}
 .hdr-r{margin-left:auto;display:flex;align-items:center;gap:4px}
 .hdr-r a{font-size:10px;font-weight:600;padding:5px 11px;border-radius:6px;color:var(--ink2);transition:all .15s;white-space:nowrap}
 .hdr-r a:hover{color:var(--ink2);background:var(--bg2)}
-.hdr-r a.on{background:var(--red);color:#fff;box-shadow:0 2px 8px rgba(220,38,38,.25)}
+.hdr-r a.on{background:var(--red);color:#fff;box-shadow:0 2px 8px rgba(253,29,29,.25)}
 .tabs{position:fixed;top:56px;left:0;right:0;z-index:199;height:46px;background:rgba(248,247,244,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;padding:0 32px;gap:2px;overflow-x:auto}
 .tabs::-webkit-scrollbar{display:none}
 .tab{padding:0 18px;height:100%;font-size:12px;font-weight:500;color:var(--ink2);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1px;transition:all .2s;white-space:nowrap;background:none;border:none;font-family:var(--sans);border-radius:6px 6px 0 0}
@@ -66,9 +66,9 @@ tr.crit td{background:var(--red-soft)!important}tr.warn td{background:var(--ambe
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .alert-card{padding:16px 20px;border-radius:var(--radius);border:1px solid;margin-bottom:10px;transition:all .2s}
 .alert-card:hover{box-shadow:var(--shadow-hover)}
-.alert-card.crit{border-color:rgba(220,38,38,.15);background:var(--red-soft)}
+.alert-card.crit{border-color:rgba(253,29,29,.15);background:var(--red-soft)}
 .alert-card.warn{border-color:rgba(217,119,6,.15);background:var(--amber-soft)}
-.alert-card.info{border-color:rgba(59,130,246,.15);background:var(--blue-soft)}
+.alert-card.info{border-color:rgba(0,51,153,.15);background:var(--blue-soft)}
 .alert-card .a-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .alert-card .a-title{font-size:13px;font-weight:600}
 .alert-card .a-time{font-size:10px;color:var(--ink4);font-family:var(--mono)}
@@ -79,9 +79,9 @@ tr.crit td{background:var(--red-soft)!important}tr.warn td{background:var(--ambe
 .sev-crit{background:var(--red)}.sev-warn{background:var(--amber)}.sev-info{background:var(--blue)}
 .prog{height:6px;background:var(--bg2);border-radius:3px;overflow:hidden;margin:4px 0}
 .prog-fill{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.22,1,.36,1)}
-.prog-green{background:linear-gradient(90deg,#86efac,#16a34a)}.prog-red{background:linear-gradient(90deg,#fca5a5,#dc2626)}.prog-amber{background:linear-gradient(90deg,#fcd34d,#d97706)}.prog-blue{background:linear-gradient(90deg,#93c5fd,#3b82f6)}
+.prog-green{background:linear-gradient(90deg,#a8f0c0,#2bde73)}.prog-red{background:linear-gradient(90deg,#fca5a5,#fd1d1d)}.prog-amber{background:linear-gradient(90deg,#fcd34d,#d97706)}.prog-blue{background:linear-gradient(90deg,#93c5fd,#003399)}
 .cl{border-radius:var(--radius);padding:14px 18px;font-size:12px;line-height:1.7;border:1px solid;margin-bottom:12px}
-.cl-blue{background:var(--blue-soft);border-color:rgba(59,130,246,.15);color:var(--blue-text)}
+.cl-blue{background:var(--blue-soft);border-color:rgba(0,51,153,.15);color:var(--blue-text)}
 .cl strong{font-weight:600}
 .mono{font-family:var(--mono)}.fw6{font-weight:600}
 .cgrn{color:var(--green-text)}.cred{color:var(--red-text)}.camb{color:var(--amber-text)}.cgry{color:var(--ink3)}
@@ -111,7 +111,7 @@ tr.crit td{background:var(--red-soft)!important}tr.warn td{background:var(--ambe
     <div class="kc at-blue"><div class="kl">SLA Compliance</div><div class="kv">94%</div><div class="ks">Target: >95%</div></div>
   </div>
   <div class="cd">
-    <div class="cd-title"><svg width="10" height="10" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#dc2626"/></svg> Critical Alerts</div>
+    <div class="cd-title"><svg width="10" height="10" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#fd1d1d"/></svg> Critical Alerts</div>
     <div class="alert-card crit"><div class="a-head"><div style="display:flex;align-items:center;gap:8px"><span class="sev sev-crit">CRITICAL</span><span class="a-title">SMB NRR below 96% | net contraction</span></div><span class="a-time">4 min ago</span></div>
     <div class="a-body">38 SMB accounts contracting faster than they expand. NRR dropped to 96%. Annualized churn: $1.3M. If trend continues, SMB becomes net-negative by Q3.</div>
     <div class="a-meta"><span>Source: <strong>CS Portal</strong></span><span>Routed: <strong>CS → CRO → CEO</strong></span><span>SLA: <strong class="cred">4 hours</strong></span><span>Status: <span class="bdg bdg-amber">Awaiting CRO</span></span></div></div>
@@ -138,7 +138,7 @@ tr.crit td{background:var(--red-soft)!important}tr.warn td{background:var(--ambe
     <div class="a-meta"><span>Source: <strong>CFO Portal</strong></span><span>Status: <span class="bdg bdg-blue">Monitoring</span></span></div></div>
   </div>
   <div class="cd">
-    <div class="cd-title"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Info Alerts</div>
+    <div class="cd-title"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#003399 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Info Alerts</div>
     <div class="alert-card info"><div class="a-head"><div style="display:flex;align-items:center;gap:8px"><span class="sev sev-info">INFO</span><span class="a-title">Board meeting in 18 days, 3/5 fundraising metrics green</span></div><span class="a-time">1 day ago</span></div>
     <div class="a-body">Runway and Burn Multiple failing. CEO needs to address in board narrative.</div>
     <div class="a-meta"><span>Source: <strong>CEO Portal</strong></span><span>Status: <span class="bdg bdg-blue">FYI</span></span></div></div>
@@ -206,11 +206,11 @@ tr.crit td{background:var(--red-soft)!important}tr.warn td{background:var(--ambe
   <div class="cd"><div class="cd-title">Resolved Alerts | Last 30 Days</div>
     <table><thead><tr><th>Alert</th><th>Severity</th><th>Portal</th><th>Triggered</th><th>Response</th><th>Resolution</th><th>Outcome</th></tr></thead>
     <tbody>
-      <tr><td class="fw6">Apex Construction, health 32</td><td><span class="bdg bdg-red">Critical</span></td><td>CS</td><td>Mar 5</td><td class="mono">1.2 hrs</td><td class="mono">3 days</td><td class="cgrn fw6">Saved <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
-      <tr><td class="fw6">DB connection pool exhaustion</td><td><span class="bdg bdg-red">Critical</span></td><td>CTO</td><td>Mar 18</td><td class="mono">0.3 hrs</td><td class="mono">47 min</td><td class="cgrn fw6">Resolved <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
-      <tr><td class="fw6">Pipeline drop, 18% WoW</td><td><span class="bdg bdg-amber">Warning</span></td><td>CRO</td><td>Mar 12</td><td class="mono">2.4 hrs</td><td class="mono">1 day</td><td class="cgrn fw6">Recovered <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
+      <tr><td class="fw6">Apex Construction, health 32</td><td><span class="bdg bdg-red">Critical</span></td><td>CS</td><td>Mar 5</td><td class="mono">1.2 hrs</td><td class="mono">3 days</td><td class="cgrn fw6">Saved <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2bde73" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
+      <tr><td class="fw6">DB connection pool exhaustion</td><td><span class="bdg bdg-red">Critical</span></td><td>CTO</td><td>Mar 18</td><td class="mono">0.3 hrs</td><td class="mono">47 min</td><td class="cgrn fw6">Resolved <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2bde73" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
+      <tr><td class="fw6">Pipeline drop, 18% WoW</td><td><span class="bdg bdg-amber">Warning</span></td><td>CRO</td><td>Mar 12</td><td class="mono">2.4 hrs</td><td class="mono">1 day</td><td class="cgrn fw6">Recovered <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2bde73" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
       <tr><td class="fw6">SMB churn spike, 4 accounts</td><td><span class="bdg bdg-amber">Warning</span></td><td>CS</td><td>Mar 8</td><td class="mono">3.8 hrs</td><td class="mono">5 days</td><td class="camb fw6">2 saved, 2 lost</td></tr>
-      <tr><td class="fw6">Uptime <99.9% (15-min window)</td><td><span class="bdg bdg-red">Critical</span></td><td>CTO</td><td>Feb 22</td><td class="mono">0.2 hrs</td><td class="mono">23 min</td><td class="cgrn fw6">Resolved <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
+      <tr><td class="fw6">Uptime <99.9% (15-min window)</td><td><span class="bdg bdg-red">Critical</span></td><td>CTO</td><td>Feb 22</td><td class="mono">0.2 hrs</td><td class="mono">23 min</td><td class="cgrn fw6">Resolved <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2bde73" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
     </tbody></table>
   </div>
   <div class="g2">

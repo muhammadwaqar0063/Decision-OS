@@ -13,13 +13,13 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f8f7f4;--bg2:#f0eeea;--bg3:#e8e6e1;--bg4:#dddad4;
+  --bg:#f5f5f5;--bg2:#ececec;--bg3:#e0e0e0;--bg4:#d5d5d5;
   --surface:#ffffff;--surface2:#fdfcfb;--surface3:#f9f8f5;
-  --border:#e4e2dc;--border2:#d6d4ce;--border3:#c8c5be;
-  --ink:#1a1916;--ink2:#262523;--ink3:#7a7770;--ink4:#a8a59e;--ink5:#ccc9c2;
-  --blue:#3b82f6;--blue-soft:#dbeafe;--blue-text:#1d4ed8;
-  --green:#16a34a;--green-soft:#dcfce7;--green-text:#15803d;
-  --red:#dc2626;--red-soft:#fee2e2;--red-text:#b91c1c;
+  --border:#e0e0e0;--border2:#d5d5d5;--border3:#d0d0d0;
+  --ink:#222222;--ink2:#222222;--ink3:#7a7770;--ink4:#a2aaad;--ink5:#d5d5d5;
+  --blue:#003399;--blue-soft:#e0e8f5;--blue-text:#003399;
+  --green:#2bde73;--green-soft:#e3fbed;--green-text:#1a9e52;
+  --red:#fd1d1d;--red-soft:#ffecec;--red-text:#d11111;
   --amber:#d97706;--amber-soft:#fef3c7;--amber-text:#b45309;
   --purple:#7c3aed;--purple-soft:#ede9fe;--purple-text:#6d28d9;
   --mono:'JetBrains Mono',monospace;--sans:'Inter',system-ui,sans-serif;
@@ -62,9 +62,9 @@ tbody tr{transition:background .15s}tbody tr:hover td{background:var(--surface3)
 .bdg-green{background:var(--green-soft);color:var(--green-text)}.bdg-red{background:var(--red-soft);color:var(--red-text)}.bdg-amber{background:var(--amber-soft);color:var(--amber-text)}.bdg-purple{background:var(--purple-soft);color:var(--purple-text)}.bdg-blue{background:var(--blue-soft);color:var(--blue-text)}
 .prog{height:6px;background:var(--bg2);border-radius:3px;overflow:hidden;margin:4px 0}
 .prog-fill{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.22,1,.36,1)}
-.prog-green{background:linear-gradient(90deg,#86efac,#16a34a)}.prog-red{background:linear-gradient(90deg,#fca5a5,#dc2626)}.prog-amber{background:linear-gradient(90deg,#fcd34d,#d97706)}.prog-purple{background:linear-gradient(90deg,#c4b5fd,#7c3aed)}.prog-blue{background:linear-gradient(90deg,#93c5fd,#3b82f6)}
+.prog-green{background:linear-gradient(90deg,#a8f0c0,#2bde73)}.prog-red{background:linear-gradient(90deg,#fca5a5,#fd1d1d)}.prog-amber{background:linear-gradient(90deg,#fcd34d,#d97706)}.prog-purple{background:linear-gradient(90deg,#c4b5fd,#7c3aed)}.prog-blue{background:linear-gradient(90deg,#93c5fd,#003399)}
 .cl{border-radius:var(--radius);padding:14px 18px;font-size:12px;line-height:1.7;border:1px solid;margin-bottom:12px}
-.cl-green{background:var(--green-soft);border-color:rgba(22,163,74,.15);color:var(--green-text)}.cl-red{background:var(--red-soft);border-color:rgba(220,38,38,.15);color:var(--red-text)}.cl-amber{background:var(--amber-soft);border-color:rgba(217,119,6,.15);color:var(--amber-text)}.cl-purple{background:var(--purple-soft);border-color:rgba(124,58,237,.15);color:var(--purple-text)}
+.cl-green{background:var(--green-soft);border-color:rgba(43,222,115,.15);color:var(--green-text)}.cl-red{background:var(--red-soft);border-color:rgba(253,29,29,.15);color:var(--red-text)}.cl-amber{background:var(--amber-soft);border-color:rgba(217,119,6,.15);color:var(--amber-text)}.cl-purple{background:var(--purple-soft);border-color:rgba(124,58,237,.15);color:var(--purple-text)}
 .cl strong{font-weight:600}
 .chart-wrap{position:relative;height:200px;margin:8px 0}
 .mono{font-family:var(--mono)}.fw6{font-weight:600}
@@ -190,7 +190,7 @@ tbody tr{transition:background .15s}tbody tr:hover td{background:var(--surface3)
         <div style="padding:8px 10px;background:var(--bg2);border-radius:6px"><div style="font-size:8px;color:var(--ink4);text-transform:uppercase">Action Taken</div><div style="font-weight:700;font-size:11px">Executive sponsor call</div><div style="font-size:9px;color:var(--ink3)">VP Sales + CSM</div></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
-        <div style="padding:8px 10px;background:var(--green-soft);border-radius:6px;border:1px solid rgba(22,163,74,.12)"><div style="font-size:8px;color:var(--green-text);text-transform:uppercase;font-weight:600">Outcome</div><div style="font-weight:700;font-size:12px;color:var(--green-text)">RETAINED</div><div style="font-size:9px;color:var(--green-text)">$142K ARR preserved · Renewed for 2yr</div></div>
+        <div style="padding:8px 10px;background:var(--green-soft);border-radius:6px;border:1px solid rgba(43,222,115,.12)"><div style="font-size:8px;color:var(--green-text);text-transform:uppercase;font-weight:600">Outcome</div><div style="font-weight:700;font-size:12px;color:var(--green-text)">RETAINED</div><div style="font-size:9px;color:var(--green-text)">$142K ARR preserved · Renewed for 2yr</div></div>
         <div style="padding:8px 10px;background:var(--bg2);border-radius:6px"><div style="font-size:8px;color:var(--ink4);text-transform:uppercase">Learning</div><div style="font-size:10px;color:var(--ink3)">Executive sponsor engagement has 85% save rate vs 55% CSM-only. Validated for accounts >$100K ARR.</div></div>
       </div>
       <pre style="font-size:9px;line-height:1.5;background:var(--bg2);padding:10px;border-radius:6px;overflow-x:auto;margin:0;color:var(--ink3)">{"decision_id":"D-2026-0847","type":"churn_prevention","account":"Metro Builders Inc","arr":142000,"prediction":{"save_prob":0.68,"ci":[0.58,0.78]},"action":"executive_sponsor_call","outcome":{"result":"retained","revenue_impact":142000},"error":0.0}</pre>
@@ -209,7 +209,7 @@ tbody tr{transition:background .15s}tbody tr:hover td{background:var(--surface3)
         <div style="padding:8px 10px;background:var(--bg2);border-radius:6px"><div style="font-size:8px;color:var(--ink4);text-transform:uppercase">Action Taken</div><div style="font-weight:700;font-size:11px">Standard save playbook</div><div style="font-size:9px;color:var(--ink3)">CSM outreach + discount offer</div></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
-        <div style="padding:8px 10px;background:var(--red-soft);border-radius:6px;border:1px solid rgba(220,38,38,.12)"><div style="font-size:8px;color:var(--red-text);text-transform:uppercase;font-weight:600">Outcome</div><div style="font-weight:700;font-size:12px;color:var(--red-text)">CHURNED</div><div style="font-size:9px;color:var(--red-text)">$84K ARR lost · Moved to Competitor B</div></div>
+        <div style="padding:8px 10px;background:var(--red-soft);border-radius:6px;border:1px solid rgba(253,29,29,.12)"><div style="font-size:8px;color:var(--red-text);text-transform:uppercase;font-weight:600">Outcome</div><div style="font-weight:700;font-size:12px;color:var(--red-text)">CHURNED</div><div style="font-size:9px;color:var(--red-text)">$84K ARR lost · Moved to Competitor B</div></div>
         <div style="padding:8px 10px;background:var(--amber-soft);border-radius:6px;border:1px solid rgba(217,119,6,.12)"><div style="font-size:8px;color:var(--amber-text);text-transform:uppercase;font-weight:600">Root Cause & Learning</div><div style="font-size:10px;color:var(--amber-text)">Health score didn't capture procurement decision. Champion had no authority. Added contract renewal date + procurement approval signals to model. Accuracy improved +2%.</div></div>
       </div>
       <pre style="font-size:9px;line-height:1.5;background:var(--bg2);padding:10px;border-radius:6px;overflow-x:auto;margin:0;color:var(--ink3)">{"decision_id":"D-2026-0831","type":"churn_prevention","account":"Kellerman Group","arr":84000,"prediction":{"save_prob":0.62},"outcome":{"result":"churned","revenue_impact":-84000},"error":0.62,"learning":"Health score didn't capture procurement decision. Added contract renewal signals."}</pre>
@@ -228,7 +228,7 @@ tbody tr{transition:background .15s}tbody tr:hover td{background:var(--surface3)
         <div style="padding:8px 10px;background:var(--bg2);border-radius:6px"><div style="font-size:8px;color:var(--ink4);text-transform:uppercase">Action Taken</div><div style="font-weight:700;font-size:11px">Killed project</div><div style="font-size:9px;color:var(--ink3)">Reallocated 3 engineers to core</div></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
-        <div style="padding:8px 10px;background:var(--green-soft);border-radius:6px;border:1px solid rgba(22,163,74,.12)"><div style="font-size:8px;color:var(--green-text);text-transform:uppercase;font-weight:600">Outcome</div><div style="font-weight:700;font-size:12px;color:var(--green-text)">CORRECT KILL</div><div style="font-size:9px;color:var(--green-text)">5.2 months saved · Competitor version also failed</div></div>
+        <div style="padding:8px 10px;background:var(--green-soft);border-radius:6px;border:1px solid rgba(43,222,115,.12)"><div style="font-size:8px;color:var(--green-text);text-transform:uppercase;font-weight:600">Outcome</div><div style="font-weight:700;font-size:12px;color:var(--green-text)">CORRECT KILL</div><div style="font-size:9px;color:var(--green-text)">5.2 months saved · Competitor version also failed</div></div>
         <div style="padding:8px 10px;background:var(--bg2);border-radius:6px"><div style="font-size:8px;color:var(--ink4);text-transform:uppercase">Learning</div><div style="font-size:10px;color:var(--ink3)">Product kill decisions at <20% success probability are highly reliable. Expanding kill criteria to include projects with <35% prob and >4 month remaining investment.</div></div>
       </div>
       <pre style="font-size:9px;line-height:1.5;background:var(--bg2);padding:10px;border-radius:6px;overflow-x:auto;margin:0;color:var(--ink3)">{"decision_id":"D-2026-0812","type":"product_kill","feature":"AI Scheduling v2","prediction":{"success_prob":0.15},"action":"killed_project","outcome":{"correct":true,"months_saved":5.2}}</pre>
@@ -247,7 +247,7 @@ tbody tr{transition:background .15s}tbody tr:hover td{background:var(--surface3)
         <div style="padding:8px 10px;background:var(--bg2);border-radius:6px"><div style="font-size:8px;color:var(--ink4);text-transform:uppercase">Action Taken</div><div style="font-weight:700;font-size:11px">Proactive upsell outreach</div><div style="font-size:9px;color:var(--ink3)">CSM + usage report presentation</div></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
-        <div style="padding:8px 10px;background:var(--green-soft);border-radius:6px;border:1px solid rgba(22,163,74,.12)"><div style="font-size:8px;color:var(--green-text);text-transform:uppercase;font-weight:600">Outcome</div><div style="font-weight:700;font-size:12px;color:var(--green-text)">EXPANDED +$34K ARR</div><div style="font-size:9px;color:var(--green-text)">Added 20 seats + Enterprise tier</div></div>
+        <div style="padding:8px 10px;background:var(--green-soft);border-radius:6px;border:1px solid rgba(43,222,115,.12)"><div style="font-size:8px;color:var(--green-text);text-transform:uppercase;font-weight:600">Outcome</div><div style="font-weight:700;font-size:12px;color:var(--green-text)">EXPANDED +$34K ARR</div><div style="font-size:9px;color:var(--green-text)">Added 20 seats + Enterprise tier</div></div>
         <div style="padding:8px 10px;background:var(--bg2);border-radius:6px"><div style="font-size:8px;color:var(--ink4);text-transform:uppercase">Learning</div><div style="font-size:10px;color:var(--ink3)">Seat utilization >90% combined with NPS >8 is a strong expansion signal. Replicated across 12 similar accounts → 92% expansion rate.</div></div>
       </div>
       <pre style="font-size:9px;line-height:1.5;background:var(--bg2);padding:10px;border-radius:6px;overflow-x:auto;margin:0;color:var(--ink3)">{"decision_id":"D-2026-0798","type":"expansion","account":"Vertex Solutions","arr":68000,"prediction":{"expand_prob":0.82,"ci":[0.72,0.90]},"action":"proactive_upsell","outcome":{"result":"expanded","revenue_impact":34000},"error":0.0}</pre>
@@ -266,7 +266,7 @@ tbody tr{transition:background .15s}tbody tr:hover td{background:var(--surface3)
         <div style="padding:8px 10px;background:var(--bg2);border-radius:6px"><div style="font-size:8px;color:var(--ink4);text-transform:uppercase">Action Taken</div><div style="font-weight:700;font-size:11px">Approved</div><div style="font-size:9px;color:var(--ink3)">Hired Feb 1, ramping now</div></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
-        <div style="padding:8px 10px;background:var(--green-soft);border-radius:6px;border:1px solid rgba(22,163,74,.12)"><div style="font-size:8px;color:var(--green-text);text-transform:uppercase;font-weight:600">Outcome (Early)</div><div style="font-weight:700;font-size:12px;color:var(--green-text)">ON TRACK</div><div style="font-size:9px;color:var(--green-text)">$120K pipeline generated in first 30 days</div></div>
+        <div style="padding:8px 10px;background:var(--green-soft);border-radius:6px;border:1px solid rgba(43,222,115,.12)"><div style="font-size:8px;color:var(--green-text);text-transform:uppercase;font-weight:600">Outcome (Early)</div><div style="font-weight:700;font-size:12px;color:var(--green-text)">ON TRACK</div><div style="font-size:9px;color:var(--green-text)">$120K pipeline generated in first 30 days</div></div>
         <div style="padding:8px 10px;background:var(--bg2);border-radius:6px"><div style="font-size:8px;color:var(--ink4);text-transform:uppercase">Learning</div><div style="font-size:10px;color:var(--ink3)">Bear runway gating (≥12mo) is the strongest predictor. 5/5 hires above threshold performed. 0/2 below threshold approved (correctly rejected).</div></div>
       </div>
       <pre style="font-size:9px;line-height:1.5;background:var(--bg2);padding:10px;border-radius:6px;overflow-x:auto;margin:0;color:var(--ink3)">{"decision_id":"D-2026-0782","type":"hiring","role":"Enterprise AE ×2","prediction":{"roi":2.4,"bear_runway":"19.8mo"},"action":"approved","outcome":{"status":"on_track","pipeline_30d":120000}}</pre>
@@ -285,7 +285,7 @@ tbody tr{transition:background .15s}tbody tr:hover td{background:var(--surface3)
         <div style="padding:8px 10px;background:var(--bg2);border-radius:6px"><div style="font-size:8px;color:var(--ink4);text-transform:uppercase">Action Taken</div><div style="font-weight:700;font-size:11px">CEO-to-CEO call + custom SLA</div><div style="font-size:9px;color:var(--ink3)">Emergency escalation</div></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
-        <div style="padding:8px 10px;background:var(--green-soft);border-radius:6px;border:1px solid rgba(22,163,74,.12)"><div style="font-size:8px;color:var(--green-text);text-transform:uppercase;font-weight:600">Outcome</div><div style="font-weight:700;font-size:12px;color:var(--green-text)">RETAINED +$42K EXPANSION</div><div style="font-size:9px;color:var(--green-text)">Renewed 3yr + added compliance module</div></div>
+        <div style="padding:8px 10px;background:var(--green-soft);border-radius:6px;border:1px solid rgba(43,222,115,.12)"><div style="font-size:8px;color:var(--green-text);text-transform:uppercase;font-weight:600">Outcome</div><div style="font-weight:700;font-size:12px;color:var(--green-text)">RETAINED +$42K EXPANSION</div><div style="font-size:9px;color:var(--green-text)">Renewed 3yr + added compliance module</div></div>
         <div style="padding:8px 10px;background:var(--amber-soft);border-radius:6px;border:1px solid rgba(217,119,6,.12)"><div style="font-size:8px;color:var(--amber-text);text-transform:uppercase;font-weight:600">Learning</div><div style="font-size:10px;color:var(--amber-text)">Model underestimated CEO-level intervention impact. Executive-to-executive saves at 38% predicted → actually 72% historical. Adjusted model: executive escalation adds +30pp to save probability for accounts >$150K ARR.</div></div>
       </div>
       <pre style="font-size:9px;line-height:1.5;background:var(--bg2);padding:10px;border-radius:6px;overflow-x:auto;margin:0;color:var(--ink3)">{"decision_id":"D-2026-0761","type":"churn_prevention","account":"Pacific Health Systems","arr":210000,"prediction":{"save_prob":0.38,"ci":[0.24,0.52]},"action":"ceo_to_ceo_call","outcome":{"result":"retained","revenue_impact":252000},"error":0.0,"learning":"CEO-level intervention adds +30pp for >$150K accounts"}</pre>
@@ -304,7 +304,7 @@ tbody tr{transition:background .15s}tbody tr:hover td{background:var(--surface3)
         <div style="padding:8px 10px;background:var(--bg2);border-radius:6px"><div style="font-size:8px;color:var(--ink4);text-transform:uppercase">Action Taken</div><div style="font-weight:700;font-size:11px">Board guidance set at $3.2M</div><div style="font-size:9px;color:var(--ink3)">Conservative vs $3.5M sales target</div></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
-        <div style="padding:8px 10px;background:var(--green-soft);border-radius:6px;border:1px solid rgba(22,163,74,.12)"><div style="font-size:8px;color:var(--green-text);text-transform:uppercase;font-weight:600">Outcome</div><div style="font-weight:700;font-size:12px;color:var(--green-text)">$3.1M ACTUAL (97% accurate)</div><div style="font-size:9px;color:var(--green-text)">Board trust increased · Stock comp aligned</div></div>
+        <div style="padding:8px 10px;background:var(--green-soft);border-radius:6px;border:1px solid rgba(43,222,115,.12)"><div style="font-size:8px;color:var(--green-text);text-transform:uppercase;font-weight:600">Outcome</div><div style="font-weight:700;font-size:12px;color:var(--green-text)">$3.1M ACTUAL (97% accurate)</div><div style="font-size:9px;color:var(--green-text)">Board trust increased · Stock comp aligned</div></div>
         <div style="padding:8px 10px;background:var(--bg2);border-radius:6px"><div style="font-size:8px;color:var(--ink4);text-transform:uppercase">Learning</div><div style="font-size:10px;color:var(--ink3)">Seasonal Q1 softness was underweighted in prior models. Added enterprise budget cycle features. Board now trusts DSS forecasts over sales self-reports.</div></div>
       </div>
       <pre style="font-size:9px;line-height:1.5;background:var(--bg2);padding:10px;border-radius:6px;overflow-x:auto;margin:0;color:var(--ink3)">{"decision_id":"D-2026-0744","type":"pipeline_forecast","period":"Q1 2026","prediction":{"forecast":3200000,"ci":[2800000,3600000]},"action":"board_guidance","outcome":{"actual":3100000,"error_pct":3.2}}</pre>
@@ -380,10 +380,10 @@ const accCtx=document.getElementById('ch-acc');
 if(accCtx){new Chart(accCtx,{type:'line',data:{labels:['Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar'],
   datasets:[
     {label:'Overall',data:[82,83,84,85,86,88,91,94],borderColor:'#7c3aed',backgroundColor:'rgba(124,58,237,.08)',fill:true,tension:.35,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#7c3aed'},
-    {label:'Churn',data:[86,88,89,90,91,93,95,96],borderColor:'#16a34a',tension:.35,borderWidth:1.5,pointRadius:2,borderDash:[4,3]},
+    {label:'Churn',data:[86,88,89,90,91,93,95,96],borderColor:'#2bde73',tension:.35,borderWidth:1.5,pointRadius:2,borderDash:[4,3]},
     {label:'Pipeline',data:[80,81,82,84,85,87,89,91],borderColor:'#f59e0b',tension:.35,borderWidth:1.5,pointRadius:2,borderDash:[4,3]},
-    {label:'Expansion',data:[78,79,80,82,83,85,87,88],borderColor:'#dc2626',tension:.35,borderWidth:1.5,pointRadius:2,borderDash:[4,3]}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{family:'Inter',size:11},boxWidth:12,padding:12,color:'#7a7770'}}},scales:{y:{min:70,max:100,ticks:{callback:v=>v+'%',font:{family:'JetBrains Mono',size:10},color:'#a8a59e'},grid:{color:'rgba(0,0,0,.04)'}},x:{grid:{display:false},ticks:{font:{family:'Inter',size:10},color:'#a8a59e'}}}}});}
+    {label:'Expansion',data:[78,79,80,82,83,85,87,88],borderColor:'#fd1d1d',tension:.35,borderWidth:1.5,pointRadius:2,borderDash:[4,3]}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{family:'Inter',size:11},boxWidth:12,padding:12,color:'#7a7770'}}},scales:{y:{min:70,max:100,ticks:{callback:v=>v+'%',font:{family:'JetBrains Mono',size:10},color:'#a2aaad'},grid:{color:'rgba(0,0,0,.04)'}},x:{grid:{display:false},ticks:{font:{family:'Inter',size:10},color:'#a2aaad'}}}}});}
 </script>
 
 

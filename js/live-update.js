@@ -4,7 +4,7 @@
 (function(){
   // Inject toast styles
   var st = document.createElement('style');
-  st.textContent = '#live-toast{position:fixed;bottom:20px;right:20px;z-index:9999;background:#1a1916;color:#fff;padding:10px 18px;border-radius:8px;font:600 12px/1.4 Inter,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.25);transform:translateY(100px);opacity:0;transition:all .3s ease;display:flex;align-items:center;gap:10px;cursor:pointer}#live-toast.show{transform:translateY(0);opacity:1}#live-toast .dot{width:8px;height:8px;border-radius:50%;background:#10b981;flex-shrink:0;animation:pulse-dot 1.5s ease-in-out infinite}@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}';
+  st.textContent = '#live-toast{position:fixed;bottom:20px;right:20px;z-index:9999;background:#222222;color:#fff;padding:10px 18px;border-radius:8px;font:600 12px/1.4 Inter,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.25);transform:translateY(100px);opacity:0;transition:all .3s ease;display:flex;align-items:center;gap:10px;cursor:pointer}#live-toast.show{transform:translateY(0);opacity:1}#live-toast .dot{width:8px;height:8px;border-radius:50%;background:#2bde73;flex-shrink:0;animation:pulse-dot 1.5s ease-in-out infinite}@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}';
   document.head.appendChild(st);
 
   // Create toast element
