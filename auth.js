@@ -327,7 +327,7 @@ const DSLAuth = (() => {
     }
     if (portalId && !hasPortalAccess(portalId)) {
       document.body.innerHTML = `
-        <div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#f8f7f4;font-family:Inter,sans-serif">
+        <div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#f5f5f5;font-family:Inter,sans-serif">
           <div style="text-align:center;max-width:400px">
             <div style="font-size:48px;margin-bottom:16px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
             <h2 style="font-size:20px;font-weight:700;color:#222222;margin-bottom:8px">Access Restricted</h2>
@@ -352,16 +352,16 @@ const DSLAuth = (() => {
     overlay.innerHTML = `
       <div style="background:#fff;border-radius:16px;padding:32px;width:400px;max-width:90vw;box-shadow:0 20px 60px rgba(0,0,0,.15)">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
-          <div style="width:40px;height:40px;border-radius:10px;background:#dbeafe;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <div style="width:40px;height:40px;border-radius:10px;background:#fff8db;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#003399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <div><div style="font-size:16px;font-weight:700;color:#222222">Change Password</div><div style="font-size:11px;color:#7a7770">${getSession().email}</div></div>
         </div>
-        <div style="margin-bottom:14px"><label style="display:block;font-size:10px;font-weight:600;color:#262523;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em">Current Password</label><input type="password" id="dsl-chpwd-old" style="width:100%;padding:9px 12px;border:1px solid #e4e2dc;border-radius:8px;font-size:12px;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e4e2dc'"></div>
-        <div style="margin-bottom:14px"><label style="display:block;font-size:10px;font-weight:600;color:#262523;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em">New Password</label><input type="password" id="dsl-chpwd-new" style="width:100%;padding:9px 12px;border:1px solid #e4e2dc;border-radius:8px;font-size:12px;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e4e2dc'"><div style="font-size:9px;color:#7a7770;margin-top:4px">Minimum 6 characters</div></div>
-        <div style="margin-bottom:18px"><label style="display:block;font-size:10px;font-weight:600;color:#262523;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em">Confirm New Password</label><input type="password" id="dsl-chpwd-confirm" style="width:100%;padding:9px 12px;border:1px solid #e4e2dc;border-radius:8px;font-size:12px;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e4e2dc'"></div>
-        <div id="dsl-chpwd-error" style="display:none;padding:8px 12px;background:#fee2e2;border-radius:8px;font-size:11px;color:#b91c1c;margin-bottom:14px"></div>
+        <div style="margin-bottom:14px"><label style="display:block;font-size:10px;font-weight:600;color:#222222;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em">Current Password</label><input type="password" id="dsl-chpwd-old" style="width:100%;padding:9px 12px;border:1px solid #e0e0e0;border-radius:8px;font-size:12px;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='#ffcc00'" onblur="this.style.borderColor='#e0e0e0'"></div>
+        <div style="margin-bottom:14px"><label style="display:block;font-size:10px;font-weight:600;color:#222222;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em">New Password</label><input type="password" id="dsl-chpwd-new" style="width:100%;padding:9px 12px;border:1px solid #e0e0e0;border-radius:8px;font-size:12px;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='#ffcc00'" onblur="this.style.borderColor='#e0e0e0'"><div style="font-size:9px;color:#7a7770;margin-top:4px">Minimum 6 characters</div></div>
+        <div style="margin-bottom:18px"><label style="display:block;font-size:10px;font-weight:600;color:#222222;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em">Confirm New Password</label><input type="password" id="dsl-chpwd-confirm" style="width:100%;padding:9px 12px;border:1px solid #e0e0e0;border-radius:8px;font-size:12px;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='#ffcc00'" onblur="this.style.borderColor='#e0e0e0'"></div>
+        <div id="dsl-chpwd-error" style="display:none;padding:8px 12px;background:#ffecec;border-radius:8px;font-size:11px;color:#d11111;margin-bottom:14px"></div>
         <div style="display:flex;gap:8px;justify-content:flex-end">
-          <button onclick="DSLAuth.hideChangePasswordModal()" style="padding:8px 16px;border-radius:8px;font-size:11px;font-weight:600;border:1px solid #e4e2dc;background:#fff;color:#262523;cursor:pointer;font-family:inherit">Cancel</button>
-          <button onclick="DSLAuth.submitChangePassword()" style="padding:8px 20px;border-radius:8px;font-size:11px;font-weight:600;border:none;background:#3b82f6;color:#fff;cursor:pointer;font-family:inherit">Update Password</button>
+          <button onclick="DSLAuth.hideChangePasswordModal()" style="padding:8px 16px;border-radius:8px;font-size:11px;font-weight:600;border:1px solid #e0e0e0;background:#fff;color:#222222;cursor:pointer;font-family:inherit">Cancel</button>
+          <button onclick="DSLAuth.submitChangePassword()" style="padding:8px 20px;border-radius:8px;font-size:11px;font-weight:600;border:none;background:#ffcc00;color:#222;cursor:pointer;font-family:inherit">Update Password</button>
         </div>
       </div>`;
     document.body.appendChild(overlay);
@@ -418,7 +418,7 @@ const DSLAuth = (() => {
       document.querySelectorAll('.dsl-toast').forEach(t => t.remove());
       const t = document.createElement('div');
       t.className = 'dsl-toast';
-      const bg = type === 'success' ? '#16a34a' : '#dc2626';
+      const bg = type === 'success' ? '#2bde73' : '#fd1d1d';
       t.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:99999;padding:10px 18px;border-radius:10px;font-size:12px;font-weight:600;color:#fff;font-family:Inter,system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.15);display:flex;align-items:center;gap:6px;background:' + bg;
       const icon = type === 'success'
         ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>'

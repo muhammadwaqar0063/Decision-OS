@@ -12,13 +12,13 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --accent:#1a1916;
-  --bg:#f8f7f4;--bg2:#f0eeea;--surface:#ffffff;--surface3:#f9f8f5;
-  --border:#e4e2dc;--border2:#d6d4ce;
-  --ink:#1a1916;--ink2:#262523;--ink3:#7a7770;--ink4:#a8a59e;--ink5:#ccc9c2;
-  --blue:#3b82f6;--blue-deep:#1d4ed8;--blue-soft:#dbeafe;
-  --green:#16a34a;--green-soft:#dcfce7;--green-text:#15803d;
-  --red:#dc2626;--red-soft:#fee2e2;--red-text:#b91c1c;
+  --accent:#003399;
+  --bg:#f5f5f5;--bg2:#ececec;--surface:#ffffff;--surface3:#f5f5f5;
+  --border:#e0e0e0;--border2:#d5d5d5;
+  --ink:#222222;--ink2:#222222;--ink3:#7a7770;--ink4:#a2aaad;--ink5:#d5d5d5;
+  --blue:#ffcc00;--blue-deep:#003399;--blue-soft:#fff8db;
+  --green:#2bde73;--green-soft:#e3fbed;--green-text:#1a9e52;
+  --red:#fd1d1d;--red-soft:#ffecec;--red-text:#d11111;
   --amber:#d97706;--amber-soft:#fef3c7;--amber-text:#b45309;
   --purple:#7c3aed;--purple-soft:#ede9fe;
   --mono:'JetBrains Mono',monospace;--sans:'Inter',system-ui,sans-serif;
@@ -40,7 +40,7 @@ a{color:inherit;text-decoration:none}
 .hdr-nav{margin-left:auto;display:flex;gap:4px;align-items:center}
 .hdr-nav a{font-size:10px;font-weight:600;padding:5px 11px;border-radius:6px;color:var(--ink2);transition:all .15s}
 .hdr-nav a:hover{color:var(--ink2);background:var(--bg2)}
-.hdr-nav a.on{background:var(--ink);color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.hdr-nav a.on{background:var(--blue);color:#222;box-shadow:0 2px 8px rgba(255,204,0,.25)}
 .auth-badge-wrap{margin-left:12px}
 
 /* AUTH BADGE */
@@ -223,12 +223,12 @@ select.fi{cursor:pointer}
     <table>
       <thead><tr><th>Role</th><th>Description</th><th>Portals</th><th>Can Edit</th><th>Can Manage Users</th></tr></thead>
       <tbody id="role-defs-body">
-        <tr><td class="fw6"><span class="bdg bdg-blue">CEO</span></td><td>Full strategic access. Views all portals. Controls board narrative.</td><td>All 8</td><td><span class="perm-toggle on" data-role="CEO" data-perm="canEdit" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#16a34a"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="perm-toggle" data-role="CEO" data-perm="canManage" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#e5e5e5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#999" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span></td></tr>
-        <tr><td class="fw6"><span class="bdg bdg-green">CRO</span></td><td>Revenue intelligence. Access to CEO, CFO, CS, CMO portals.</td><td>5 portals</td><td><span class="perm-toggle on" data-role="CRO" data-perm="canEdit" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#16a34a"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="perm-toggle" data-role="CRO" data-perm="canManage" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#e5e5e5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#999" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span></td></tr>
-        <tr><td class="fw6"><span class="bdg bdg-amber">CFO</span></td><td>Financial command. Access to CEO, COO, CRO portals.</td><td>4 portals</td><td><span class="perm-toggle on" data-role="CFO" data-perm="canEdit" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#16a34a"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="perm-toggle" data-role="CFO" data-perm="canManage" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#e5e5e5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#999" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span></td></tr>
-        <tr><td class="fw6"><span class="bdg bdg-purple">CTO</span></td><td>Engineering intelligence. Access to CEO, COO, CPO, CFO portals.</td><td>5 portals</td><td><span class="perm-toggle on" data-role="CTO" data-perm="canEdit" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#16a34a"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="perm-toggle" data-role="CTO" data-perm="canManage" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#e5e5e5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#999" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span></td></tr>
-        <tr><td class="fw6"><span class="bdg bdg-gray">VIEWER</span></td><td>Read-only demo access. Can view all portals but not edit.</td><td>All 8</td><td><span class="perm-toggle" data-role="VIEWER" data-perm="canEdit" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#e5e5e5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#999" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span></td><td><span class="perm-toggle" data-role="VIEWER" data-perm="canManage" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#e5e5e5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#999" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span></td></tr>
-        <tr><td class="fw6"><span class="bdg bdg-red">ADMIN</span></td><td>System administrator. Full access + user management.</td><td>All 8 + Admin</td><td><span class="perm-toggle on" data-role="ADMIN" data-perm="canEdit" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#16a34a"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="perm-toggle on" data-role="ADMIN" data-perm="canManage" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#16a34a"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td></tr>
+        <tr><td class="fw6"><span class="bdg bdg-blue">CEO</span></td><td>Full strategic access. Views all portals. Controls board narrative.</td><td>All 8</td><td><span class="perm-toggle on" data-role="CEO" data-perm="canEdit" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#2bde73"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="perm-toggle" data-role="CEO" data-perm="canManage" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#d5d5d5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#a2aaad" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span></td></tr>
+        <tr><td class="fw6"><span class="bdg bdg-green">CRO</span></td><td>Revenue intelligence. Access to CEO, CFO, CS, CMO portals.</td><td>5 portals</td><td><span class="perm-toggle on" data-role="CRO" data-perm="canEdit" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#2bde73"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="perm-toggle" data-role="CRO" data-perm="canManage" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#d5d5d5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#a2aaad" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span></td></tr>
+        <tr><td class="fw6"><span class="bdg bdg-amber">CFO</span></td><td>Financial command. Access to CEO, COO, CRO portals.</td><td>4 portals</td><td><span class="perm-toggle on" data-role="CFO" data-perm="canEdit" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#2bde73"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="perm-toggle" data-role="CFO" data-perm="canManage" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#d5d5d5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#a2aaad" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span></td></tr>
+        <tr><td class="fw6"><span class="bdg bdg-purple">CTO</span></td><td>Engineering intelligence. Access to CEO, COO, CPO, CFO portals.</td><td>5 portals</td><td><span class="perm-toggle on" data-role="CTO" data-perm="canEdit" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#2bde73"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="perm-toggle" data-role="CTO" data-perm="canManage" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#d5d5d5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#a2aaad" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span></td></tr>
+        <tr><td class="fw6"><span class="bdg bdg-gray">VIEWER</span></td><td>Read-only demo access. Can view all portals but not edit.</td><td>All 8</td><td><span class="perm-toggle" data-role="VIEWER" data-perm="canEdit" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#d5d5d5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#a2aaad" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span></td><td><span class="perm-toggle" data-role="VIEWER" data-perm="canManage" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#d5d5d5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#a2aaad" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span></td></tr>
+        <tr><td class="fw6"><span class="bdg bdg-red">ADMIN</span></td><td>System administrator. Full access + user management.</td><td>All 8 + Admin</td><td><span class="perm-toggle on" data-role="ADMIN" data-perm="canEdit" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#2bde73"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td><span class="perm-toggle on" data-role="ADMIN" data-perm="canManage" onclick="togglePerm(this)"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#2bde73"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td></tr>
       </tbody>
     </table>
   </div>
@@ -393,17 +393,17 @@ buildMatrix();renderUsers();showToast('success','Users reset to defaults')}">Res
 if (!DSLAuth.isAuthenticated()) { window.location.href = 'login'; }
 const session = DSLAuth.getSession();
 if (session.role !== 'ADMIN') {
-  document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#f8f7f4;font-family:Inter,sans-serif"><div style="text-align:center"><div style="margin-bottom:16px"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#7a7770" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h2>Admin Access Required</h2><p style="color:#7a7770;margin:8px 0 20px">Only system administrators can access this page.</p><a href="login" style="display:inline-block;padding:10px 24px;background:#3b82f6;color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600">Return to Login</a></div></div>';
+  document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#f5f5f5;font-family:Inter,sans-serif"><div style="text-align:center"><div style="margin-bottom:16px"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#a2aaad" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h2>Admin Access Required</h2><p style="color:#7a7770;margin:8px 0 20px">Only system administrators can access this page.</p><a href="login" style="display:inline-block;padding:10px 24px;background:#ffcc00;color:#222;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600">Return to Login</a></div></div>';
 }
 
 // ── Render User Badge ──
 DSLAuth.renderUserBadge('#auth-badge');
 
 // ── SVG Icons ──
-const svgCheck = '<svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#16a34a"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const svgCross = '<svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#e5e5e5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#999" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>';
-const svgCheckSm = '<svg width="20" height="20" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#16a34a"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const svgCrossSm = '<svg width="20" height="20" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#d1d1d1"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#888" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>';
+const svgCheck = '<svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#2bde73"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const svgCross = '<svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#d5d5d5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#a2aaad" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>';
+const svgCheckSm = '<svg width="20" height="20" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#2bde73"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const svgCrossSm = '<svg width="20" height="20" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#d5d5d5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#a2aaad" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>';
 
 // ── Permission Toggles ──
 function togglePerm(el) {
@@ -644,9 +644,9 @@ function exportActivityPDF() {
 <link rel="icon" type="image/png" href="favicon.png"><title>ArcusSoft Activity Report</title><style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:Calibri,Arial,Helvetica,sans-serif;color:#1a1916;padding:40px 48px;font-size:10px}
-    .header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid #3b82f6;padding-bottom:12px;margin-bottom:20px}
+    .header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid #ffcc00;padding-bottom:12px;margin-bottom:20px}
     .header h1{font-size:18px;font-weight:700;letter-spacing:-0.02em}
-    .header h1 span{color:#3b82f6}
+    .header h1 span{color:#ffcc00}
     .meta{font-size:9px;color:#6b7280;text-align:right;line-height:1.6}
     .badge{display:inline-block;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:600}
     table{width:100%;border-collapse:collapse;margin-top:8px}
@@ -655,7 +655,7 @@ function exportActivityPDF() {
     .footer{margin-top:24px;padding-top:8px;border-top:1px solid #e5e7eb;font-size:8px;color:#9ca3af;display:flex;justify-content:space-between}
     @media print{body{padding:20px 24px} .no-print{display:none}}
     .no-print{margin-bottom:16px}
-    .no-print button{padding:8px 20px;background:#3b82f6;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit}
+    .no-print button{padding:8px 20px;background:#ffcc00;color:#222;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit}
   </style></head><body>
     <div class="no-print"><button onclick="window.print()">Print / Save as PDF</button></div>
     <div class="header"><h1><span>ArcusSoft</span> Decision OS<br><span style="font-size:11px;font-weight:400;color:#6b7280">Activity Audit Report</span></h1><div class="meta">Generated: ${new Date().toLocaleString()}<br>Records: ${log.length}<br>Filter: ${document.getElementById('act-filter-user').selectedOptions[0].text}</div></div>
@@ -701,7 +701,7 @@ function handleCreate() {
   if (!name || !email) { showToast('error', 'Name and email are required.'); return; }
   if (portals.length === 0) { showToast('error', 'Select at least one portal.'); return; }
 
-  const colors = ['#3b82f6','#16a34a','#d97706','#ea580c','#dc2626','#7c3aed','#0d9488','#e11d48'];
+  const colors = ['#ffcc00','#003399','#222222','#2bde73','#fd1d1d','#a2aaad','#d97706','#7c3aed'];
   const result = DSLAuth.createUser({ name, email, role, title, portals, color: colors[Math.floor(Math.random()*colors.length)] });
   closeCreateModal();
   if (result.success) {
