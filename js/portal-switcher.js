@@ -8,14 +8,14 @@
   var currentPortal = (location.pathname.split('/').pop().replace(/\.html$/, '') || 'ceo');
 
   var portals = [
-    { id: 'ceo',  label: 'CEO Portal',  icon: '🏢' },
-    { id: 'cfo',  label: 'CFO Portal',  icon: '💰' },
-    { id: 'cro',  label: 'CRO Portal',  icon: '📈' },
-    { id: 'coo',  label: 'COO Portal',  icon: '⚙️' },
-    { id: 'cs',   label: 'CS Portal',   icon: '🛡️' },
-    { id: 'cto',  label: 'CTO Portal',  icon: '🔧' },
-    { id: 'cmo',  label: 'CMO Portal',  icon: '📣' },
-    { id: 'cpo',  label: 'CPO Portal',  icon: '🎯' }
+    { id: 'ceo',  label: 'CEO Portal' },
+    { id: 'cfo',  label: 'CFO Portal' },
+    { id: 'cro',  label: 'CRO Portal' },
+    { id: 'coo',  label: 'COO Portal' },
+    { id: 'cs',   label: 'CS Portal' },
+    { id: 'cto',  label: 'CTO Portal' },
+    { id: 'cmo',  label: 'CMO Portal' },
+    { id: 'cpo',  label: 'CPO Portal' }
   ];
 
   var current = portals.filter(function(p) { return p.id === currentPortal; })[0] || portals[0];
@@ -46,10 +46,6 @@
     .psw-trigger:hover {
       border-color: #003399;
       box-shadow: 0 1px 4px rgba(0,51,153,0.08);
-    }
-    .psw-trigger .psw-icon {
-      font-size: 14px;
-      line-height: 1;
     }
     .psw-trigger .psw-chevron {
       width: 12px;
@@ -99,12 +95,6 @@
     .psw-item.current {
       background: #E0E8F5;
     }
-    .psw-item .psw-item-icon {
-      font-size: 15px;
-      width: 22px;
-      text-align: center;
-      line-height: 1;
-    }
     .psw-item .psw-item-label {
       font-size: 12px;
       font-weight: 600;
@@ -133,7 +123,6 @@
     portals.forEach(function(p) {
       var isCurrent = p.id === currentPortal;
       html += '<a class="psw-item' + (isCurrent ? ' current' : '') + '" href="' + p.id + '">';
-      html += '<span class="psw-item-icon">' + p.icon + '</span>';
       html += '<span class="psw-item-label">' + p.label + '</span>';
       if (isCurrent) html += '<span class="psw-item-badge">Current</span>';
       html += '</a>';
@@ -145,7 +134,6 @@
   function buildSwitcher() {
     var html = '<div class="psw" id="portal-switcher">';
     html += '<div class="psw-trigger" onclick="PSW.toggle()">';
-    html += '<span class="psw-icon">' + current.icon + '</span>';
     html += '<span>' + current.label + '</span>';
     html += '<svg class="psw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>';
     html += '</div>';
