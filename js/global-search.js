@@ -410,7 +410,8 @@
   function openSearch() {
     isOpen = true;
     document.getElementById('gs-box').classList.add('open');
-    document.getElementById('gs-trigger') && document.querySelector('.gs-trigger').style.display = 'none';
+    var trigger = document.querySelector('.gs-trigger');
+    if (trigger) trigger.style.display = 'none';
     var input = document.getElementById('gs-input');
     if (input) { input.focus(); input.value = ''; }
     document.getElementById('gs-results').classList.remove('open');
