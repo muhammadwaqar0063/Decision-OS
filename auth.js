@@ -84,7 +84,10 @@ const DSLAuth = (() => {
 
   function logout() {
     const session = getSession();
-    if (session) logActivity(session.userId, 'logout', 'Session ended');
+    if (session) {
+      logActivity(session.userId, 'logout', 'Session ended');
+      trackQuickAccessEvent(session.email, 'logout');
+    }
     localStorage.removeItem(SESSION_KEY);
   }
 
@@ -429,6 +432,32 @@ const DSLAuth = (() => {
     };
   }
 
+  // ── Quick Access Event Tracking ──
+  function trackQuickAccessEvent(email, type) {
+    const KEY = 'dsl_qa_events';
+    const events = JSON.parse(localStorage.getItem(KEY) || '[]');
+    events.push({ email, type, ts: Date.now() });
+    // Keep only last 24 hours
+    const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+    const filtered = events.filter(e => e.ts > cutoff);
+    localStorage.setItem(KEY, JSON.stringify(filtered));
+    // Auto-restore hidden quick access if 3+ logins and 3+ logouts in 24h
+    autoRestoreQuickAccess(email, filtered);
+  }
+
+  function autoRestoreQuickAccess(email, events) {
+    const hidden = JSON.parse(localStorage.getItem('dsl_hidden_quick') || '[]');
+    if (!hidden.includes(email)) return;
+    const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+    const userEvents = events.filter(e => e.email === email && e.ts > cutoff);
+    const logins = userEvents.filter(e => e.type === 'login').length;
+    const logouts = userEvents.filter(e => e.type === 'logout').length;
+    if (logins >= 3 && logouts >= 3) {
+      const updated = hidden.filter(e => e !== email);
+      localStorage.setItem('dsl_hidden_quick', JSON.stringify(updated));
+    }
+  }
+
   // ── Public API ──
   return {
     initUsers, getUsers, getUser, getUserByEmail, updateUser,
@@ -440,6 +469,7 @@ const DSLAuth = (() => {
     renderUserBadge, renderPortalNav, toggleDropdown,
     injectGuard,
     showChangePasswordModal, hideChangePasswordModal, submitChangePassword,
+    trackQuickAccessEvent,
   };
 })();
 

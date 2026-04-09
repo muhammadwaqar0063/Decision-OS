@@ -292,6 +292,7 @@ function handleLogin(e) {
     btn.textContent = 'Sign in';
     if (result.success) {
       trackDailyLogin();
+      DSLAuth.trackQuickAccessEvent(email, 'login');
       showToast('success', 'Welcome back, ' + result.user.name);
       setTimeout(() => {
         window.location.href = result.user.role.toLowerCase();
@@ -317,6 +318,10 @@ function dismissQuickCard(email, el) {
   let hidden = JSON.parse(localStorage.getItem('dsl_hidden_quick') || '[]');
   if (!hidden.includes(email)) hidden.push(email);
   localStorage.setItem('dsl_hidden_quick', JSON.stringify(hidden));
+  // Store dismiss timestamp for auto-restore tracking
+  let dismissals = JSON.parse(localStorage.getItem('dsl_qa_dismissed') || '{}');
+  dismissals[email] = Date.now();
+  localStorage.setItem('dsl_qa_dismissed', JSON.stringify(dismissals));
   el.closest('.demo-card').remove();
   const grid = document.getElementById('demo-grid');
   if (!grid.querySelector('.demo-card')) {
@@ -333,7 +338,27 @@ function trackDailyLogin() {
 }
 
 function renderQuickAccess() {
-  const hidden = JSON.parse(localStorage.getItem('dsl_hidden_quick') || '[]');
+  // Auto-restore: check if hidden users had 3+ login/logout cycles in 24h
+  let hidden = JSON.parse(localStorage.getItem('dsl_hidden_quick') || '[]');
+  const events = JSON.parse(localStorage.getItem('dsl_qa_events') || '[]');
+  const dismissals = JSON.parse(localStorage.getItem('dsl_qa_dismissed') || '{}');
+  const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+  const recentEvents = events.filter(e => e.ts > cutoff);
+  let changed = false;
+  hidden.forEach(email => {
+    const since = dismissals[email] || cutoff;
+    const userEvents = recentEvents.filter(e => e.email === email && e.ts > since);
+    const logins = userEvents.filter(e => e.type === 'login').length;
+    const logouts = userEvents.filter(e => e.type === 'logout').length;
+    if (logins >= 3 && logouts >= 3) {
+      hidden = hidden.filter(h => h !== email);
+      changed = true;
+    }
+  });
+  if (changed) {
+    localStorage.setItem('dsl_hidden_quick', JSON.stringify(hidden));
+  }
+
   const users = DSLAuth.getUsers();
   const quickUsers = [
     'sarah@arcussoft.com','alex@arcussoft.com','david@arcussoft.com',
