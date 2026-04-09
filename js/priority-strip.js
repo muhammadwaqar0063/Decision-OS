@@ -122,10 +122,32 @@
 
     .pstrip-empty {
       font-size: 11px;
-      color: #a2aaad;
+      color: #16A34A;
       padding: 0 14px;
-      font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
+    .pstrip-empty svg { flex-shrink: 0; opacity: 0.7; }
+
+    .pstrip-error {
+      font-size: 11px;
+      color: #DC2626;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pstrip-error svg { flex-shrink: 0; }
+    .pstrip-error a {
+      color: #003399;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 2px 8px;
+      border-radius: 4px;
+      transition: background 0.1s;
+    }
+    .pstrip-error a:hover { background: #E0E8F5; }
   `;
   document.head.appendChild(st);
 
@@ -217,11 +239,11 @@
           var html = renderStrip(data.decisions);
           injectStrip(html);
         } else {
-          injectStrip('<div class="pstrip-label"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Priority</div><div class="pstrip-empty">No active decisions</div>');
+          injectStrip('<div class="pstrip-label"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Priority</div><div class="pstrip-empty"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> All clear — no high-priority decisions</div>');
         }
       })
       .catch(function() {
-        injectStrip('<div class="pstrip-label"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Priority</div><div class="pstrip-loading">Unable to load decisions</div>');
+        injectStrip('<div class="pstrip-label"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Priority</div><div class="pstrip-error"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Unable to load <a href="#" onclick="PSStrip.reload();return false">Retry</a></div>');
       });
   }
 

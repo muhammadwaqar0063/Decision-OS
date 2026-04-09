@@ -451,7 +451,7 @@
     // Re-render cards
     var cardsHtml = '';
     if (filtered.length === 0) {
-      cardsHtml = '<div class="dc-empty">No decisions match current filters</div>';
+      cardsHtml = '<div class="dc-empty"><div class="dc-state-icon empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div><div class="dc-state-title">No matching decisions</div><div class="dc-state-desc">Try adjusting your filters or domain to see more results.</div><button class="dc-state-action" onclick="DTabs.clearFilters()">Clear all filters</button></div>';
     } else {
       filtered.forEach(function(d) {
         cardsHtml += renderSingleCard(d);

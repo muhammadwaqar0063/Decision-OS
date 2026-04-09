@@ -273,16 +273,62 @@
       100% { background-position: -200% 0; }
     }
     .dc-empty, .dc-error {
-      font-size: 12px;
-      color: #a2aaad;
-      padding: 20px 18px;
+      padding: 40px 20px;
       text-align: center;
-      font-style: italic;
     }
-    .dc-error {
-      color: #D11111;
-      font-style: normal;
+    .dc-state-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 12px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    .dc-state-icon svg { width: 22px; height: 22px; }
+    .dc-state-icon.empty { background: #f5f5f5; color: #a2aaad; }
+    .dc-state-icon.error { background: #FEE2E2; color: #DC2626; }
+    .dc-state-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 4px;
+    }
+    .dc-state-desc {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+    .dc-state-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid #e5e5e5;
+      background: #fff;
+      color: #003399;
+      text-decoration: none;
+      transition: all 0.15s;
+      font-family: 'Inter', sans-serif;
+    }
+    .dc-state-action:hover {
+      background: #E0E8F5;
+      border-color: #003399;
+    }
+    .dc-state-action.primary {
+      background: #003399;
+      color: #fff;
+      border-color: #003399;
+    }
+    .dc-state-action.primary:hover {
+      background: #002a7a;
+    }
+    .dc-state-action svg { width: 14px; height: 14px; }
   `;
   document.head.appendChild(st);
 
@@ -374,8 +420,12 @@
     if (filtered.length === 0) {
       return '<div class="dc-section">'
         + '<div class="dc-section-head"><span class="dc-section-title">Active Decisions</span></div>'
-        + '<div class="dc-empty">No active decisions for this portal</div>'
-        + '</div>';
+        + '<div class="dc-empty">'
+        + '<div class="dc-state-icon empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>'
+        + '<div class="dc-state-title">No active decisions</div>'
+        + '<div class="dc-state-desc">All clear — no decisions need attention right now.</div>'
+        + '<button class="dc-state-action primary" onclick="QActions && QActions.createDecision ? QActions.createDecision() : null"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Create Decision</button>'
+        + '</div></div>';
     }
 
     var html = '<div class="dc-section">';
@@ -441,8 +491,12 @@
       .catch(function() {
         injectCards('<div class="dc-section">'
           + '<div class="dc-section-head"><span class="dc-section-title">Active Decisions</span></div>'
-          + '<div class="dc-error">Unable to load decisions. <a href="#" onclick="DCCards.reload();return false" style="color:#003399;font-weight:600">Retry</a></div>'
-          + '</div>');
+          + '<div class="dc-error">'
+          + '<div class="dc-state-icon error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>'
+          + '<div class="dc-state-title">Couldn\'t load decisions</div>'
+          + '<div class="dc-state-desc">Something went wrong while fetching data. Check your connection and try again.</div>'
+          + '<button class="dc-state-action" onclick="DCCards.reload()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg> Retry</button>'
+          + '</div></div>');
       });
   }
 
