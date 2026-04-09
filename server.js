@@ -135,6 +135,35 @@ app.get('/api/decisions', (req, res) => {
   res.json(data);
 });
 
+// Create Decision
+app.post('/api/decisions', express.json(), (req, res) => {
+  const dataPath = path.join(__dirname, 'data', 'decisions.json');
+  try {
+    const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+    const body = req.body;
+    const newDecision = {
+      id: 'd' + String(data.decisions.length + 1).padStart(3, '0'),
+      title: body.title || 'Untitled',
+      priority: body.priority || 'medium',
+      status: 'open',
+      domain: body.domain || 'General',
+      portal: body.portal || 'ceo',
+      owner: body.owner || null,
+      dollarImpact: body.dollarImpact || 0,
+      summary: body.summary || '',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    data.decisions.push(newDecision);
+    fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
+    cache.del('decisions');
+    io.emit('decision:created', newDecision);
+    res.status(201).json(newDecision);
+  } catch (e) {
+    res.status(500).json({ error: 'Failed to create decision' });
+  }
+});
+
 // Pipeline
 app.get('/api/pipeline', (req, res) => {
   const data = loadDataFile('pipeline');
