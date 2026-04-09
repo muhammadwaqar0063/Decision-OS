@@ -8,7 +8,7 @@
   // ── State ──
   var activeDomain = 'all';
   var activeSort = 'priority';
-  var activeView = 'cards';
+  var activeView = 'list';
   var activeFilters = {}; // { portal: 'cro', status: 'open', ... }
 
   // ── Styles ──
