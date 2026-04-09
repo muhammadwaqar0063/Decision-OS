@@ -5,6 +5,7 @@
    ═══════════════════════════════════════════ */
 
 const express = require('express');
+const helmet = require('helmet');
 const http = require('http');
 const { Server } = require('socket.io');
 const fs = require('fs');
@@ -22,6 +23,9 @@ const io = new Server(server, {
   }
 });
 const PORT = process.env.PORT || 3000;
+
+// ── Security Headers ──
+app.use(helmet());
 
 // ── Cache (5-min TTL default) ──
 const cache = new NodeCache({ stdTTL: 300, checkperiod: 60 });
