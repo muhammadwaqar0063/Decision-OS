@@ -25,7 +25,10 @@ const io = new Server(server, {
 const PORT = process.env.PORT || 3000;
 
 // ── Security Headers ──
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: process.env.NODE_ENV === 'production',
+  hsts: process.env.NODE_ENV === 'production',
+}));
 
 // ── Cache (5-min TTL default) ──
 const cache = new NodeCache({ stdTTL: 300, checkperiod: 60 });
