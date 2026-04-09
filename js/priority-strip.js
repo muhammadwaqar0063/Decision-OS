@@ -34,15 +34,15 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: #a2aaad;
-      padding-right: 10px;
-      border-right: 1px solid #e5e5e5;
+      color: #003399;
+      padding: 4px 10px 4px 6px;
+      border-right: 2px solid #FFCC00;
       margin-right: 2px;
       display: flex;
       align-items: center;
       gap: 5px;
     }
-    .pstrip-label svg { opacity: 0.5; }
+    .pstrip-label svg { opacity: 1; color: #FFCC00; }
 
     .pstrip-card {
       flex-shrink: 0;
