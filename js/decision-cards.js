@@ -435,6 +435,7 @@
       .then(function(r) { return r.json(); })
       .then(function(data) {
         var decisions = data.decisions || [];
+        window._dcDecisions = decisions;
         injectCards(renderSection(decisions));
       })
       .catch(function() {
@@ -460,28 +461,21 @@
   // ── Public API ──
   window.DCCards = {
     toggle: function(id) {
-      var card = document.querySelector('.dc[data-id="' + id + '"]');
-      if (card) {
-        var isExpanding = !card.classList.contains('expanded');
-        // Collapse all others
-        document.querySelectorAll('.dc.expanded').forEach(function(el) {
-          el.classList.remove('expanded');
-        });
-        if (isExpanding) {
-          card.classList.add('expanded');
-          // Highlight matching Priority Strip card
-          document.querySelectorAll('.pstrip-card').forEach(function(c) {
-            c.style.borderColor = c.dataset.id === id ? '#003399' : '#e5e5e5';
-            c.style.boxShadow = c.dataset.id === id ? '0 0 0 1px #003399' : 'none';
-          });
-        } else {
-          // Clear strip highlights
-          document.querySelectorAll('.pstrip-card').forEach(function(c) {
-            c.style.borderColor = '#e5e5e5';
-            c.style.boxShadow = 'none';
-          });
+      // Open drill-down panel if available
+      if (window.DDPanel) {
+        // Find decision data
+        var card = document.querySelector('.dc[data-id="' + id + '"]');
+        if (card && window._dcDecisions) {
+          var decision = window._dcDecisions.filter(function(d) { return d.id === id; })[0];
+          if (decision) {
+            DDPanel.open(decision);
+            return;
+          }
         }
       }
+      // Fallback: inline expand
+      var card = document.querySelector('.dc[data-id="' + id + '"]');
+      if (card) card.classList.toggle('expanded');
     },
     action: function(type, id) {
       console.log('[DCCards] Action:', type, 'on', id);

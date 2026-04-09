@@ -213,6 +213,7 @@
       .then(function(r) { return r.json(); })
       .then(function(data) {
         if (data.decisions && data.decisions.length > 0) {
+          if (!window._dcDecisions) window._dcDecisions = data.decisions;
           var html = renderStrip(data.decisions);
           injectStrip(html);
         } else {
@@ -257,16 +258,22 @@
         c.style.boxShadow = c.dataset.id === id ? '0 0 0 1px #003399' : 'none';
       });
 
-      // Scroll to and expand matching Decision Card
+      // Open drill-down panel if available
+      if (window.DDPanel && window._dcDecisions) {
+        var decision = window._dcDecisions.filter(function(d) { return d.id === id; })[0];
+        if (decision) {
+          DDPanel.open(decision);
+          return;
+        }
+      }
+
+      // Fallback: scroll to Decision Card
       var dc = document.querySelector('.dc[data-id="' + id + '"]');
       if (dc) {
-        // Collapse all others
         document.querySelectorAll('.dc.expanded').forEach(function(el) {
           if (el.dataset.id !== id) el.classList.remove('expanded');
         });
-        // Expand this one
         dc.classList.add('expanded');
-        // Scroll into view
         dc.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     },
