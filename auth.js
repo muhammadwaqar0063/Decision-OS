@@ -10,16 +10,16 @@ const DSLAuth = (() => {
 
   // ── Default Users ──
   const DEFAULT_USERS = [
-    { id: 'u001', email: 'sarah@arcussoft.com',    password: 'demo123', name: 'Sarah Chen',     role: 'CEO',  title: 'Chief Executive Officer',    avatar: 'SC', color: '#3b82f6', portals: ['ceo','cro','cfo','coo','cs','cto','cmo','cpo'], lastLogin: null, mfa: false },
-    { id: 'u002', email: 'alex@arcussoft.com',     password: 'demo123', name: 'Alex Rivera',    role: 'CRO',  title: 'Chief Revenue Officer',      avatar: 'AR', color: '#16a34a', portals: ['ceo','cro','cfo','cs','cmo'],                lastLogin: null, mfa: false },
+    { id: 'u001', email: 'sarah@arcussoft.com',    password: 'demo123', name: 'Sarah Chen',     role: 'CEO',  title: 'Chief Executive Officer',    avatar: 'SC', color: '#003399', portals: ['ceo','cro','cfo','coo','cs','cto','cmo','cpo'], lastLogin: null, mfa: false },
+    { id: 'u002', email: 'alex@arcussoft.com',     password: 'demo123', name: 'Alex Rivera',    role: 'CRO',  title: 'Chief Revenue Officer',      avatar: 'AR', color: '#2BDE73', portals: ['ceo','cro','cfo','cs','cmo'],                lastLogin: null, mfa: false },
     { id: 'u003', email: 'david@arcussoft.com',    password: 'demo123', name: 'David Park',     role: 'CFO',  title: 'Chief Financial Officer',    avatar: 'DP', color: '#d97706', portals: ['ceo','cfo','coo','cro'],                      lastLogin: null, mfa: false },
     { id: 'u004', email: 'maria@arcussoft.com',    password: 'demo123', name: 'Maria Santos',   role: 'COO',  title: 'Chief Operating Officer',    avatar: 'MS', color: '#ea580c', portals: ['ceo','coo','cs','cto','cro'],                 lastLogin: null, mfa: false },
-    { id: 'u005', email: 'priya@arcussoft.com',    password: 'demo123', name: 'Priya Sharma',   role: 'CS',   title: 'Head of Customer Success',   avatar: 'PS', color: '#dc2626', portals: ['ceo','cs','cro','cto'],                       lastLogin: null, mfa: false },
+    { id: 'u005', email: 'priya@arcussoft.com',    password: 'demo123', name: 'Priya Sharma',   role: 'CS',   title: 'Head of Customer Success',   avatar: 'PS', color: '#FD1D1D', portals: ['ceo','cs','cro','cto'],                       lastLogin: null, mfa: false },
     { id: 'u006', email: 'james@arcussoft.com',    password: 'demo123', name: 'James Wu',       role: 'CTO',  title: 'Chief Technology Officer',   avatar: 'JW', color: '#7c3aed', portals: ['ceo','cto','coo','cfo','cpo'],                lastLogin: null, mfa: false },
     { id: 'u007', email: 'elena@arcussoft.com',    password: 'demo123', name: 'Elena Rossi',    role: 'CMO',  title: 'Chief Marketing Officer',    avatar: 'ER', color: '#0d9488', portals: ['ceo','cmo','cro','cfo'],                      lastLogin: null, mfa: false },
     { id: 'u008', email: 'tom@arcussoft.com',      password: 'demo123', name: 'Tom Nakamura',   role: 'CPO',  title: 'Chief Product Officer',      avatar: 'TN', color: '#e11d48', portals: ['ceo','cpo','cto','cs','cro'],                 lastLogin: null, mfa: false },
-    { id: 'u009', email: 'admin@arcussoft.com',    password: 'admin123',name: 'System Admin',   role: 'ADMIN',title: 'System Administrator',       avatar: 'SA', color: '#1a1916', portals: ['ceo','cro','cfo','coo','cs','cto','cmo','cpo','admin'], lastLogin: null, mfa: false },
-    { id: 'u010', email: 'demo@arcussoft.com',     password: 'demo',    name: 'Demo Viewer',    role: 'VIEWER',title: 'Read-Only Demo Account',   avatar: 'DV', color: '#a8a59e', portals: ['ceo','cro','cfo','coo','cs','cto','cmo','cpo'], lastLogin: null, mfa: false },
+    { id: 'u009', email: 'admin@arcussoft.com',    password: 'admin123',name: 'System Admin',   role: 'ADMIN',title: 'System Administrator',       avatar: 'SA', color: '#222222', portals: ['ceo','cro','cfo','coo','cs','cto','cmo','cpo','admin'], lastLogin: null, mfa: false },
+    { id: 'u010', email: 'demo@arcussoft.com',     password: 'demo',    name: 'Demo Viewer',    role: 'VIEWER',title: 'Read-Only Demo Account',   avatar: 'DV', color: '#A2AAAD', portals: ['ceo','cro','cfo','coo','cs','cto','cmo','cpo'], lastLogin: null, mfa: false },
   ];
 
   // ── Initialize Users ──
@@ -196,7 +196,7 @@ const DSLAuth = (() => {
       role: data.role || 'VIEWER',
       title: data.title || '',
       avatar: (data.name || 'XX').split(' ').map(w => w[0]).join('').toUpperCase().substring(0, 2),
-      color: data.color || '#a8a59e',
+      color: data.color || '#A2AAAD',
       portals: data.portals || ['ceo'],
       lastLogin: null,
       mfa: false,
@@ -283,11 +283,11 @@ const DSLAuth = (() => {
     if (!el) return;
 
     const portalMap = {
-      ceo: { name: 'CEO', file: 'ceo', color: '#3b82f6' },
-      cro: { name: 'CRO', file: 'cro', color: '#16a34a' },
+      ceo: { name: 'CEO', file: 'ceo', color: '#003399' },
+      cro: { name: 'CRO', file: 'cro', color: '#2BDE73' },
       cfo: { name: 'CFO', file: 'cfo', color: '#d97706' },
       coo: { name: 'COO', file: 'coo', color: '#ea580c' },
-      cs:  { name: 'CS',  file: 'cs',  color: '#dc2626' },
+      cs:  { name: 'CS',  file: 'cs',  color: '#FD1D1D' },
       cto: { name: 'CTO', file: 'cto', color: '#7c3aed' },
       cmo: { name: 'CMO', file: 'cmo', color: '#0d9488' },
       cpo: { name: 'CPO', file: 'cpo', color: '#e11d48' },
@@ -308,7 +308,7 @@ const DSLAuth = (() => {
 
     if (session.role === 'ADMIN') {
       const isAdminPage = currentPage === 'admin';
-      html += `<a href="admin" class="nav-portal${isAdminPage ? ' active' : ''}" style="${isAdminPage ? 'color:#1a1916;border-bottom-color:#1a1916' : ''}">Admin</a>`;
+      html += `<a href="admin" class="nav-portal${isAdminPage ? ' active' : ''}" style="${isAdminPage ? 'color:#222222;border-bottom-color:#222222' : ''}">Admin</a>`;
     }
 
     el.innerHTML = html;
@@ -330,9 +330,9 @@ const DSLAuth = (() => {
         <div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#f8f7f4;font-family:Inter,sans-serif">
           <div style="text-align:center;max-width:400px">
             <div style="font-size:48px;margin-bottom:16px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-            <h2 style="font-size:20px;font-weight:700;color:#1a1916;margin-bottom:8px">Access Restricted</h2>
+            <h2 style="font-size:20px;font-weight:700;color:#222222;margin-bottom:8px">Access Restricted</h2>
             <p style="font-size:13px;color:#7a7770;margin-bottom:20px">Your account (<strong>${getSession().email}</strong>) does not have permission to access the ${portalId.toUpperCase()} Portal.</p>
-            <a href="login" style="display:inline-block;padding:10px 24px;background:#3b82f6;color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600">Return to Login</a>
+            <a href="login" style="display:inline-block;padding:10px 24px;background:#FFCC00;color:#222;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600">Return to Login</a>
           </div>
         </div>`;
       return;
@@ -353,7 +353,7 @@ const DSLAuth = (() => {
       <div style="background:#fff;border-radius:16px;padding:32px;width:400px;max-width:90vw;box-shadow:0 20px 60px rgba(0,0,0,.15)">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
           <div style="width:40px;height:40px;border-radius:10px;background:#dbeafe;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-          <div><div style="font-size:16px;font-weight:700;color:#1a1916">Change Password</div><div style="font-size:11px;color:#7a7770">${getSession().email}</div></div>
+          <div><div style="font-size:16px;font-weight:700;color:#222222">Change Password</div><div style="font-size:11px;color:#7a7770">${getSession().email}</div></div>
         </div>
         <div style="margin-bottom:14px"><label style="display:block;font-size:10px;font-weight:600;color:#262523;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em">Current Password</label><input type="password" id="dsl-chpwd-old" style="width:100%;padding:9px 12px;border:1px solid #e4e2dc;border-radius:8px;font-size:12px;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e4e2dc'"></div>
         <div style="margin-bottom:14px"><label style="display:block;font-size:10px;font-weight:600;color:#262523;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em">New Password</label><input type="password" id="dsl-chpwd-new" style="width:100%;padding:9px 12px;border:1px solid #e4e2dc;border-radius:8px;font-size:12px;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e4e2dc'"><div style="font-size:9px;color:#7a7770;margin-top:4px">Minimum 6 characters</div></div>
