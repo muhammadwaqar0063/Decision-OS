@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════
    ArcusSoft Decision OS | Dark Mode
-   Self-contained: styles + toggle + persistence
+   Palette: #ffcc00 · #003399 · #222222 · #f5f5f5 · #2bde73 · #fd1d1d · #a2aaad
    ═══════════════════════════════════════ */
 (function(){
   'use strict';
@@ -8,29 +8,33 @@
   // ── Inject styles ──
   var css = [
     'html.dark{',
-    '  --bg:#111113;--bg2:#1a1a1e;--bg3:#222226;--bg4:#2c2c31;',
-    '  --surface:#1c1c20;--surface2:#202024;--surface3:#252529;',
-    '  --glass:rgba(20,20,24,.88);--glass2:rgba(20,20,24,.95);',
-    '  --border:#2a2a2f;--border2:#35353b;--border3:#44444a;',
-    '  --ink:#eae9e5;--ink2:#c5c3bd;--ink3:#8a8880;--ink4:#5e5c56;--ink5:#3a3834;',
-    '  --blue:#60a5fa;--blue-soft:rgba(59,130,246,.12);--blue-glow:rgba(96,165,250,.1);--blue-text:#93bbfd;',
-    '  --green:#4ade80;--green-soft:rgba(34,197,94,.12);--green-glow:rgba(74,222,128,.1);--green-text:#6ee7a0;',
-    '  --red:#f87171;--red-soft:rgba(239,68,68,.12);--red-glow:rgba(248,113,113,.08);--red-text:#fca5a5;',
-    '  --amber:#fbbf24;--amber-soft:rgba(245,158,11,.12);--amber-glow:rgba(251,191,36,.1);--amber-text:#fcd34d;',
+    '  --bg:#111111;--bg2:#1a1a1a;--bg3:#242424;--bg4:#2e2e2e;',
+    '  --surface:#1e1e1e;--surface2:#222222;--surface3:#282828;',
+    '  --glass:rgba(17,17,17,.88);--glass2:rgba(17,17,17,.95);',
+    '  --border:#2e2e2e;--border2:#3a3a3a;--border3:#4a4a4a;',
+    '  --ink:#f0f0f0;--ink2:#d0d0d0;--ink3:#888888;--ink4:#5e5e5e;--ink5:#3a3a3a;',
+    '  --blue:#4d88ff;--blue-soft:rgba(0,51,153,.2);--blue-glow:rgba(77,136,255,.12);--blue-text:#7aa8ff;',
+    '  --gold:#ffd633;--gold-soft:rgba(255,204,0,.12);--gold-glow:rgba(255,204,0,.08);--gold-text:#ffe066;',
+    '  --green:#5ce88a;--green-soft:rgba(43,222,115,.12);--green-glow:rgba(92,232,138,.1);--green-text:#5ce88a;',
+    '  --red:#ff5555;--red-soft:rgba(253,29,29,.12);--red-glow:rgba(255,85,85,.08);--red-text:#ff7777;',
+    '  --amber:#ffc033;--amber-soft:rgba(255,192,51,.12);--amber-glow:rgba(255,192,51,.1);--amber-text:#ffd066;',
     '  --purple:#a78bfa;--purple-soft:rgba(124,58,237,.12);--purple-glow:rgba(167,139,250,.1);--purple-text:#c4b5fd;',
     '  --orange:#fb923c;--orange-soft:rgba(234,88,12,.12);--orange-text:#fdba74;',
     '  --teal:#2dd4bf;--teal-soft:rgba(13,148,136,.12);--teal-text:#5eead4;',
     '  --rose:#fb7185;--rose-soft:rgba(225,29,72,.12);--rose-text:#fda4af;',
-    '  --shadow:0 1px 3px rgba(0,0,0,.2),0 4px 12px rgba(0,0,0,.15);',
-    '  --shadow-hover:0 2px 8px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.2);',
-    '  --shadow-lg:0 8px 32px rgba(0,0,0,.3),0 2px 8px rgba(0,0,0,.2);',
+    '  --accent:#4d88ff;',
+    '  --shadow:0 1px 3px rgba(0,0,0,.3),0 4px 12px rgba(0,0,0,.2);',
+    '  --shadow-hover:0 2px 8px rgba(0,0,0,.35),0 8px 24px rgba(0,0,0,.25);',
+    '  --shadow-lg:0 8px 32px rgba(0,0,0,.4),0 2px 8px rgba(0,0,0,.3);',
     '}',
     'html.dark body{background:var(--bg);color:var(--ink)}',
-    'html.dark .hdr{background:rgba(17,17,19,.96)!important;box-shadow:0 1px 0 var(--accent)}',
-    'html.dark .tabs{background:rgba(17,17,19,.96)!important}',
+    'html.dark .hdr{background:rgba(17,17,17,.96)!important;box-shadow:0 1px 0 var(--accent)}',
+    'html.dark .tabs{background:rgba(17,17,17,.96)!important}',
     'html.dark .topnav{background:var(--glass2)!important}',
     'html.dark .kc{background:var(--surface);border-color:var(--border)}',
     'html.dark .kc:hover{border-color:var(--border2)}',
+    'html.dark .cd{background:var(--surface);border-color:var(--border)}',
+    'html.dark .cd:hover{border-color:var(--border2)}',
     'html.dark .pcard{background:var(--surface);border-color:var(--border)}',
     'html.dark .pcard:hover{border-color:var(--border2)}',
     'html.dark .tcard{background:var(--surface);border-color:var(--border)}',
@@ -44,18 +48,62 @@
     'html.dark .wt-card{background:var(--surface);border-color:var(--border)}',
     'html.dark .sc-card{background:var(--surface);border-color:var(--border)}',
     'html.dark input,html.dark select,html.dark textarea{background:var(--bg2);border-color:var(--border);color:var(--ink)}',
+    'html.dark input:focus,html.dark select:focus,html.dark textarea:focus{border-color:var(--gold);background:var(--surface);box-shadow:0 0 0 3px rgba(255,204,0,.1)}',
     'html.dark .auth-dd{background:var(--surface);border-color:var(--border)}',
     'html.dark .auth-dd-header{border-color:var(--border)}',
     'html.dark .auth-dd-item:hover{background:var(--bg2)}',
     'html.dark .auth-badge{border-color:var(--border)}',
     'html.dark .tab:hover{background:var(--bg2)}',
-    'html.dark .tab.on{background:var(--blue-soft)}',
+    'html.dark .tab.on{color:var(--gold-text);border-bottom-color:var(--gold);background:var(--gold-soft)}',
+    'html.dark .hdr-nav a:hover{background:var(--bg2)}',
+    'html.dark .hdr-nav a.on{background:var(--gold);color:#222;box-shadow:0 2px 8px rgba(255,204,0,.2)}',
     'html.dark .hdr-r a:hover{background:var(--bg2)}',
+    'html.dark .hdr-r a.on{background:var(--gold);color:#222;box-shadow:0 2px 8px rgba(255,204,0,.2)}',
     'html.dark .topnav .links a:hover{background:var(--bg2)}',
-    'html.dark .login-left{background:linear-gradient(135deg,#111827 0%,#1e1b2e 50%,#111a15 100%)!important}',
+    'html.dark .topnav .links a.on{background:var(--gold);color:#222;box-shadow:0 2px 8px rgba(255,204,0,.2)}',
+    'html.dark .btn{background:var(--surface);border-color:var(--border);color:var(--ink2)}',
+    'html.dark .btn:hover{border-color:var(--border2);box-shadow:var(--shadow-hover)}',
+    'html.dark .btn-blue{background:var(--blue);color:#fff;border-color:var(--blue)}',
+    'html.dark .btn-blue:hover{background:#3a75e6}',
+    'html.dark .btn-p{background:var(--gold);color:#222;border-color:var(--gold);box-shadow:0 2px 8px rgba(255,204,0,.2)}',
+    'html.dark .btn-p:hover{background:#e6b800}',
+    'html.dark .btn-green{background:var(--green);color:#222;border-color:var(--green)}',
+    'html.dark .btn-red{background:var(--red);color:#fff;border-color:var(--red)}',
+    'html.dark .bdg-blue{background:var(--blue-soft);color:var(--blue-text)}',
+    'html.dark .bdg-green{background:var(--green-soft);color:var(--green-text)}',
+    'html.dark .bdg-red{background:var(--red-soft);color:var(--red-text)}',
+    'html.dark .bdg-amber{background:var(--amber-soft);color:var(--amber-text)}',
+    'html.dark .bdg-purple{background:var(--purple-soft);color:var(--purple-text)}',
+    'html.dark th{background:var(--surface3);color:var(--ink3);border-color:var(--border)}',
+    'html.dark td{border-color:var(--bg2);color:var(--ink2)}',
+    'html.dark tbody tr:hover td{background:var(--surface3)}',
+    'html.dark .fi{background:var(--bg2);border-color:var(--border);color:var(--ink)}',
+    'html.dark .fi:focus{border-color:var(--gold);background:var(--surface);box-shadow:0 0 0 3px rgba(255,204,0,.1)}',
+    'html.dark .kc.at-blue{border-top-color:var(--blue)}',
+    'html.dark .kc.at-green{border-top-color:var(--green)}',
+    'html.dark .kc.at-amber{border-top-color:var(--amber)}',
+    'html.dark .kc.at-red{border-top-color:var(--red)}',
+    'html.dark .kc .kv{color:var(--ink)}',
+    'html.dark .modal{background:var(--surface);border-color:var(--border)}',
+    'html.dark .modal h3{color:var(--ink)}',
+    'html.dark .modal-btn{background:var(--surface);border-color:var(--border);color:var(--ink2)}',
+    'html.dark .modal-btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}',
+    'html.dark .access-chip{border-color:var(--border);color:var(--ink3)}',
+    'html.dark .access-chip.selected{border-color:var(--blue);background:var(--blue-soft);color:var(--blue-text)}',
+    'html.dark .toast.success{background:var(--green-soft);border-color:rgba(43,222,115,.2);color:var(--green-text)}',
+    'html.dark .toast.error{background:var(--red-soft);border-color:rgba(253,29,29,.15);color:var(--red-text)}',
+    'html.dark .perm-toggle .on circle{fill:var(--green)}',
+    'html.dark .login-left{background:linear-gradient(135deg,#0a0a0f 0%,#0d1020 50%,#0a0f0a 100%)!important}',
     'html.dark .login-feature{background:rgba(30,30,34,.7);border-color:var(--border)}',
     'html.dark .login-feature:hover{background:var(--surface)}',
     'html.dark .session-banner{background:var(--amber-soft);border-color:var(--border)}',
+    'html.dark .demo-card{background:var(--bg2);border-color:var(--border)}',
+    'html.dark .demo-card:hover{border-color:var(--gold);background:var(--gold-soft)}',
+    'html.dark .form-input{background:var(--bg2);border-color:var(--border);color:var(--ink)}',
+    'html.dark .form-input:focus{border-color:var(--gold);background:var(--surface);box-shadow:0 0 0 3px rgba(255,204,0,.1)}',
+    'html.dark .btn-login{background:linear-gradient(135deg,#ffd633,#e6b800);color:#222}',
+    'html.dark .btn-login:hover{box-shadow:0 4px 16px rgba(255,204,0,.3)}',
+    'html.dark ::selection{background:var(--gold);color:#222}',
     '',
     '/* ── Toggle Button ── */',
     '.dss-theme-toggle{',
@@ -125,45 +173,28 @@
 
   // ── Insert toggle into nav ──
   function insertToggle() {
-    // Skip if already inserted
     if (document.querySelector('.dss-theme-toggle')) return;
-
     var toggle = createToggle();
 
-    // Portal pages: .hdr-r
     var hdrR = document.querySelector('.hdr-r');
-    if (hdrR) {
-      hdrR.appendChild(toggle);
-      return;
-    }
+    if (hdrR) { hdrR.appendChild(toggle); return; }
 
-    // Admin page: .hdr-nav
     var hdrNav = document.querySelector('.hdr-nav');
-    if (hdrNav) {
-      hdrNav.appendChild(toggle);
-      return;
-    }
+    if (hdrNav) { hdrNav.appendChild(toggle); return; }
 
-    // Landing pages: .topnav .links
     var topnavLinks = document.querySelector('.topnav .links');
-    if (topnavLinks) {
-      topnavLinks.appendChild(toggle);
-      return;
-    }
+    if (topnavLinks) { topnavLinks.appendChild(toggle); return; }
 
-    // Login page: fixed position
     toggle.classList.add('dss-toggle-fixed');
     document.body.appendChild(toggle);
   }
 
-  // Insert when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', insertToggle);
   } else {
     insertToggle();
   }
 
-  // Expose for manual calls
   window.toggleTheme = function() {
     var isDark = document.documentElement.classList.toggle('dark');
     localStorage.setItem(KEY, isDark ? 'dark' : 'light');
