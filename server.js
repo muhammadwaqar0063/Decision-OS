@@ -30,20 +30,23 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', uptime: process.uptime(), timestamp: new Date().toISOString() });
 });
 
-// Manual git pull (also works as a webhook target)
-app.get('/api/pull', (req, res) => {
-  try {
-    const result = execSync('git pull --ff-only', { cwd: __dirname, encoding: 'utf8', timeout: 15000 });
-    const changed = !result.includes('Already up to date');
-    if (changed) {
-      cache.flushAll();
-      io.emit('git-update', { message: 'Changes pulled', timestamp: new Date().toISOString() });
+// Manual git pull — DEV ONLY (blocked in production)
+if (process.env.NODE_ENV !== 'production') {
+  const { execSync } = require('child_process');
+  app.get('/api/pull', (req, res) => {
+    try {
+      const result = execSync('git pull --ff-only', { cwd: __dirname, encoding: 'utf8', timeout: 15000 });
+      const changed = !result.includes('Already up to date');
+      if (changed) {
+        cache.flushAll();
+        io.emit('git-update', { message: 'Changes pulled', timestamp: new Date().toISOString() });
+      }
+      res.json({ changed, message: changed ? 'Changes pulled, refreshing...' : 'Already up to date' });
+    } catch (e) {
+      res.status(500).json({ changed: false, message: e.message });
     }
-    res.json({ changed, message: changed ? 'Changes pulled, refreshing...' : 'Already up to date' });
-  } catch (e) {
-    res.status(500).json({ changed: false, message: e.message });
-  }
-});
+  });
+}
 
 // Generic JSON data endpoint
 app.get('/api/data/:file', (req, res) => {
@@ -393,25 +396,27 @@ if (fs.existsSync(dataDir)) {
   });
 }
 
-// ── Auto Git Pull ──
-const { execSync } = require('child_process');
-const GIT_PULL_INTERVAL = 10 * 1000; // 10 seconds
+// ── Auto Git Pull — DEV ONLY (blocked in production) ──
+if (process.env.NODE_ENV !== 'production') {
+  const { execSync } = require('child_process');
+  const GIT_PULL_INTERVAL = 10 * 1000; // 10 seconds
 
-function autoPull() {
-  try {
-    const result = execSync('git pull --ff-only', { cwd: __dirname, encoding: 'utf8', timeout: 15000 });
-    if (!result.includes('Already up to date')) {
-      console.log(`[GIT] Pulled changes:\n${result.trim()}`);
-      cache.flushAll();
-      io.emit('git-update', { message: 'New changes pulled. Refresh to see updates.', timestamp: new Date().toISOString() });
+  function autoPull() {
+    try {
+      const result = execSync('git pull --ff-only', { cwd: __dirname, encoding: 'utf8', timeout: 15000 });
+      if (!result.includes('Already up to date')) {
+        console.log(`[GIT] Pulled changes:\n${result.trim()}`);
+        cache.flushAll();
+        io.emit('git-update', { message: 'New changes pulled. Refresh to see updates.', timestamp: new Date().toISOString() });
+      }
+    } catch (e) {
+      console.error('[GIT] Auto-pull failed:', e.message);
     }
-  } catch (e) {
-    console.error('[GIT] Auto-pull failed:', e.message);
   }
-}
 
-setInterval(autoPull, GIT_PULL_INTERVAL);
-autoPull(); // run once on startup
+  setInterval(autoPull, GIT_PULL_INTERVAL);
+  autoPull(); // run once on startup
+}
 
 // ── Clean URL support (/ceo → ceo) ──
 // Redirect .html URLs to clean URLs
