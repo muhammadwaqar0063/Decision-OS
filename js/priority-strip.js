@@ -251,13 +251,24 @@
   // ── Public API ──
   window.PStrip = {
     open: function(id) {
-      // Placeholder — will connect to Drill-Down Panel (change #8)
-      console.log('[PStrip] Open decision:', id);
-      // For now, highlight the card
+      // Highlight strip card
       document.querySelectorAll('.pstrip-card').forEach(function(c) {
         c.style.borderColor = c.dataset.id === id ? '#003399' : '#e5e5e5';
         c.style.boxShadow = c.dataset.id === id ? '0 0 0 1px #003399' : 'none';
       });
+
+      // Scroll to and expand matching Decision Card
+      var dc = document.querySelector('.dc[data-id="' + id + '"]');
+      if (dc) {
+        // Collapse all others
+        document.querySelectorAll('.dc.expanded').forEach(function(el) {
+          if (el.dataset.id !== id) el.classList.remove('expanded');
+        });
+        // Expand this one
+        dc.classList.add('expanded');
+        // Scroll into view
+        dc.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     },
     reload: loadDecisions
   };

@@ -461,7 +461,27 @@
   window.DCCards = {
     toggle: function(id) {
       var card = document.querySelector('.dc[data-id="' + id + '"]');
-      if (card) card.classList.toggle('expanded');
+      if (card) {
+        var isExpanding = !card.classList.contains('expanded');
+        // Collapse all others
+        document.querySelectorAll('.dc.expanded').forEach(function(el) {
+          el.classList.remove('expanded');
+        });
+        if (isExpanding) {
+          card.classList.add('expanded');
+          // Highlight matching Priority Strip card
+          document.querySelectorAll('.pstrip-card').forEach(function(c) {
+            c.style.borderColor = c.dataset.id === id ? '#003399' : '#e5e5e5';
+            c.style.boxShadow = c.dataset.id === id ? '0 0 0 1px #003399' : 'none';
+          });
+        } else {
+          // Clear strip highlights
+          document.querySelectorAll('.pstrip-card').forEach(function(c) {
+            c.style.borderColor = '#e5e5e5';
+            c.style.boxShadow = 'none';
+          });
+        }
+      }
     },
     action: function(type, id) {
       console.log('[DCCards] Action:', type, 'on', id);
