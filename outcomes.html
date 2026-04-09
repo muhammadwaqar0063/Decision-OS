@@ -74,6 +74,7 @@ tr.alert td{background:var(--red-soft)!important}tr.good td{background:var(--gre
 <body>
 <div class="hdr">
   <div class="brand">ArcusSoft · Decision OS</div>
+  <div class="co">Outcomes</div>
   <nav class="hdr-nav"><a href="ceo">CEO</a><a href="cro">CRO</a><a href="cfo">CFO</a><a href="coo">COO</a><a href="cs">CS</a><a href="cto">CTO</a><a href="cmo">CMO</a><a href="cpo">CPO</a><div class="sep"></div><a href="calculators"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>Calculators</a><a href="outcomes" class="on">Outcomes</a><a href="alerts">Alerts</a><a href="learning">Learning</a></nav><div class="hdr-r"><div class="live"><i></i>Live</div><div class="auth-area" style="position:relative"></div></div>
 </div>
 <div class="tabs">
@@ -134,6 +135,9 @@ if(ctx){new Chart(ctx,{type:'line',data:{labels:['Q3 24','Q4 24','Q1 25','Q2 25'
 
 
 <script src="dark-mode.js"></script>
+<script src="js/global-search.js"></script>
+<script src="js/portal-switcher.js"></script>
+<script src="js/skeleton-loader.js"></script>
 <script src="auth.js"></script>
 <script>
 if(typeof DSLAuth!=="undefined")DSLAuth.renderUserBadge('.auth-area');
