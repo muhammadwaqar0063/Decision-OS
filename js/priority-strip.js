@@ -20,10 +20,11 @@
       display: flex;
       align-items: center;
       padding: 0 32px;
-      gap: 10px;
+      gap: 8px;
       overflow-x: auto;
       overflow-y: hidden;
       scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
     }
     .pstrip::-webkit-scrollbar { display: none; }
 
@@ -36,7 +37,7 @@
       color: #a2aaad;
       padding-right: 10px;
       border-right: 1px solid #e5e5e5;
-      margin-right: 4px;
+      margin-right: 2px;
       display: flex;
       align-items: center;
       gap: 5px;
@@ -47,15 +48,15 @@
       flex-shrink: 0;
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
+      gap: 8px;
+      padding: 6px 12px;
       background: #ffffff;
       border: 1px solid #e5e5e5;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.15s;
-      max-width: 320px;
-      min-width: 200px;
+      max-width: 260px;
+      min-width: 160px;
     }
     .pstrip-card:hover {
       border-color: #ccc;
@@ -84,6 +85,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       line-height: 1.3;
+      max-width: 180px;
     }
     .pstrip-meta {
       display: flex;
