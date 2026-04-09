@@ -120,6 +120,21 @@ app.get('/api/alerts', (req, res) => {
   res.json(data);
 });
 
+// Decisions (Priority Strip)
+app.get('/api/decisions', (req, res) => {
+  const data = loadDataFile('decisions');
+  if (!data) return res.status(404).json({ error: 'Not found' });
+  const { priority, status, portal } = req.query;
+  if (data.decisions) {
+    let filtered = data.decisions;
+    if (priority) filtered = filtered.filter(d => d.priority === priority);
+    if (status) filtered = filtered.filter(d => d.status === status);
+    if (portal) filtered = filtered.filter(d => d.portal === portal);
+    return res.json({ ...data, decisions: filtered });
+  }
+  res.json(data);
+});
+
 // Pipeline
 app.get('/api/pipeline', (req, res) => {
   const data = loadDataFile('pipeline');

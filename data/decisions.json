@@ -1,0 +1,77 @@
+{
+  "decisions": [
+    {
+      "id": "d001",
+      "title": "Pipeline gap $1.6M at risk for Q2 target",
+      "priority": "high",
+      "status": "open",
+      "domain": "Revenue",
+      "portal": "cro",
+      "owner": null,
+      "dollarImpact": 1600000,
+      "summary": "Current pipeline coverage is 2.1× but 32% of deals are stuck. Q2 target of $4.2M requires $5.8M in pipeline — $1.6M gap exists.",
+      "createdAt": "2026-04-08T09:30:00Z",
+      "updatedAt": "2026-04-09T10:15:00Z"
+    },
+    {
+      "id": "d002",
+      "title": "AE hiring gate blocked — runway below 18mo",
+      "priority": "high",
+      "status": "in-progress",
+      "domain": "Finance",
+      "portal": "cfo",
+      "owner": "david@arcussoft.com",
+      "dollarImpact": 300000,
+      "summary": "Runway at 17.4 months. CFO hiring gate requires 18mo minimum. 3 AE hires on hold until runway threshold met or bridge funding secured.",
+      "createdAt": "2026-04-06T14:00:00Z",
+      "updatedAt": "2026-04-09T08:45:00Z"
+    },
+    {
+      "id": "d003",
+      "title": "Churn rate improved — NRR trending up",
+      "priority": "low",
+      "status": "completed",
+      "domain": "Customer",
+      "portal": "cs",
+      "owner": "priya@arcussoft.com",
+      "dollarImpact": 0,
+      "summary": "Monthly churn dropped from 3.8% to 1.7%. NRR improved to 108%. Health score intervention playbook is working — 3 at-risk accounts saved.",
+      "createdAt": "2026-04-01T10:00:00Z",
+      "updatedAt": "2026-04-09T06:00:00Z"
+    },
+    {
+      "id": "d004",
+      "title": "Enterprise deal ACME blocked on SOC2",
+      "priority": "medium",
+      "status": "in-progress",
+      "domain": "Revenue",
+      "portal": "cro",
+      "owner": "alex@arcussoft.com",
+      "dollarImpact": 180000,
+      "summary": "ACME Corp ($180K ARR) requires SOC2 Type II certification before signing. Security audit scheduled for April 15. Decision: accelerate or lose deal.",
+      "createdAt": "2026-04-05T11:00:00Z",
+      "updatedAt": "2026-04-09T09:30:00Z"
+    },
+    {
+      "id": "d005",
+      "title": "Feature X usage below 10% — kill decision needed",
+      "priority": "medium",
+      "status": "open",
+      "domain": "Product",
+      "portal": "cpo",
+      "owner": null,
+      "dollarImpact": 250000,
+      "summary": "Feature X has 7% adoption after 6 months. Engineering cost: $50K/quarter. Recommendation: sunset and reallocate resources to mobile app.",
+      "createdAt": "2026-04-07T16:00:00Z",
+      "updatedAt": "2026-04-08T14:00:00Z"
+    }
+  ],
+  "meta": {
+    "lastUpdated": "2026-04-09T10:30:00Z",
+    "totalDecisions": 5,
+    "highPriority": 2,
+    "open": 2,
+    "inProgress": 2,
+    "completed": 1
+  }
+}
